@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+.login-section {
+    background: url(../img/login-bg.jpg) top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+.login-section .login-inner {
+    margin-top: 18px;
+    background-color: skyblue;
+    padding: 15px 40px 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+.login-section .login-inner .heading {
+    text-align: center;
+}
+.login-section .login-inner .inner-body .reset-pass {
+    float: right;
+}
+.login-section .login-inner .inner-body .sign-text {
+    padding-top: 10px;
+}
+.login-section .login-inner .inner-body .sign-text a {
+    padding-left: 3px;
+    font-weight: bold;
+}
+.login-section .login-inner .inner-body .or-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+}
+.login-section .login-inner .inner-body .or-section::before,
+.login-section .login-inner .inner-body .or-section::after {
+    content: "";
+    height: 2px;
+    background: black;
+    display: block;
+}
