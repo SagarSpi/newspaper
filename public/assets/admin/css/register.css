@@ -6,7 +6,7 @@ a {
     text-decoration: none;
 }
 .register-section {
-    background: url(../img/login-bg.jpg) top center;
+    background: url(../img/register-bg.jpg) top center;
     background-size: cover;
     background-repeat: no-repeat;
     height: auto;
