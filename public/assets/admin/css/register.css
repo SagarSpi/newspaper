@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+.register-section {
+    background: url(../img/login-bg.jpg) top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+    width: 100%;
+}
+.register-section .heading {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.register-section .register-inner {
+    margin: 30px 0px;
+    padding: 10px 30px;
+    background: skyblue;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+.register-section .register-inner .inner-body p a {
+    font-weight: 600;
+}
