@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> || BestNews</title>
+    <title> @yield('title')|| BestNews</title>
     {{-- Bootstrap CDN css link  --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     {{-- Fontawesome CDN css link  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     {{-- Header Sidebar Custom css file  --}}
     <link rel="stylesheet" href="{{asset('assets/admin/css/headerSidebar.css')}}">
+    @stack('css')
   </head>
   <body>
     {{-- Header section start --}}
@@ -68,7 +69,7 @@
                         <nav class="sidebar-nav">
                             <ul>
                                 <li>
-                                    <a href="#" class="nav-link">Dashboard</a>
+                                    <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link">Article List</a>

@@ -59,6 +59,7 @@ ul li {
     padding: 15px 0px 15px 30px;
     color: #ffffff;
     font-size: 14px;
+    text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 1px;
 }
@@ -81,7 +82,4 @@ ul li {
     background: #ff003b;
     border-radius: 25px;
     padding-left: 50px;
-}
-.content-body {
-    background: red;
 }
