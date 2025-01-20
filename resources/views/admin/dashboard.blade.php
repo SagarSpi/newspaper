@@ -14,7 +14,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="dashboard-content">
-                    <h2>Dashboard</h2>
                     <div class="row">
                       <div class="col-3">
                         <div class="card radius-15 bg-voilet">

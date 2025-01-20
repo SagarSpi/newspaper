@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.create-news-section {
+    width: 100%;
+}
+.create-news-section .heading {
+    background-color: aqua;
+    padding: 10px 0px;
+    text-align: center;
+}
+.create-news-section .create-news-body {
+    width: 100%;
+    padding: 60px 0px;
+}
+.create-news-section .create-news-body label {
+    font-weight: 600;
+}
+.create-news-section .create-news-body .ck-editor__editable {
+    min-height: 300px;
+}
+.create-news-section .create-news-body .btn {
+    float: right;
+    padding: 6px 70px;
+}
+.create-news-section .create-news-body .bootstrap-tagsinput input {
+    padding: 0 !important;
+    margin: 2px 0px !important;
+}
+.create-news-section .create-news-body .label-info {
+    background-color: #198754;
+    border-radius: 3px;
+    padding: 0px 4px 3px 4px;
+}

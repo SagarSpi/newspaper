@@ -72,7 +72,10 @@
                                     <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link">Article List</a>
+                                    <a href="#" class="nav-link">News List</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('createNews')}}" class="nav-link">Create News</a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link">Users Manager</a>
@@ -101,5 +104,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Fontawesome CDN js link  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+    @stack('script')
   </body>
 </html>
