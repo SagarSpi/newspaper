@@ -12,8 +12,8 @@ Route::get('/', function () {
 
 
 Route::get('admin/dashboard',[DashboardController::class,'dashboardPage'])->name('dashboard');
-Route::get('admin/create/News',[NewsController::class,'create'])->name('news.create');
-
+Route::get('admin/create/news',[NewsController::class,'create'])->name('news.create');
+Route::get('admin/update/news',[NewsController::class,'edit'])->name('news.edit');
 
 
 
