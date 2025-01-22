@@ -21,33 +21,34 @@
         <div class="create-news-body">
             <div class="row">
                 <div class="col-10 offset-1">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-2">
                             <label for="title" class="form-label">Title :</label>
-                            <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title" >
+                            <input type="text" value="{{old('title')}}" name="title" id="title" class="form-control" placeholder="Enter Title" >
                         </div>
                         <div class="mb-2">
                             <label for="category">Category :</label>
                             <select name="category" id="category" class="form-control">
                                 <option value="">Select Category</option>
-                                <option value="Politics">Politics</option>
-                                <option value="Business">Business</option>
-                                <option value="Sports">Sports</option>
-                                <option value="Crime">Crime</option>
-                                <option value="Lifestyle">Lifestyle</option>
-                                <option value="Education">Education</option>
-                                <option value="Bangladesh">Bangladesh</option>
-                                <option value="Entertainment">Entertainment</option>
-                                <option value="International">International</option>
+                                <option value="Politics" {{old('category')=='Politics'?'selected':''}}>Politics</option>
+                                <option value="Business"{{old('category')=='Business'?'selected':''}}>Business</option>
+                                <option value="Sports" {{old('category')=='Sports'?'selected':''}}>Sports</option>
+                                <option value="Crime" {{old('category')=='Crime'?'selected':''}}>Crime</option>
+                                <option value="Lifestyle" {{old('category')=='Lifestyle'?'selected':''}}>Lifestyle</option>
+                                <option value="Education"{{old('category')=='Education'?'selected':''}}>Education</option>
+                                <option value="Bangladesh"{{old('category')=='Bangladesh'?'selected':''}}>Bangladesh</option>
+                                <option value="Entertainment"{{old('category')=='Entertainment'?'selected':''}}>Entertainment</option>
+                                <option value="International"{{old('category')=='International'?'selected':''}}>International</option>
                             </select>
                         </div>
                         <div class="mb-2">
                             <label for="shortDesc" class="form-label">Summary :</label>
-                            <input type="text" name="shortDesc" id="shortDesc" class="form-control" placeholder="Enter Summary" >
+                            <input type="text" value="{{old('shortDesc')}}" name="shortDesc" id="shortDesc" class="form-control" placeholder="Enter Summary" >
                         </div>
                         <div class="mb-2">
                             <label for="description">Description : </label>
-                            <textarea name="description" id="description" class="form-control" placeholder="Enter Description"></textarea>
+                            <textarea name="description" id="description" class="form-control" placeholder="Enter Description">{{old('description')}}</textarea>
                         </div>
                         <div class="mb-2">
                             <label for="image">Upload Image :</label>
@@ -55,9 +56,9 @@
                         </div>
                         <div class="input-group my-4">
                             <span class="input-group-text" id="tags">Tags :</span>
-                            <input type="text" name="tags" id="tags_input" data-role="tagsinput" class="form-control" placeholder="Enter Tags">
+                            <input type="text" value="{{old('tags')}}" name="tags" id="tags_input" data-role="tagsinput" class="form-control" placeholder="Enter Tags">
                             <span class="input-group-text" id="author">Author :</span>
-                            <input type="text" name="author"class="form-control" placeholder="Enter Creator Name">
+                            <input type="text" value="{{old('author')}}" name="author" class="form-control" placeholder="Enter Creator Name">
                         </div>
                         <button type="submit" class="btn btn-success">Submit News</button>
                     </form>

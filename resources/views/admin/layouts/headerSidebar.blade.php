@@ -75,7 +75,7 @@
                                     <a href="#" class="nav-link">News List</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('createNews')}}" class="nav-link">Create News</a>
+                                    <a href="{{route('news.create')}}" class="nav-link">Create News</a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link">Users Manager</a>
