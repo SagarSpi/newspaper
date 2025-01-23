@@ -4,15 +4,27 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\News_article;
 
-class NewsController extends Controller
+use function Pest\Laravel\get;
+
+class News_articleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        // $newsArticle = News_article::where('status','active')
+        //                             ->orderBy('created_at','DESC')
+        //                             ->chunk(6,function ($newsArticle) {
+        //                                 foreach ($newsArticle as $news) {
+
+        //                                 }
+        //                             });
+
+        // return $newsArticle;
+        return view('admin.newsArticle');
     }
 
     /**

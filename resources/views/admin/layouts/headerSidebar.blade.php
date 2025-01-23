@@ -72,7 +72,7 @@
                                     <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link">News List</a>
+                                    <a href="{{route('news.index')}}" class="nav-link">News List</a>
                                 </li>
                                 <li>
                                     <a href="{{route('news.create')}}" class="nav-link">Create News</a>

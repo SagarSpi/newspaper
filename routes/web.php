@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\News_articleController;
 use Illuminate\Support\Facades\Route;
+
+use function Pest\Laravel\get;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,8 +14,9 @@ Route::get('/', function () {
 
 
 Route::get('admin/dashboard',[DashboardController::class,'dashboardPage'])->name('dashboard');
-Route::get('admin/create/news',[NewsController::class,'create'])->name('news.create');
-Route::get('admin/update/news',[NewsController::class,'edit'])->name('news.edit');
+Route::get('admin/news/list',[News_articleController::class,'index'])->name('news.index');
+Route::get('admin/create/news',[News_articleController::class,'create'])->name('news.create');
+Route::get('admin/edit/news',[News_articleController::class,'edit'])->name('news.edit');
 
 
 
