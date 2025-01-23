@@ -15,16 +15,11 @@ class News_articleController extends Controller
      */
     public function index()
     {
-        // $newsArticle = News_article::where('status','active')
-        //                             ->orderBy('created_at','DESC')
-        //                             ->chunk(6,function ($newsArticle) {
-        //                                 foreach ($newsArticle as $news) {
 
-        //                                 }
-        //                             });
+        $newsArticle = News_article::orderBy('created_at','DESC')
+                                    ->paginate(9);
 
-        // return $newsArticle;
-        return view('admin.newsArticle');
+        return view('admin.newsArticle',compact('newsArticle'));
     }
 
     /**
@@ -48,7 +43,8 @@ class News_articleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $news = News_article::findorfail($id);
+        return view('admin.newsDetails',compact('news'));
     }
 
     /**
