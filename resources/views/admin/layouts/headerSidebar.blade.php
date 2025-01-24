@@ -78,9 +78,6 @@
                                     <a href="{{route('news.create')}}" class="nav-link">Create News</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('news.edit')}}" class="nav-link">Update News</a>
-                                </li>
-                                <li>
                                     <a href="#" class="nav-link">Users Manager</a>
                                 </li>
                                 <li>

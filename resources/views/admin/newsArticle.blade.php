@@ -34,10 +34,10 @@
                                 <th scope="col">Id</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Category</th>
-                                <th scope="col">Image</th>
                                 <th scope="col">Summary</th>
-                                <th scope="col">Creator</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Status</th>
+                                <th scope="col" style="white-space: nowrap;" >Creator Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -47,16 +47,19 @@
                                     <th scope="row">{{$news['id']}}</th>
                                     <td>{{$news['title']}}</td>
                                     <td>{{$news['category']}}</td>
-                                    <td><img src="{{$news['image_url']}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$news['shortDesc']}}</td>
-                                    <td>{{$news['creator_id']}}</td>
+                                    <td><img src="{{$news['image_url']}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$news['status']}}</td>
+                                    <td>{{$news['creator_id']}}</td>
                                     <td style="white-space: nowrap;">
-                                        <a href="{{route('news.show',$news['id'])}}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i>
+                                        <a href="{{route('news.show',$news['id'])}}" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        <a href="{{$news['id']}}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i>
+                                        <a href="{{route('news.edit',$news['id'])}}" class="btn btn-warning btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <a href="{{$news['id']}}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
+                                        <a href="#" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i>
                                         </a>
                                     </td>
                                 </tr>

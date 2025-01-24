@@ -1,0 +1,22 @@
+.details-section {
+    width: 100%;
+}
+.details-section .details-body ul li {
+    padding: 5px 0px;
+}
+.details-section .details-body span {
+    font-weight: 600;
+}
+.details-section .details-body .image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+.details-section .details-body .image img {
+    width: 100%;
+    height: 100%;
+}
+.details-section .details-body .back-btn {
+    text-align: right;
+    padding-top: 30px;
+}
