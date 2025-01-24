@@ -38,7 +38,7 @@ class News_articleController extends Controller
         if ($request->hasFile('image')) {
 
             $timeStamp = Carbon::now()->format('Y-M');
-            $folderName = 'Newspaper/' . $timeStamp;
+            $folderName = 'Newspaper/'. $timeStamp;
             $imageUniqueName = time();
 
             // Upload with image to cloudinary
@@ -50,8 +50,10 @@ class News_articleController extends Controller
             $uploadedFileUrl = $uploadimage->getSecurePath();
             $public_id = $uploadimage->getPublicId();
         }else{
-
+            $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png';
+            $public_id = 'Newspaper/Default_image/news_defalult_image';
         }
+
         $news = new News_article();
         $news->title = $request->title;
         $news->category = $request->category;
