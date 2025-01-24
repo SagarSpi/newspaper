@@ -14,14 +14,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        // User::factory(10)->create();
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password'=>'1234',
+            'image_url'=>'defaultimg.png',
+            'image_id'=>'defaultimageid'
+        ]);
+        
         $this->call([
             NewsSeeder::class
         ]);
-        // User::factory(10)->create();
-
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

@@ -31,7 +31,7 @@
                             <ul>
                                 <li><span>News Id : </span>{{ $news->id ?? 'N/A' }}</li>
                                 <li><span>Category : </span>{{ $news->category ?? 'N/A' }}</li>
-                                <li><span>Created By : </span>{{ $news->creator_id->name ?? 'Unknown' }}</li>
+                                <li><span>Created By : </span>{{ $news->created_by ?? 'Unknown' }}</li>
                                 <li><span>Status : </span>{{ $news->status ?? 'N/A' }}</li>
                             </ul>
                         </div>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-12">
                     <span>Description :</span>
-                    <p class="mt-2">{{ $news->description ?? 'No description available.' }}</p>
+                    <p class="mt-2">{!! $news->description ?? 'No description available.' !!}</p>
                 </div>
                 <div class="col-12">
                     <div class="back-btn">

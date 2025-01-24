@@ -37,7 +37,7 @@
                                 <th scope="col">Summary</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Status</th>
-                                <th scope="col" style="white-space: nowrap;" >Creator Name</th>
+                                <th scope="col" style="white-space: nowrap;" >Created by</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                                     <td>{{$news['shortDesc']}}</td>
                                     <td><img src="{{$news['image_url']}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$news['status']}}</td>
-                                    <td>{{$news['creator_id']}}</td>
+                                    <td>{{$news['created_by']}}</td>
                                     <td style="white-space: nowrap;">
                                         <a href="{{route('news.show',$news['id'])}}" class="btn btn-primary btn-sm">
                                             <i class="fa-solid fa-eye"></i>

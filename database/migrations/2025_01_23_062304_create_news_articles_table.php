@@ -20,9 +20,10 @@ return new class extends Migration
             $table->string('image_id');
             $table->text('description')->nullable();
             $table->string('tags')->nullable();
-            $table->string('status');
+            $table->string('created_by')->nullable();
             $table->unsignedBigInteger('creator_id');
             $table->foreign('creator_id')->references('id')->on('users');
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

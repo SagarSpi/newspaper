@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News_article;
-
-use function Pest\Laravel\get;
+use App\Http\Requests\NewsRequest;
+use Carbon\Carbon;
 
 class News_articleController extends Controller
 {
@@ -33,9 +33,40 @@ class News_articleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        //
+        if ($request->hasFile('image')) {
+
+            $timeStamp = Carbon::now()->format('Y-M');
+            $folderName = 'Newspaper/' . $timeStamp;
+            $imageUniqueName = time();
+
+            // Upload with image to cloudinary
+            $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
+                'folder' => $folderName,
+                'public_id'=> $imageUniqueName
+            ]);
+            
+            $uploadedFileUrl = $uploadimage->getSecurePath();
+            $public_id = $uploadimage->getPublicId();
+        }else{
+
+        }
+        $news = new News_article();
+        $news->title = $request->title;
+        $news->category = $request->category;
+        $news->shortDesc = $request->shortDesc;
+        $news->image_url = $uploadedFileUrl;
+        $news->image_id = $public_id;
+        $news->description = $request->description;
+        $news->tags = $request->tags;
+        $news->created_by = $request->creator;
+        $news->creator_id = 1;
+        // $news->creator_id = auth()->id();
+        $news->status = 'active';
+        $news->save();
+
+        return redirect()->route('news.create')->with('success','News Create Successfully !');
     }
 
     /**
