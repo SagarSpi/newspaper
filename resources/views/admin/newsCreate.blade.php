@@ -21,7 +21,7 @@
         <div class="create-news-body">
             <div class="row">
                 <div class="col-10 offset-1">
-                    <form action="{{route('news.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('news.store')}}" method="POST" enctype="multipart/form-data" id="newsForm" >
                         @csrf
                         <div class="mb-2">
                             <label class="form-label">Title :</label>
@@ -71,7 +71,7 @@
                             <p id="tags_error" style="color: red; display: none;">You can add a maximum of 4 tags.</p>
                         </div>
                         <button type="submit" class="btn btn-success">Submit News</button>
-                        <a href="" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></a>
+                        <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
             </div>

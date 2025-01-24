@@ -22,38 +22,38 @@
         <div class="edit-news-body">
             <div class="row">
                 <div class="col-10 offset-1">
-                    <form action="{{route('news.store')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('news.update',$news->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-2">
                             <label class="form-label">Title :</label>
-                            <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title" value="{{old('title')}}" {{$errors->has('title')?'autofocus':''}}>
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title" value="{{old('title',$news->title)}}" {{$errors->has('title')?'autofocus':''}}>
                             @error('title')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
                         <div class="mb-2">
                             <label>Category :</label>
                             <select name="category" id="category" class="form-control" {{$errors->has('category')?'autofocus':''}}>
                                 <option value="">Select Category</option>
-                                <option value="Politics" {{old('category')=='Politics'?'selected':''}}>Politics</option>
-                                <option value="Business"{{old('category')=='Business'?'selected':''}}>Business</option>
-                                <option value="Sports" {{old('category')=='Sports'?'selected':''}}>Sports</option>
-                                <option value="Crime" {{old('category')=='Crime'?'selected':''}}>Crime</option>
-                                <option value="Lifestyle" {{old('category')=='Lifestyle'?'selected':''}}>Lifestyle</option>
-                                <option value="Education"{{old('category')=='Education'?'selected':''}}>Education</option>
-                                <option value="Bangladesh"{{old('category')=='Bangladesh'?'selected':''}}>Bangladesh</option>
-                                <option value="Entertainment"{{old('category')=='Entertainment'?'selected':''}}>Entertainment</option>
-                                <option value="International"{{old('category')=='International'?'selected':''}}>International</option>
+                                <option value="Politics" {{old('category', $news->category ?? '')=='Politics'?'selected':''}}>Politics</option>
+                                <option value="Business"{{old('category', $news->category ?? '')=='Business'?'selected':''}}>Business</option>
+                                <option value="Sports" {{old('category', $news->category ?? '')=='Sports'?'selected':''}}>Sports</option>
+                                <option value="Crime" {{old('category', $news->category ?? '')=='Crime'?'selected':''}}>Crime</option>
+                                <option value="Lifestyle" {{old('category', $news->category ?? '')=='Lifestyle'?'selected':''}}>Lifestyle</option>
+                                <option value="Education"{{old('category', $news->category ?? '')=='Education'?'selected':''}}>Education</option>
+                                <option value="Bangladesh"{{old('category', $news->category ?? '')=='Bangladesh'?'selected':''}}>Bangladesh</option>
+                                <option value="Entertainment"{{old('category', $news->category ?? '')=='Entertainment'?'selected':''}}>Entertainment</option>
+                                <option value="International"{{old('category', $news->category ?? '')=='International'?'selected':''}}>International</option>
                             </select>
                             @error('category')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
                         <div class="mb-2">
                             <label class="form-label">Summary :</label>
-                            <input type="text" value="{{old('shortDesc')}}" name="shortDesc" id="shortDesc" class="form-control" placeholder="Enter Summary" {{$errors->has('shortDesc')?'autofocus':''}}>
+                            <input type="text" value="{{old('shortDesc', $news->shortDesc ?? '')}}" name="shortDesc" id="shortDesc" class="form-control" placeholder="Enter Summary" {{$errors->has('shortDesc')?'autofocus':''}}>
                             @error('shortDesc') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-2">
                             <label>Description : </label>
-                            <textarea name="description" id="description" class="form-control" placeholder="Enter Description" {{$errors->has('description')?'autofocus':''}}>{{old('description')}}</textarea>
+                            <textarea name="description" id="description" class="form-control" placeholder="Enter Description" {{$errors->has('description')?'autofocus':''}}>{{old('description', $news->description ?? '')}}</textarea>
                             @error('description') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="mb-2">
@@ -61,11 +61,14 @@
                             <input type="file" name="image" id="image" class="form-control" accept="image/*">
                             @error('image')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
+                        <div class="py-3">
+                            <img src="{{$news->image_url ?? ''}}" alt=""  width="200px" height="120px">
+                        </div>
                         <div class="input-group my-4">
                             <span class="input-group-text">Tags :</span>
-                            <input type="text" value="{{old('tags')}}" name="tags" id="tags_input" data-role="tagsinput" class="form-control" placeholder="Enter Tags" {{$errors->has('tags')?'autofocus':''}}>
+                            <input type="text" value="{{old('tags', $news->tags ?? '')}}" name="tags" id="tags_input" data-role="tagsinput" class="form-control" placeholder="Enter Tags" {{$errors->has('tags')?'autofocus':''}}>
                             <span class="input-group-text">Created by :</span>
-                            <input type="text" value="{{old('creator')}}" name="creator" class="form-control" placeholder="Enter Creator Name" {{$errors->has('creator')?'autofocus':''}}>
+                            <input type="text" value="{{old('creator', $news->created_by ?? '')}}" name="creator" class="form-control" placeholder="Enter Creator Name" {{$errors->has('creator')?'autofocus':''}}>
                         </div>
                         <div>
                             @error('tags')<span class="text-danger">{{$message}}</span>@enderror
@@ -73,7 +76,7 @@
                             <p id="tags_error" style="color: red; display: none;">You can add a maximum of 4 tags.</p>
                         </div>
                         <button type="submit" class="btn btn-success">Submit News</button>
-                        <a href="" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></a>
+                        <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
             </div>
