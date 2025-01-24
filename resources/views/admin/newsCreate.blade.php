@@ -61,6 +61,7 @@
                             <input type="text" value="{{old('author')}}" name="author" class="form-control" placeholder="Enter Creator Name">
                         </div>
                         <button type="submit" class="btn btn-success">Submit News</button>
+                        <a href="" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></a>
                     </form>
                 </div>
             </div>

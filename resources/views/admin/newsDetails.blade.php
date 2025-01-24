@@ -31,7 +31,7 @@
                             <ul>
                                 <li><span>News Id : </span>{{ $news->id ?? 'N/A' }}</li>
                                 <li><span>Category : </span>{{ $news->category ?? 'N/A' }}</li>
-                                <li><span>Created By : </span>{{ $news->creator_id ?? 'Unknown' }}</li>
+                                <li><span>Created By : </span>{{ $news->creator_id->name ?? 'Unknown' }}</li>
                                 <li><span>Status : </span>{{ $news->status ?? 'N/A' }}</li>
                             </ul>
                         </div>
