@@ -58,9 +58,7 @@
                                         <a href="{{route('news.edit',$news['id'])}}" class="btn btn-warning btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <a href="{{ route('news.destroy',$news['id'])}}" class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm remove" data-id="{{$news['id']}}"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -75,4 +73,48 @@
             </dib>
         </div>
     </div>
+
+    <!-- Delete Modal Start-->
+    <div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mt-1">
+                  <h4 class="mb-1">Are you sure you want to remove this news?</h4>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Delete Modal End-->
+
+
+
+
 @endsection
+
+
+@push('script')
+    <script>
+        $('.remove').on('click', function () {
+            $('#removeModal').modal('show');
+            let id=$(this).attr('data-id');
+
+            $('#delete').on('click', function () {
+
+                $.ajax({url: '/admin/remove/'+ id +'/news', success: function(result){
+                    location.reload();
+                }});
+            })
+
+        })
+    </script>
+@endpush

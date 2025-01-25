@@ -142,8 +142,10 @@ class News_articleController extends Controller
      */
     public function destroy(string $id)
     {
-        $news =News_article::findOrFail($id);
+        $news = News_article::findOrFail($id);
 
-        return $news;
+        $news->status = 'deleted';
+        $news->deleted_at = now();
+        $news->save();
     }
 }
