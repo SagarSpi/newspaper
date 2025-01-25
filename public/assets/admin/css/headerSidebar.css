@@ -30,20 +30,6 @@ ul li {
 .header-section .header-content .btn {
     border: 1px solid #dee2e6;
 }
-.header-section .header-content .dropdown .btn {
-    color: #08059b;
-    border: 2px solid #ff003b;
-    border-radius: 25px;
-    margin-left: 10px;
-}
-.header-section .header-content .dropdown .btn:hover {
-    color: #ffffff;
-    border: 2px solid #ff003b;
-    border-radius: 25px;
-    background: #033144;
-    cursor: pointer;
-    transition: 0.3s linear;
-}
 .content-section {
     width: 100%;
     position: relative;
@@ -86,4 +72,44 @@ ul li {
 .content-section .content-body {
     padding: 10px 10px 20px;
     background: #f1f1f1;
+}
+
+/* dropdown image css code here  */
+.profile-dropdown .navbar-profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.profile-dropdown .dropdown-menu .profile-dropdown-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 0px 10px 30px;
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 5px;
+}
+.profile-dropdown .dropdown-menu .profile-dropdown-info .dropdown-profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.profile-dropdown .dropdown-menu .profile-dropdown-info .profile-name p {
+    margin-bottom: 0px;
+}
+.profile-dropdown .dropdown-menu .dropdown-item {
+    transition: 0.3s all ease;
+}
+.profile-dropdown .dropdown-menu .dropdown-item:hover {
+    cursor: pointer;
+    background-color: #dee2e6;
+}
+.profile-dropdown .dropdown-menu .profile-dropdown-list-item {
+    padding: 10px 140px 10px 30px;
+}
+.profile-dropdown .dropdown-menu .profile-dropdown-list-item .item-icon {
+    padding-right: 10px;
+    font-size: 20px;
 }

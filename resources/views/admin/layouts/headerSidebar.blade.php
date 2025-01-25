@@ -27,27 +27,50 @@
                     </div>
                     <div class="col-10">
                         <div class="header-content">
-                            <div class="input-group mb-2">
+                            <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search Tools (/)" aria-label="search" aria-describedby="button-addon2">
                                 <button class="btn btn-outline-danger" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass fa-sm"></i></button>
                             </div>
-                            <div class="dropdown">
-                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="dropdown mx-2">
+                                <button class="btn py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa-regular fa-bell"></i>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">No Notification </a></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
-                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-regular fa-circle-user"></i>
+                            <div class="dropdown profile-dropdown">
+                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{asset('assets/admin/img/user-avater.png')}}" alt="User Image" class="navbar-profile-img"> Hi, Sagar
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">View Account</a></li>
-                                    <li><a class="dropdown-item" href="#">Give Feedback</a></li>
-                                    <li><a class="dropdown-item" href="#">Help Center</a></li>
-                                    <li><a class="dropdown-item" href="#">Log Out</a></li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-info" href="#">
+                                            <img src="{{asset('assets/admin/img/user-avater.png')}}" alt="" class="dropdown-profile-img">
+                                            <div class="profile-name">
+                                                <p>Sagar Mondal</p>
+                                                <p>sagarspi583@gmail.com</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-download item-icon"></i> Downloads</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-clock-rotate-left item-icon"></i> Purchase History</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-ticket item-icon"></i> Support Tickets</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-regular fa-address-card item-icon"></i> Profile Setting</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fas fa-th item-icon"></i> Customization</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-right-from-bracket item-icon"></i> Log Out</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
