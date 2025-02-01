@@ -28,7 +28,6 @@ class NewsRequest extends FormRequest
             'description'=>'nullable|string',
             'image'=>'nullable|image|max:5120|mimes:png,jpg,jpeg,svg',
             'tags'=>'nullable|string|max:255',
-            'creator'=>'required|string|max:255'
         ];
     }
     protected $stopOnFirstFailure = true;

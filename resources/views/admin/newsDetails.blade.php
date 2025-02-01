@@ -31,7 +31,7 @@
                             <ul>
                                 <li><span>News Id : </span>{{ $news->id ?? 'N/A' }}</li>
                                 <li><span>Category : </span>{{ $news->category ?? 'N/A' }}</li>
-                                <li><span>Created By : </span>{{ $news->created_by ?? 'Unknown' }}</li>
+                                <li><span>Created By : </span>{{ $news->user->name ?? 'Unknown' }}</li>
                                 <li><span>Status : </span>{{ $news->status ?? 'N/A' }}</li>
                             </ul>
                         </div>
@@ -39,7 +39,7 @@
                             <ul>
                                 <li><span>Create Date : </span>{{ $news->created_at?->format('H:i d-M-Y') }}</li>
                                 <li><span>Update Date : </span>{{ $news->updated_at?->format('H:i d-M-Y') }}</li>
-                                <li><span>Delete Date : </span>{{ $news->deleted_at?->format('H:i d-M-Y') }}</li>
+                                {{-- <li><span>Delete Date : </span> {{ $news->deleted_at ? \Carbon\Carbon::parse($news->deleted_at)->format('H:i d-M-Y') : 'N/A' }}</li> --}}
                             </ul>
                         </div>
                     </div>

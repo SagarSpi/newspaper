@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\News_article;
+use App\Models\User;
 use App\Http\Requests\NewsRequest;
 use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -14,13 +15,14 @@ class News_articleController extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
+        $newsArticle = News_article::with('user')
+                        ->orderBy('created_at', 'DESC')
+                        ->paginate(9);
 
-        $newsArticle = News_article::orderBy('created_at','DESC')
-                                    ->paginate(9);
-
-        return view('admin.newsArticle',compact('newsArticle'));
+        return view('admin.newsArticle', compact('newsArticle'));
     }
 
     /**
@@ -63,7 +65,6 @@ class News_articleController extends Controller
         $news->image_id = $public_id;
         $news->description = $request->description;
         $news->tags = $request->tags;
-        $news->created_by = $request->creator;
         $news->creator_id = 1;
         // $news->creator_id = auth()->id();
         $news->status = 'active';
@@ -128,7 +129,6 @@ class News_articleController extends Controller
         $news->shortDesc = $request->shortDesc;
         $news->description = $request->description;
         $news->tags = $request->tags;
-        $news->created_by = $request->creator;
         $news->creator_id = 1;
         // $news->creator_id = auth()->id();
         $news->status = 'active';

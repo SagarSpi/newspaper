@@ -44,21 +44,21 @@
                         <tbody>
                             @foreach ($newsArticle as $news)
                                 <tr>
-                                    <th scope="row">{{$news['id']}}</th>
-                                    <td>{{$news['title']}}</td>
-                                    <td>{{$news['category']}}</td>
-                                    <td>{{$news['shortDesc']}}</td>
-                                    <td><img src="{{$news['image_url']}}" alt="News Image" height="40" width="40"></td>
-                                    <td>{{$news['status']}}</td>
-                                    <td>{{$news['created_by']}}</td>
+                                    <th scope="row">{{$news->id}}</th>
+                                    <td>{{$news->title}}</td>
+                                    <td>{{$news->category}}</td>
+                                    <td>{{$news->shortDesc}}</td>
+                                    <td><img src="{{$news->image_url}}" alt="News Image" height="40" width="40"></td>
+                                    <td>{{$news->status}}</td>
+                                    <td>{{$news->user->name}}</td>
                                     <td style="white-space: nowrap;">
-                                        <a href="{{route('news.show',$news['id'])}}" class="btn btn-primary btn-sm">
+                                        <a href="{{route('news.show',$news->id)}}" class="btn btn-primary btn-sm">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
-                                        <a href="{{route('news.edit',$news['id'])}}" class="btn btn-warning btn-sm">
+                                        <a href="{{route('news.edit',$news->id)}}" class="btn btn-warning btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <button type="button" class="btn btn-danger btn-sm remove" data-id="{{$news['id']}}"><i class="fa-solid fa-trash"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm remove" data-id="{{$news->id}}"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             @endforeach

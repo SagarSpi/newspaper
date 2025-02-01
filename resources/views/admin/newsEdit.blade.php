@@ -67,8 +67,8 @@
                         <div class="input-group my-4">
                             <span class="input-group-text">Tags :</span>
                             <input type="text" value="{{old('tags', $news->tags ?? '')}}" name="tags" id="tags_input" data-role="tagsinput" class="form-control" placeholder="Enter Tags" {{$errors->has('tags')?'autofocus':''}}>
-                            <span class="input-group-text">Created by :</span>
-                            <input type="text" value="{{old('creator', $news->created_by ?? '')}}" name="creator" class="form-control" placeholder="Enter Creator Name" {{$errors->has('creator')?'autofocus':''}}>
+                            {{-- <span class="input-group-text">Created by :</span>
+                            <input type="text" value="{{old('creator', $news->created_by ?? '')}}" name="creator" class="form-control" placeholder="Enter Creator Name" {{$errors->has('creator')?'autofocus':''}}> --}}
                         </div>
                         <div>
                             @error('tags')<span class="text-danger">{{$message}}</span>@enderror

@@ -1,0 +1,39 @@
+.download-body {
+    box-shadow: 0px 30px 50px 0px rgba(8, 0, 42, 0.08);
+    background-color: #fff;
+    padding: 30px;
+}
+
+.or-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+}
+.or-section::before,
+.or-section::after {
+    content: "";
+    height: 2px;
+    background: black;
+    display: block;
+}
+
+.btn-download {
+    height: 45px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 40px;
+    border: 2px solid #e7e6ef;
+    padding: 0 35px;
+    width: 100%;
+    text-align: center;
+}
+.btn-download:hover {
+    color: #ffffff;
+    border-color: #5f3afc;
+    background: #5f3afc;
+}
+.fa-github {
+    padding-right: 2px;
+    font-size: 16px;
+}

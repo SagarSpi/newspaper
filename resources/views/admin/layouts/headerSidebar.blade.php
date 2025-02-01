@@ -106,6 +106,9 @@
                                 <li>
                                     <a href="#" class="nav-link">Settings</a>
                                 </li>
+                                <li>
+                                    <a href="{{route('download.page')}}" class="nav-link">Download</a>
+                                </li>
                             </ul>
                         </nav>
                     </div>

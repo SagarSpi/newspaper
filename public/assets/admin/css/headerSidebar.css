@@ -23,6 +23,7 @@ ul li {
     display: flex;
     float: right;
 }
+
 .header-section .header-content .form-control:focus {
     border-color: #fd6930;
     box-shadow: 0 0 0 1px rgb(253, 105, 48);
