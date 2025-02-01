@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\News_articleController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+ghhdfghghgf gh dgdfg 
+sdfgdsgh ghgd gh gh d
 
 Route::get('/manage/dashboard',[DashboardController::class,'dashboardPage'])->name('dashboard');
 
