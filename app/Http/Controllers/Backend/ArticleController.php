@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\Backend\Article;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 
 class ArticleController extends Controller
@@ -38,6 +38,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+
         if ($request->hasFile('image')) {
 
             $timeStamp = Carbon::now()->format('Y-M');
@@ -57,18 +58,19 @@ class ArticleController extends Controller
             $public_id = 'Newspaper/Default_image/news_defalult_image';
         }
 
-        $news = new Article();
-        $news->title = $request->title;
-        $news->category = $request->category;
-        $news->shortDesc = $request->shortDesc;
-        $news->image_url = $uploadedFileUrl;
-        $news->image_id = $public_id;
-        $news->description = $request->description;
-        $news->tags = $request->tags;
-        $news->status = 'active';
-        $news->save();
+        $article = new Article();
+        $article->title = $request->title;
+        $article->category = $request->category;
+        $article->shortDesc = $request->shortDesc;
+        $article->image_url = $uploadedFileUrl;
+        $article->image_id = $public_id;
+        $article->description = $request->description;
+        $article->tags = $request->tags;
+        $article->user_id = 1;
+        $article->status = 'active';
+        $article->save();
 
-        return redirect()->route('news.create')->with('success','News Create Successfully !');
+        return redirect()->route('article.create')->with('success','News Create Successfully !');
     }
 
     /**
@@ -129,7 +131,7 @@ class ArticleController extends Controller
         $article->status = 'active';
         $article->save();
 
-        return redirect()->route('news.show',$article->id)->with('success', 'News Update Successfully !');
+        return redirect()->route('article.show',$article->id)->with('success', 'News Update Successfully !');
     }
 
     /**

@@ -1,0 +1,33 @@
+.edit-article-section {
+    width: 100%;
+}
+.edit-article-section .heading {
+    padding: 5px 0px;
+}
+.edit-article-section .article-list-btn {
+    text-align: right;
+    padding: 5px 0px;
+}
+.edit-article-section .edit-article-body {
+    width: 100%;
+    padding: 15px 0px 60px;
+}
+.edit-article-section .edit-article-body label {
+    font-weight: 600;
+}
+.edit-article-section .edit-article-body .ck-editor__editable {
+    min-height: 300px;
+}
+.edit-article-section .edit-article-body .btn {
+    float: right;
+    padding: 6px 70px;
+}
+.edit-article-section .edit-article-body .bootstrap-tagsinput input {
+    padding: 0 !important;
+    margin: 2px 0px !important;
+}
+.edit-article-section .edit-article-body .label-info {
+    background-color: #198754;
+    border-radius: 3px;
+    padding: 0px 4px 3px 4px;
+}

@@ -2,32 +2,45 @@
 @extends('backend.layouts.headerSidebar')
 
 @section('title')
-    News Page
+    Article Page
 @endsection
 
+@push('css')
+    <link rel="stylesheet" href="{{asset('assets/backend/css/article.css')}}">
+@endpush
+
 @section('content')
-    <div class="new-section">
+    <div class="article-section">
         <div class="row">
-            <div class="col-8">
-                <div class="heading">
-                    <h1>News Page</h1>
-                </div>
-            </div>
-            <div class="col-4">
+            <div class="col-8 offset-2">
                 <div class="search-bar">
                     <form action="" method="GET">
                         <div class="input-group mt-2">
-                            <input class="form-control" name="search" placeholder="Search News..." required>
+                            <input class="form-control" name="search" placeholder="Keyword">
+                            <input class="form-control" name="search" placeholder="Title">
+                            <input class="form-control" name="search" placeholder="Category">
+                            <input class="form-control" name="search" placeholder="Status">
                             <button type="submit" class="btn btn-outline-primary" id="search-btn">Search</button>
                             <button type="button" class="btn btn-outline-danger" id="reset-btn">Reset</button>
                         </div>
                     </form>
                 </div>
             </div>
+
+            <div class="col-8">
+                <div class="heading">
+                    <h5>Manage Articles</h5>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="add-article-btn">
+                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add Article</a>
+                </div>
+            </div>
         </div>
         <div class="row">
             <dib class="col-12">
-                <div class="news-body">
+                <div class="article-body">
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
@@ -37,7 +50,7 @@
                                 <th scope="col">Summary</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Status</th>
-                                <th scope="col" style="white-space: nowrap;" >Created by</th>
+                                <th scope="col">Created by</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -50,15 +63,24 @@
                                     <td>{{$news->shortDesc}}</td>
                                     <td><img src="{{$news->image_url}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$news->status}}</td>
-                                    <td>{{$news->user->name}}</td>
-                                    <td style="white-space: nowrap;">
-                                        <a href="{{route('news.show',$news->id)}}" class="btn btn-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
-                                        <a href="{{route('news.edit',$news->id)}}" class="btn btn-warning btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <button type="button" class="btn btn-danger btn-sm remove" data-id="{{$news->id}}"><i class="fa-solid fa-trash"></i></button>
+                                    <td style="white-space: nowrap;">{{$news->user->name}}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="{{route('article.show',$news->id)}}"><i class="fa-solid fa-eye pe-2"></i> View</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="{{route('article.edit',$news->id)}}"><i class="fa-solid fa-pen-to-square pe-2"></i> Edit</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item remove" data-id="{{$news->id}}"><i class="fa-solid fa-trash pe-2"></i> Delete</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -96,9 +118,6 @@
     </div>
     <!-- Delete Modal End-->
 
-
-
-
 @endsection
 
 @push('script')
@@ -109,11 +128,10 @@
 
             $('#delete').on('click', function () {
 
-                $.ajax({url: '/admin/remove/'+ id +'/news', success: function(result){
+                $.ajax({url: '/manage/remove/'+ id +'/article', success: function(result){
                     location.reload();
                 }});
             })
-
         })
     </script>
 @endpush

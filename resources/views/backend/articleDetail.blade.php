@@ -1,11 +1,11 @@
-@extends('admin.layouts.headerSidebar')
+@extends('backend.layouts.headerSidebar')
 
 @section('title')
     Details News
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{asset("assets/admin/css/newsDetails.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/backend/css/articleDetails.css")}}">
 @endpush
 
 @section('content')
@@ -13,13 +13,10 @@
         <div class="details-top">
             <div class="row">
                 <div class="col-12">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                          <li class="breadcrumb-item"><a href="{{route('news.index')}}">News</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Details</li>
-                        </ol>
-                    </nav>
+                    <div class="back-btn">
+                        <a href="{{ route('article.edit', $article->id) }}" class="btn btn-success btn-sm">Edit Article</a>
+                        <a href="{{ route('article.list') }}" class="btn btn-primary btn-sm">Back To Article</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -29,40 +26,33 @@
                     <div class="row">
                         <div class="col-6">
                             <ul>
-                                <li><span>News Id : </span>{{ $news->id ?? 'N/A' }}</li>
-                                <li><span>Category : </span>{{ $news->category ?? 'N/A' }}</li>
-                                <li><span>Created By : </span>{{ $news->user->name ?? 'Unknown' }}</li>
-                                <li><span>Status : </span>{{ $news->status ?? 'N/A' }}</li>
+                                <li><span>News Id : </span>{{ $article->id ?? 'N/A' }}</li>
+                                <li><span>Category : </span>{{ $article->category ?? 'N/A' }}</li>
+                                <li><span>Created By : </span>{{ $article->user->name ?? 'Unknown' }}</li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul>
-                                <li><span>Create Date : </span>{{ $news->created_at?->format('H:i d-M-Y') }}</li>
-                                <li><span>Update Date : </span>{{ $news->updated_at?->format('H:i d-M-Y') }}</li>
-                                {{-- <li><span>Delete Date : </span> {{ $news->deleted_at ? \Carbon\Carbon::parse($news->deleted_at)->format('H:i d-M-Y') : 'N/A' }}</li> --}}
+                                <li><span>Create Date : </span>{{ $article->created_at?->format('H:i d-M-Y') }}</li>
+                                <li><span>Update Date : </span>{{ $article->updated_at?->format('H:i d-M-Y') }}</li>
+                                <li><span>Status : </span>{{ $article->status ?? 'N/A' }}</li>
                             </ul>
                         </div>
                     </div>
                     <ul>
-                        <li><span>Title : </span>{{ $news->title ?? 'N/A' }}</li>
-                        <li><span>Summary : </span>{{ $news->shortDesc ?? 'N/A' }}</li>
-                        <li><span>Latest Tags : </span>{{ $news->tags ?? 'N/A' }}</li>
+                        <li><span>Title : </span>{{ $article->title ?? 'N/A' }}</li>
+                        <li><span>Summary : </span>{{ $article->shortDesc ?? 'N/A' }}</li>
+                        <li><span>Latest Tags : </span>{{ $article->tags ?? 'N/A' }}</li>
                     </ul>
                 </div>
                 <div class="col-6">
                     <div class="image">
-                        <img src="{{$news->image_url}}" alt="News Image">
+                        <img src="{{$article->image_url}}" class="img-thumbnail" alt="News Image">
                     </div>
                 </div>
                 <div class="col-12">
                     <span>Description :</span>
-                    <p class="mt-2">{!! $news->description ?? 'No description available.' !!}</p>
-                </div>
-                <div class="col-12">
-                    <div class="back-btn">
-                        <a href="{{ route('news.edit', $news->id) }}" class="btn btn-success">Edit News</a>
-                        <a href="{{ route('news.index') }}" class="btn btn-primary">Back</a>
-                    </div>
+                    <p class="mt-2">{!! $article->description ?? 'No description available.' !!}</p>
                 </div>
             </div>
         </div>

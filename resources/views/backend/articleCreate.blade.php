@@ -1,4 +1,4 @@
-@extends('admin.layouts.headerSidebar')
+@extends('backend.layouts.headerSidebar')
 
 @section('title')
     Create News
@@ -6,22 +6,27 @@
 @push('css')
     {{-- Bootstrap Tags Input CDN Link  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"/>
-    <link rel="stylesheet" href="{{asset('assets/admin/css/newsCreate.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/backend/css/articleCreate.css')}}">
 @endpush
 
 @section('content')
-    <div class="create-news-section">
+    <div class="create-article-section">
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <div class="heading">
-                    <h1>Create News</h1>
+                    <h5>Create Article</h5>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="article-list-btn">
+                    <a href="{{route('article.list')}}" class="btn btn-success btn-sm">Article List</a>
                 </div>
             </div>
         </div>
-        <div class="create-news-body">
+        <div class="create-article-body">
             <div class="row">
                 <div class="col-10 offset-1">
-                    <form action="{{route('news.store')}}" method="POST" enctype="multipart/form-data" id="newsForm" >
+                    <form action="{{route('article.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-2">
                             <label class="form-label">Title :</label>
@@ -70,7 +75,7 @@
                             @error('creator')<span class="text-danger">{{$message}}</span>@enderror
                             <p id="tags_error" style="color: red; display: none;">You can add a maximum of 4 tags.</p>
                         </div>
-                        <button type="submit" class="btn btn-success">Submit News</button>
+                        <button type="submit" class="btn btn-success">Submit Article</button>
                         <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></button>
                     </form>
                 </div>
@@ -85,7 +90,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
     {{-- CK Editor CDN Link  --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-    <script src="{{asset('assets/admin/js/ckEditor.js')}}"></script>
+    <script src="{{asset('assets/backend/js/ckEditor.js')}}"></script>
     {{-- Tags Input Js file  --}}
-    <script src="{{asset('assets/admin/js/tagEventHandle.js')}}"></script>
+    <script src="{{asset('assets/backend/js/tagEventHandle.js')}}"></script>
 @endpush

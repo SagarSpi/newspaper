@@ -1,6 +1,12 @@
 .details-section {
     width: 100%;
 }
+.details-section .back-btn {
+    text-align: right;
+}
+.details-section .details-body {
+    padding-top: 20px;
+}
 .details-section .details-body ul li {
     padding: 5px 0px;
 }
@@ -15,8 +21,4 @@
 .details-section .details-body .image img {
     width: 100%;
     height: 100%;
-}
-.details-section .details-body .back-btn {
-    text-align: right;
-    padding-top: 30px;
 }

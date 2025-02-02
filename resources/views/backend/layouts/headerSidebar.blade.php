@@ -92,7 +92,7 @@
                         <nav class="sidebar-nav">
                             <ul>
                                 <li>
-                                    <a href="" class="nav-link">Dashboard</a>
+                                    <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
                                 </li>
                                 <li>
                                     <a href="{{route('article.list')}}" class="nav-link">Article List</a>
