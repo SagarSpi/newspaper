@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\DashboardContoller;
+use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('backend.dashboard');
 // });
 
-
+Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
 
 // Article Backend Route Here
