@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\News_article;
-use App\Models\User;
-use App\Http\Requests\NewsRequest;
 use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\Backend\Article;
+use App\Http\Requests\ArticleRequest;
 
-class News_articleController extends Controller
+
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
     public function index()
     {
-        $newsArticle = News_article::with('user')
-                        ->orderBy('created_at', 'DESC')
-                        ->paginate(9);
+        $article = Article::with(['user' => function ($query) {
+            $query->select('id', 'name', 'email', 'contacts', 'role');
+        }])
+        ->orderBy('created_at','DESC')
+        ->paginate(9);
 
-        return view('admin.newsArticle', compact('newsArticle'));
+        return view('backend.article',compact('article'));
     }
 
     /**
@@ -30,13 +30,13 @@ class News_articleController extends Controller
      */
     public function create()
     {
-        return view('admin.newsCreate');
+        return view('backend.articleCreate');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(NewsRequest $request)
+    public function store(ArticleRequest $request)
     {
         if ($request->hasFile('image')) {
 
@@ -57,7 +57,7 @@ class News_articleController extends Controller
             $public_id = 'Newspaper/Default_image/news_defalult_image';
         }
 
-        $news = new News_article();
+        $news = new Article();
         $news->title = $request->title;
         $news->category = $request->category;
         $news->shortDesc = $request->shortDesc;
@@ -65,8 +65,6 @@ class News_articleController extends Controller
         $news->image_id = $public_id;
         $news->description = $request->description;
         $news->tags = $request->tags;
-        $news->creator_id = 1;
-        // $news->creator_id = auth()->id();
         $news->status = 'active';
         $news->save();
 
@@ -78,31 +76,30 @@ class News_articleController extends Controller
      */
     public function show(string $id)
     {
-        $news = News_article::findorfail($id);
-        return view('admin.newsDetails',compact('news'));
+        $article = Article::findOrFail($id);
+        return view('backend.articleDetail',compact('article'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {   
-        $news = News_article::findOrFail($id);
-
-        return view('admin.newsEdit',compact('news'));
+    {
+        $article = Article::findOrFail($id);
+        return view('backend.articleEdit',compact('article'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(NewsRequest $request, string $id)
+    public function update(ArticleRequest $request, string $id)
     {
-        $news = News_article::findOrFail($id);
+        $article = Article::findOrFail($id);
 
         if ($request->hasFile('image')) {
 
             // Old database Image Id 
-            $StoreImageId = $news->image_id;
+            $StoreImageId = $article->image_id;
 
             $defaultImageId = 'Newspaper/Default_image/news_defalult_image';
 
@@ -120,21 +117,19 @@ class News_articleController extends Controller
                 'public_id'=> $imageUniqueName
             ]);
             
-            $news->image_url = $uploadimage->getSecurePath();
-            $news->image_id = $uploadimage->getPublicId();
+            $article->image_url = $uploadimage->getSecurePath();
+            $article->image_id = $uploadimage->getPublicId();
         }
 
-        $news->title = $request->title;
-        $news->category = $request->category;
-        $news->shortDesc = $request->shortDesc;
-        $news->description = $request->description;
-        $news->tags = $request->tags;
-        $news->creator_id = 1;
-        // $news->creator_id = auth()->id();
-        $news->status = 'active';
-        $news->save();
+        $article->title = $request->title;
+        $article->category = $request->category;
+        $article->shortDesc = $request->shortDesc;
+        $article->description = $request->description;
+        $article->tags = $request->tags;
+        $article->status = 'active';
+        $article->save();
 
-        return redirect()->route('news.show',$news->id)->with('success', 'News Update Successfully !');
+        return redirect()->route('news.show',$article->id)->with('success', 'News Update Successfully !');
     }
 
     /**
@@ -142,10 +137,10 @@ class News_articleController extends Controller
      */
     public function destroy(string $id)
     {
-        $news = News_article::findOrFail($id);
+        $article = Article::findOrFail($id);
 
-        $news->status = 'deleted';
-        $news->deleted_at = now();
-        $news->save();
+        $article->status = 'deleted';
+        $article->deleted_at = now();
+        $article->save();
     }
 }

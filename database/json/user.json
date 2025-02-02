@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Sagar Mondal",
+        "email": "sagarspi583@gmail.com",
+        "password": "1234",
+        "image_url": "avatar_1",
+        "image_id": "avatar_1",
+        "contacts": "01725540583",
+        "role": "admin",
+        "status": "active"
+    },
+    {
+        "name": "Rahim Uddin",
+        "email": "rahim@gmail.com",
+        "password": "5678",
+        "image_url": "avatar_2",
+        "image_id": "avatar_2",
+        "contacts": "01833445566",
+        "role": "editor",
+        "status": "active"
+    },
+    {
+        "name": "Karim Hasan",
+        "email": "karim@gmail.com",
+        "password": "abcd1234",
+        "image_url": "avatar_3",
+        "image_id": "avatar_3",
+        "contacts": "01922334455",
+        "role": "user",
+        "status": "inactive"
+    }
+]

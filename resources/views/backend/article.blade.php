@@ -1,5 +1,5 @@
 
-@extends('admin.layouts.headerSidebar')
+@extends('backend.layouts.headerSidebar')
 
 @section('title')
     News Page
@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($newsArticle as $news)
+                            @foreach ($article as $news)
                                 <tr>
                                     <th scope="row">{{$news->id}}</th>
                                     <td>{{$news->title}}</td>
@@ -66,7 +66,7 @@
                     </table>
                     <div class="paginate">
                         <div class="col-12">
-                            {{$newsArticle->links()}}
+                            {{$article->links()}}
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,6 @@
 
 
 @endsection
-
 
 @push('script')
     <script>

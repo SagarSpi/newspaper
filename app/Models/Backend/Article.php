@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Models;
-use App\Models\User;
+namespace App\Models\Backend;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Backend\User;
 
-class News_article extends Model
+class Article extends Model
 {
     use HasFactory;
 
     public function user() {
-        return $this->belongsTo(User::class,'creator_id');
+        return $this->belongsTo(User::class);
     }
 }

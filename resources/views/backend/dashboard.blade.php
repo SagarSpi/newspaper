@@ -1,12 +1,12 @@
 
-@extends('admin.layouts.headerSidebar')
+@extends('backend.layouts.headerSidebar')
 
 @section('title')
     Dashboard
 @endsection
 
 @push('css')
-  <link rel="stylesheet" href="{{asset('assets/admin/css/dashboard.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/backend/css/dashboard.css')}}">
 @endpush
 
 @section('content')

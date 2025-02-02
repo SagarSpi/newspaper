@@ -9,7 +9,7 @@
     {{-- Fontawesome CDN css link  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     {{-- Header Sidebar Custom css file  --}}
-    <link rel="stylesheet" href="{{asset('assets/admin/css/headerSidebar.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/backend/css/headerSidebar.css')}}">
     @stack('css')
   </head>
   <body>
@@ -21,7 +21,7 @@
                     <div class="col-2">
                         <div class="header-logo">
                             <a href="{{route('dashboard')}}">
-                                <img src="{{asset('assets/admin/img/logo.svg')}}">
+                                <img src="{{asset('assets/backend/img/logo.svg')}}">
                             </a>
                         </div>
                     </div>
@@ -41,12 +41,12 @@
                             </div>
                             <div class="dropdown profile-dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('assets/admin/img/user-avater.png')}}" alt="User Image" class="navbar-profile-img"> Hi, Sagar
+                                    <img src="{{asset('assets/backend/img/user-avater.png')}}" alt="User Image" class="navbar-profile-img"> Hi, Sagar
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item profile-dropdown-info" href="#">
-                                            <img src="{{asset('assets/admin/img/user-avater.png')}}" alt="" class="dropdown-profile-img">
+                                            <img src="{{asset('assets/backend/img/user-avater.png')}}" alt="" class="dropdown-profile-img">
                                             <div class="profile-name">
                                                 <p>Sagar Mondal</p>
                                                 <p>sagarspi583@gmail.com</p>
@@ -92,13 +92,13 @@
                         <nav class="sidebar-nav">
                             <ul>
                                 <li>
-                                    <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
+                                    <a href="" class="nav-link">Dashboard</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('news.index')}}" class="nav-link">News List</a>
+                                    <a href="{{route('article.list')}}" class="nav-link">Article List</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('news.create')}}" class="nav-link">Create News</a>
+                                    <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link">Users Manager</a>
