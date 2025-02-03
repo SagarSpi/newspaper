@@ -5,12 +5,14 @@ use App\Http\Controllers\Backend\DashboardContoller;
 use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
-use function Pest\Laravel\get;
 
 // Route::get('/', function () {
 //     return view('backend.dashboard');
 // });
 
+Route::get('/', function () {
+    return view('frontend.details');
+});
 
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
 
