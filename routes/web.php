@@ -7,12 +7,12 @@ use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
 
+
+
+Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::get('/register', function () {
     return view('backend.register');
 });
-
-Route::get('/login',[LoginController::class,'index'])->name('login');
-
 
 
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
