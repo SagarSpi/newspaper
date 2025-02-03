@@ -66,6 +66,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
                                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                                             </button>
                                             <ul class="dropdown-menu">
