@@ -16,9 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::with(['user' => function ($query) {
-            $query->select('id', 'name', 'email', 'contacts', 'role');
-        }])
+        $article = Article::with('user')
         ->orderBy('created_at','DESC')
         ->paginate(9);
 
