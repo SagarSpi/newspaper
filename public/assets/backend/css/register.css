@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+.register-section {
+    height: auto;
+    width: 100%;
+    background: linear-gradient(#30142b, #2772a1);
+}
+.register-section .register-about {
+    color: #fff;
+    margin-top: 220px;
+}
+.register-section .heading {
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.register-section .register-content {
+    margin: 30px 0px;
+    padding: 10px 60px;
+    background: skyblue;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+.register-section .register-content .register-form-body label {
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+.register-section .register-content .register-form-body p a {
+    font-weight: 600;
+}
