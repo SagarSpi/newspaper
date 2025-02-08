@@ -23,37 +23,55 @@
                   <h3>Admin Registration</h3>
                 </div>
                 <div class="register-form-body">
-                  <form action="" method="POST" enctype="multipart/form-data">
+                  <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-2">
                       <label for="name" class="form-label">Full Name</label>
-                      <input type="name" name="name" class="form-control" id="name" placeholder="Name" required>
+                      <input type="name" name="name" class="form-control" id="name" placeholder="Enter Name" value="{{old('name')}}" {{$errors->has('name')?'autofocus': ''}} required>
+                      @error('name')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-2">
                       <label for="email" class="form-label">Email address</label>
-                      <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="{{old('email')}}" required>
+                      @error('email')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-2">
                       <label class="form-label">Upload Image</label>
-                      <input  type="file" class="form-control" name="image" placeholder="Image Url" accept="image/*">
+                      <input  type="file" name="image" class="form-control" accept="image/*">
+                      @error('image')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-2">
                       <label for="number" class="form-label">Phone Number</label>
-                      <input type="text" name="number" class="form-control" id="number" placeholder="Phone">
+                      <input type="text" name="number" class="form-control" id="number" placeholder="Enter Phone Number" value="{{old('number')}}">
+                      @error('number')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-2">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                      <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
+                      @error('password')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-2">
                       <label for="c_password" class="form-label">Conform Password</label>
-                      <input type="password" name="c_password" class="form-control" id="c-password" placeholder="Conform Password" required>
+                      <input type="password" name="password_confirmation" class="form-control" id="c_password" placeholder="Conform Password" required>
+                    </div>
+                    <div class="mb-2">
+                      <label class="form-label">User Role</label>
+                      <select name="role" class="form-select" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="manager" {{ old('role') == 'manager' ? 'selected' : '' }}>Manager</option>
+                        <option value="editor" {{ old('role') == 'editor' ? 'selected' : '' }}>Editor</option>
+                        <option value="reporter" {{ old('role') == 'reporter' ? 'selected' : '' }}>Reporter</option>
+                        <option value="visitor" {{ old('role') == 'visitor' ? 'selected' : '' }}>Visitor</option>
+                        <option value="guest" {{ old('role') == 'guest' ? 'selected' : '' }}>Guest</option>
+                      </select>
+                      @error('role')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-3 form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#"> <b> Terms & Conditions</b></a></label>
                     </div>
-                    <button type="submit" name="registerBtn" class="btn btn-primary form-control mb-2">Submit</button>
+                    <button type="submit" class="btn btn-primary form-control mb-2">Submit</button>
                     <p class="sign-text">Have any Question ? <a href="#">Get help</a></p>
                   </form>
                 </div>

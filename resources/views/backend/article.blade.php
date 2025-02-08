@@ -20,7 +20,7 @@
                             <input class="form-control" name="search" placeholder="Title">
                             <input class="form-control" name="search" placeholder="Category">
                             <input class="form-control" name="search" placeholder="Status">
-                            <button type="submit" class="btn btn-outline-primary" id="search-btn">Search</button>
+                            <button type="submit" class="btn btn-outline-success" id="search-btn">Search</button>
                             <button type="button" class="btn btn-outline-danger" id="reset-btn">Reset</button>
                         </div>
                     </form>
@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="col-4">
-                <div class="add-article-btn">
-                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add Article</a>
+                <div class="text-end">
+                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add New Article</a>
                 </div>
             </div>
         </div>

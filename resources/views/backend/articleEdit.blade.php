@@ -19,8 +19,8 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="article-list-btn">
-                    <a href="{{route('article.list')}}" class="btn btn-success btn-sm">Article List</a>
+                <div class="text-end">
+                    <a href="{{route('article.list')}}" class="btn btn-success btn-sm">Back To Article List</a>
                 </div>
             </div>
         </div>

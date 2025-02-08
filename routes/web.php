@@ -3,17 +3,11 @@
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\DashboardContoller;
 use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-Route::get('/login',[LoginController::class,'index'])->name('login');
-Route::get('/register', function () {
-    return view('backend.register');
-});
-
+use function Pest\Laravel\get;
 
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
 
@@ -25,6 +19,19 @@ Route::get('/manage/edit/{id}/article',[ArticleController::class,'edit'])->name(
 Route::put('/manage/edit/{id}/article/post',[ArticleController::class,'update'])->name('article.update');
 Route::get('/manage/view/{id}/article',[ArticleController::class,'show'])->name('article.show');
 Route::get('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->name('article.remove');
+
+
+Route::get('/login',[LoginController::class,'index'])->name('login');
+
+
+
+// Users Backend Route Here
+Route::get('/register',[UserController::class,'create'])->name('user.create');
+Route::post('/register/post',[UserController::class,'store'])->name('user.store');
+
+Route::get('/manage/list/users',[UserController::class,'index'])->name('user.list');
+Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
+Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
 
 
 Route::get('/manage/biponDa/download',[DownloadController::class,'downloadPage'])->name('download.page');

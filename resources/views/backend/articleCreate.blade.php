@@ -14,12 +14,12 @@
         <div class="row">
             <div class="col-6">
                 <div class="heading">
-                    <h5>Create Article</h5>
+                    <h5>Create New Article</h5>
                 </div>
             </div>
             <div class="col-6">
-                <div class="article-list-btn">
-                    <a href="{{route('article.list')}}" class="btn btn-success btn-sm">Article List</a>
+                <div class="text-end">
+                    <a href="{{route('article.list')}}" class="btn btn-success btn-sm">Go To Article List</a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                             @error('title')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
                         <div class="mb-2">
-                            <label>Category :</label>
+                            <label class="form-label">Category :</label>
                             <select name="category" id="category" class="form-control" {{$errors->has('category')?'autofocus':''}}>
                                 <option value="">Select Category</option>
                                 <option value="Politics" {{old('category')=='Politics'?'selected':''}}>Politics</option>
