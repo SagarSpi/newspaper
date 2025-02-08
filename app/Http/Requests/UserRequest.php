@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'number'=>'nullable|numeric',
             'password'=>'required|confirmed',
             'role'=>'required|string',
-            'status'=>'required|string|max:1'
+            'status'=>'required|string'
         ];
     }
     protected $stopOnFirstFailure = true;
