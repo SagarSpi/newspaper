@@ -21,9 +21,19 @@ class User extends Model
         'status'
     ];
 
-    // protected function Contacts() : Attribute {
-    //     return Attribute::make(
-    //         get: fn(string $value)=>
-    //     )
-    // }
+    protected function Contacts() : Attribute {
+        return Attribute::make(
+            get: fn(?string $value) => $value ? '0' . ltrim($value, '0') : null
+        );
+    }
+    protected function Status() : Attribute {
+        return Attribute::make(
+            get:fn(string $value)=>ucwords($value)
+        );
+    }
+    protected function Role() : Attribute {
+        return Attribute::make(
+            get:fn(string $value)=>ucwords($value)
+        );
+    }
 }

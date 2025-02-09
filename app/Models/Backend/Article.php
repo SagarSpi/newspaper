@@ -16,7 +16,7 @@ class Article extends Model
     }
     protected function CreatedAt() : Attribute{
         return Attribute::make(
-            get: fn(string $value)=> date('d M Y', strtotime($value))
+            get: fn(string $value)=>date('d M Y', strtotime($value))
         );
     }
     protected function UpdatedAt(): Attribute {

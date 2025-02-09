@@ -54,20 +54,6 @@
                       <label for="c_password" class="form-label">Conform Password</label>
                       <input type="password" name="password_confirmation" class="form-control" id="c_password" placeholder="Conform Password" required>
                     </div>
-                    {{-- <div class="mb-2">
-                      <label class="form-label">User Role</label>
-                      <select name="role" class="form-select" required>
-                        <option value="" disabled selected>Select Role</option>
-                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="manager" {{ old('role') == 'manager' ? 'selected' : '' }}>Manager</option>
-                        <option value="editor" {{ old('role') == 'editor' ? 'selected' : '' }}>Editor</option>
-                        <option value="reporter" {{ old('role') == 'reporter' ? 'selected' : '' }}>Reporter</option>
-                        <option value="visitor" {{ old('role') == 'visitor' ? 'selected' : '' }}>Visitor</option>
-                        <option value="guest" {{ old('role') == 'guest' ? 'selected' : '' }}>Guest</option>
-                        <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                      </select>
-                      @error('role')<span class="text-danger">{{$message}}</span>@enderror
-                    </div> --}}
                     <div class="mb-3 form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#"> <b> Terms & Conditions</b></a></label>

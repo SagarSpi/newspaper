@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Backend\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
@@ -37,81 +36,48 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {   
+        DB::beginTransaction();
 
-        // DB::beginTransaction();
-
-        // // Default Image 
-        // $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png';
-        // $public_id = 'Newspaper/Users-image/Default_image/user_default_image';
-
-        // try {
-
+        try {
+            // Default Image
+            $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png';
+            $public_id = 'Newspaper/Users-image/Default_image/user_default_image';
             
-        //     if ($request->hasFile('image')) {
+            if ($request->hasFile('image')) {
 
-        //         $timeStamp = Carbon::now()->format('Y-M');
-        //         $folderName = 'Newspaper/Users-image/'.$timeStamp;
-        //         $imageUniqueName = time();
+                $timeStamp = Carbon::now()->format('Y-M');
+                $folderName = 'Newspaper/Users-image/'.$timeStamp;
+                $imageUniqueName = time();
     
-        //         // Upload with image to cloudinary
-        //         $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
-        //             'folder' => $folderName,
-        //             'public_id'=> $imageUniqueName
-        //         ]);
+                // Upload with image to cloudinary
+                $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
+                    'folder' => $folderName,
+                    'public_id'=> $imageUniqueName
+                ]);
+
+                $uploadedFileUrl = $uploadimage->getSecurePath();
+                $public_id = $uploadimage->getPublicId();
+            }
     
-        //         $uploadedFileUrl = $uploadimage->getSecurePath();
-        //         $public_id = $uploadimage->getPublicId();
-        //     }
-    
-        //     User::create([
-        //         'name'=>$request->name,
-        //         'email'=>$request->email,
-        //         'password'=>Hash::make($request->password),
-        //         'image_url'=>$uploadedFileUrl,
-        //         'image_id'=>$public_id,
-        //         'contacts'=>$request->number,
-        //         'status'=>'active'
-        //     ]);
-            
-        //     DB::commit();
-        //     return redirect()->route('login')->with('success','Users Created Succesfully !');
-
-        // } catch (\Exception $err) {
-
-        //     DB::rollBack();
-        //     return redirect()->back()->with('error','Failed To Create Users !'.$err->getMessage());
-        // }
-
-
-
-
-        if ($request->hasFile('image')) {
-
-            $timeStamp = Carbon::now()->format('Y-M');
-            $folderName = 'Newspaper/Users-image/'.$timeStamp;
-            $imageUniqueName = time();
-
-            // Upload with image to cloudinary
-            $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
-                'folder' => $folderName,
-                'public_id'=> $imageUniqueName
+            User::create([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'password'=>Hash::make($request->password),
+                'image_url'=>$uploadedFileUrl,
+                'image_id'=>$public_id,
+                'contacts'=>$request->number,
+                'status'=>'active',
+                'role'=>'user',
             ]);
+            
+            DB::commit();
+            return redirect()->route('login')->with('success','Users Created Succesfully !');
 
-            $uploadedFileUrl = $uploadimage->getSecurePath();
-            $public_id = $uploadimage->getPublicId();
+        } catch (\Exception $err) {
+
+            DB::rollBack();
+            return redirect()->back()->with('error','Failed To Create Users !'.$err->getMessage());
         }
-
-        User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password),
-            'image_url'=>$uploadedFileUrl,
-            'image_id'=>$public_id,
-            'contacts'=>$request->number,
-            'status'=>'active'
-        ]);
-
-        return redirect()->route('login')->with('success','Users Created Succesfully!');
     }
 
     /**
@@ -139,12 +105,13 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $uploadedFileUrl = $user->image_url;
-        $public_id = $user->image_id;
-
         DB::beginTransaction();
-        
+
         try {
+
+            $uploadedFileUrl = $user->image_url;
+            $public_id = $user->image_id;
+
             if ($request->hasFile('image')) {
 
                 $storedImageId = $user->image_id;
@@ -166,7 +133,6 @@ class UserController extends Controller
     
                 $uploadedFileUrl = $uploadimage->getSecurePath();
                 $public_id = $uploadimage->getPublicId();
-
             }
             
             $user->update([
