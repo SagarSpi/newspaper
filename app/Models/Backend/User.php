@@ -21,6 +21,11 @@ class User extends Model
         'status'
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
+
     protected function Contacts() : Attribute {
         return Attribute::make(
             get: fn(?string $value) => $value ? '0' . ltrim($value, '0') : null

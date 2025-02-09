@@ -46,6 +46,10 @@
                                     <span><i class="fa-brands fa-google"></i></span>
                                     <span>Continue with Google</span>
                                 </button>
+                                <button type="button" href="#" class="btn btn-outline-primary form-control mb-3">
+                                    <span><i class="fa-brands fa-facebook"></i></span>
+                                    <span>Continue with Facebook</span>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -53,8 +57,6 @@
             </div>
         </div>
     </section>
-
-
 
 
     {{-- Jquery CDN js link  --}}

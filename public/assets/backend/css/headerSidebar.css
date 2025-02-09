@@ -11,6 +11,14 @@ ul {
 ul li {
     list-style: none;
 }
+/* GLOBAL Pagination css code start */
+.active > .page-link,
+.page-link.active {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+}
+/* GLOBAL Pagination css code End */
 .header-section {
     background-color: #ffffff;
     padding: 10px 0px 5px;
@@ -23,7 +31,6 @@ ul li {
     display: flex;
     float: right;
 }
-
 .header-section .header-content .form-control:focus {
     border-color: #fd6930;
     box-shadow: 0 0 0 1px rgb(253, 105, 48);
