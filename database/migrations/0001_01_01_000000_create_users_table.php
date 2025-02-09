@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image_url');
             $table->string('image_id');
             $table->integer('contacts')->nullable();
-            $table->string('role',20);
+            $table->string('role',20)->nullable();
             $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();

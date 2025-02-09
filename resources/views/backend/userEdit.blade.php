@@ -14,19 +14,19 @@
             </div>
             <div class="col-6">
                 <div class="text-end">
-                    <a href="#" class="btn btn-success btn-sm">Back To Users List</a>
+                    <a href="{{ route('user.list') }}" class="btn btn-success btn-sm">Back To Users List</a>
                 </div>
             </div>
         </div>
         <div class="edit-user-body pt-5">
             <div class="row">
                 <div class="col-10 offset-1">
-                    <form action="{{route('user.update',$user->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-2">
                             <label class="form-label">Full Name :</label>
-                            <input type="text" name="name" value="{{old('name',$user->name)}}" class="form-control" placeholder="Enter Name" {{$errors->has('name')?'autofocus':''}}>
+                            <input type="text" name="name" value="{{old('name',$user->name)}}" class="form-control" placeholder="Enter Name" {{ $errors->has('name') ? 'autofocus' : '' }}>
                             @error('name')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
                         <div class="mb-2">
@@ -44,13 +44,14 @@
                                 <div class="col-6">
                                     <label class="form-label">User Role</label>
                                     <select name="role" class="form-select" {{$errors->has('role')?'autofocus':''}} required>
-                                        <option value="" disabled selected>Select Role</option>
+                                        <option value="" selected disabled>Select Role</option>
                                         <option value="admin" {{ old('role', $user->role ?? '') == 'admin' ? 'selected' : '' }}>Admin</option>
                                         <option value="manager" {{ old('role', $user->role ?? '') == 'manager' ? 'selected' : '' }}>Manager</option>
                                         <option value="editor" {{ old('role', $user->role ?? '') == 'editor' ? 'selected' : '' }}>Editor</option>
                                         <option value="reporter" {{ old('role', $user->role ?? '') == 'reporter' ? 'selected' : '' }}>Reporter</option>
                                         <option value="visitor" {{ old('role', $user->role ?? '') == 'visitor' ? 'selected' : '' }}>Visitor</option>
                                         <option value="guest" {{ old('role', $user->role ?? '') == 'guest' ? 'selected' : '' }}>Guest</option>
+                                        <option value="user" {{ old('role', $user->role ?? '') == 'user' ? 'selected' : '' }}>User</option>
                                     </select>
                                     @error('role') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
