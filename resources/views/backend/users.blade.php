@@ -65,7 +65,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="#"><i class="fa-solid fa-eye pe-2"></i> View</a>
+                                                <a class="dropdown-item" href="{{route('user.show')}}"><i class="fa-solid fa-eye pe-2"></i> View</a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="{{route('user.edit',$user->id)}}"><i class="fa-solid fa-pen-to-square pe-2"></i> Edit</a>

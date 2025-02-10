@@ -7,7 +7,6 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
-use function Pest\Laravel\get;
 
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
 
@@ -24,7 +23,6 @@ Route::get('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->
 Route::get('/login',[LoginController::class,'index'])->name('login');
 
 
-
 // Users Backend Route Here
 Route::get('/register',[UserController::class,'create'])->name('user.create');
 Route::post('/register/post',[UserController::class,'store'])->name('user.store');
@@ -33,6 +31,11 @@ Route::get('/manage/list/users',[UserController::class,'index'])->name('user.lis
 Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
 Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
 
+
+
+
+
+Route::get('/manage/profile/user',[UserController::class,'show'])->name('user.show');
 
 Route::get('/manage/biponDa/download',[DownloadController::class,'downloadPage'])->name('download.page');
 Route::get('/manage/biponDa/download/file',[DownloadController::class,'downloadFile'])->name('download.file');
