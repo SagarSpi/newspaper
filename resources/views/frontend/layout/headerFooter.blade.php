@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> @yield('title')|| BestNews</title>
-    {{-- Bootstrap CDN css link  --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{-- Fontawesome CDN css link  --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    {{-- Bootstrap css File  --}}
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/plugins/bootstrap.min.css')}}">
+    {{-- Fontawesome css File  --}}
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/plugins/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/plugins/fontawesome.min.css')}}">
     {{-- Header Footer Custom css file  --}}
     <link rel="stylesheet" href="{{asset('assets/frontend/css/headerFooter.css')}}">
     @stack('css')
@@ -239,7 +240,7 @@
             </div>
             <div class="col-3">
               <h5>Newsletter</h5>
-              <p>Subscribe to recieve a monthly email on the latest news!</p>
+              <p>Subscribe to recieve a monthly email </br> on the latest news!</p>
               <form action="" method="POST">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Enter Email">
@@ -275,10 +276,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     {{-- Language js code file --}}
     <script src="{{asset('assets/frontend/js/languageChanger.js')}}"></script>
-    {{-- Bootstrap CDN js link  --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- Fontawesome CDN js link  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+    {{-- Bootstrap js File  --}}
+    <script src="{{asset('assets/frontend/js/plugins/bootstrap.bundle.js')}}"></script>
+    {{-- Fontawesome js File  --}}
+    <script src="{{asset('assets/frontend/js/plugins/all.min.js')}}"></script>
     {{-- Language translator cdn link  --}}
     <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
     
