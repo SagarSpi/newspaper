@@ -17,7 +17,7 @@
     <div class="navber-section">
       <div class="container-fluid">
         <div class="row">
-            <div class="col-4">
+            <div class="col-6">
               <ul>
                   <li>
                     <a href="">E-paper</a>
@@ -32,7 +32,7 @@
                   </li>
               </ul>
             </div>
-            <div class="col-4 offset-4">
+            <div class="col-6">
               <div class="text-end">
                 <ul>
                   <li class="me-2">
@@ -73,8 +73,8 @@
       <div class="menubar-section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-12">
-              <div class="menu-item text-center mb-2">
+            <div class="col-10">
+              <div class="menu-item text-end mb-2">
                 <ul>
                   <li>
                     <a href="" class="active"><i class="fa-solid fa-house fa-lg" style="color: #ff1438;"></i></a>
@@ -109,6 +109,49 @@
                   <li>
                     <a href="">International</a>
                   </li>
+                  <li>
+                    <div class="dropdown">
+                      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >Others</a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="menu-sidebar">
+                <ul>
+                  <li>
+                    <div class="dropdown">
+                      <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li class="dropdown-item width-size">
+                          <form action="" method="POST">
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Search News...">
+                              <button type="submit" class="btn btn-outline-success">Search</button>
+                            </div>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li>|</li>
+                  <li>
+                    <div class="language-changer">
+                      <div id="translator"></div>
+                    </div>
+                  </li>
+                  <li>|</li>
+                  <li>
+                    <a href="#"><i class="fa-solid fa-user"></i> Login</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -134,20 +177,93 @@
       <div class="container-fluid">
         <div class="footer-widget">
           <div class="row">
-            <div class="col-4">
+            <div class="col-3">
                 <div class="img">
                   <img src="{{asset('assets/backend/img/logo.svg')}}" alt="">
                 </div>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis minima eaque tempora incidunt aut eius itaque ab ad commodi consequatur.</p>
-            </div>
-            <div class="col-4">
-                <div class="footer-contact">
-                  <h5>Quick Contact</h5>
-                  
+                <div class="follow-us">
+                  <h5>Follow Us</h5>
+                  <ul>
+                    <li class="me-2">
+                      <a href=""><i class="fa-brands fa-facebook fa-lg" style="color: #0866ff;"></i></a>
+                    </li class="me-2">
+                    <li class="me-2">
+                      <a href=""><i class="fa-brands fa-whatsapp fa-lg" style="color: #0cc042;"></i></a>
+                    </li>
+                    <li class="me-2">
+                      <a href=""><i class="fa-brands fa-x-twitter fa-lg" style="color: #030303;"></i></a>
+                    </li>
+                    <li class="me-2">
+                      <a href=""><i class="fa-brands fa-instagram fa-lg" style="color: #fdbd03;"></i></a>
+                    </li>
+                    <li class="me-2">
+                      <a href=""><i class="fa-brands fa-youtube fa-lg" style="color: #fb0000;"></i></a>
+                    </li>
+                  </ul>
                 </div>
             </div>
-            <div class="col-4">
-                
+            <div class="col-3">
+              <div class="footer-contact">
+                <h5 class="mb-4">Quick Contacts</h5>
+                <table class="table table-borderless table-sm">
+                  <tbody>
+                      <tr>
+                          <th><i class="fa-solid fa-location-dot fa-lg"></i></th>
+                          <td>23 Street, Dhaka, Bangladesh</td>
+                      </tr>
+                      <tr>
+                          <th><i class="fa-solid fa-mobile-screen fa-lg"></i></th>
+                          <td>+880 1725 540 583</td>
+                      </tr>
+                      <tr>
+                          <th><i class="fa-solid fa-envelope fa-lg"></i></th>
+                          <td>info@bestnews.com</td>
+                      </tr>
+                      <tr>
+                          <th><i class="fa-solid fa-globe fa-lg"></i></th>
+                          <td>www.bestnews.com</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-3">
+              <h5 class="mb-4">Quick Links</h5>
+              <ul>
+                <li class="mb-1"><a href="#">Features</a></li>
+                <li class="mb-1"><a href="#">Special Events</a></li>
+                <li class="mb-1"><a href="#">Add Price Lisat</a></li>
+                <li class="mb-1"><a href="#">Facebook live</a></li>
+              </ul>
+            </div>
+            <div class="col-3">
+              <h5>Newsletter</h5>
+              <p>Subscribe to recieve a monthly email on the latest news!</p>
+              <form action="" method="POST">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Enter Email">
+                  <button type="submit" class="btn btn-outline-success">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="footer-buttom">
+          <div class="row">
+            <div class="col-6">
+              <div class="copyright">
+                <p>Copyright &copy; BestNews 2024. All Rights Reserved</p>
+              </div>
+            </div>
+            <div class="col-6 text-end">
+              <div class="privacy">
+                <ul>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li>|</li>
+                  <li><a href="#">Terms and Conditions</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -157,10 +273,15 @@
 
     {{-- Jquery CDN js link  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- Language js code file --}}
+    <script src="{{asset('assets/frontend/js/languageChanger.js')}}"></script>
     {{-- Bootstrap CDN js link  --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- Fontawesome CDN js link  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+    {{-- Language translator cdn link  --}}
+    <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    
     @stack('script')
   </body>
 </html>

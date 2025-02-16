@@ -9,11 +9,56 @@ ul {
 ul li {
     list-style: none;
     text-decoration: none;
-    display: inline-block;
 }
 a {
     text-decoration: none;
     color: black;
+}
+/*translator css code start*/
+.language-changer {
+    text-align: right;
+}
+.goog-te-gadget-simple {
+    background-color: white;
+    border: none;
+    font-size: 14px;
+    padding: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border: none !important;
+}
+.goog-te-gadget-simple span {
+    display: none; /* Hide default text */
+}
+.goog-te-gadget-simple::after {
+    content: " Lang";
+    color: black;
+    font-weight: bold;
+}
+/*translator top banner hide css start*/
+.translated-ltr {
+    margin-top: -40px;
+}
+.goog-te-banner-frame {
+    display: none;
+    margin-top: -20px;
+}
+.goog-logo-link {
+    display: none !important;
+}
+.goog-te-gadget {
+    color: transparent !important;
+}
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    height: 0px !important;
+    border: none;
+    border-bottom: none !important;
+    box-shadow: none;
+}
+/*translator top banner hide css end*/
+/*translator css code end */
+.width-size {
+    width: 300px;
 }
 .navber-section {
     width: 100%;
@@ -23,6 +68,9 @@ a {
     padding: 5px 0px;
     border-bottom: 1px solid #ef0303;
     margin-bottom: 10px;
+}
+.navber-section ul li {
+    display: inline-block;
 }
 .logo-section .header-logo {
     width: 100%;
@@ -41,7 +89,37 @@ a {
 }
 .menubar-section .menu-item ul li {
     margin: 0px 5px;
+    display: inline-block;
+}
+.menubar-section .menu-item .dropdown a {
+    font-weight: 500;
+    font-size: 18px;
+}
+.menu-sidebar ul li {
+    display: inline-block;
 }
 .content-section {
     padding: 15px 0px;
+}
+.footer-section {
+    width: 100%;
+    border-top: 1px solid #ef0303;
+}
+.footer-section .footer-widget {
+    padding: 35px 0px;
+}
+.footer-section .footer-widget img {
+    width: 200px;
+}
+.footer-section .footer-widget .follow-us ul li {
+    display: inline-block;
+}
+.footer-section .footer-buttom {
+    border-top: 1px solid #ef0303;
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.footer-section .footer-buttom .privacy ul li {
+    display: inline-block;
 }

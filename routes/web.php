@@ -6,7 +6,7 @@ use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('frontend.home');
 });
 
