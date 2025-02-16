@@ -57,9 +57,6 @@ a {
 }
 /*translator top banner hide css end*/
 /*translator css code end */
-.width-size {
-    width: 300px;
-}
 .navber-section {
     width: 100%;
     background: #efefef91;
@@ -95,8 +92,14 @@ a {
     font-weight: 500;
     font-size: 18px;
 }
-.menu-sidebar ul li {
+.menubar-section .menu-sidebar {
+    font-weight: 500;
+}
+.menubar-section .menu-sidebar ul li {
     display: inline-block;
+}
+.menubar-section .menu-sidebar .width-size {
+    width: 300px;
 }
 .content-section {
     padding: 15px 0px;
