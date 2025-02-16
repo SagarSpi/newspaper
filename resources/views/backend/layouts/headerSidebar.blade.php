@@ -101,8 +101,11 @@
                                     <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link">Users Manager</a>
+                                    <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>
                                 </li>
+                                {{-- <li>
+                                    <a href="{{route('user.create')}}" class="nav-link">Create Users</a>
+                                </li> --}}
                                 <li>
                                     <a href="#" class="nav-link">Settings</a>
                                 </li>

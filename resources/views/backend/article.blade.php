@@ -20,21 +20,20 @@
                             <input class="form-control" name="search" placeholder="Title">
                             <input class="form-control" name="search" placeholder="Category">
                             <input class="form-control" name="search" placeholder="Status">
-                            <button type="submit" class="btn btn-outline-primary" id="search-btn">Search</button>
+                            <button type="submit" class="btn btn-outline-success" id="search-btn">Search</button>
                             <button type="button" class="btn btn-outline-danger" id="reset-btn">Reset</button>
                         </div>
                     </form>
                 </div>
             </div>
-
             <div class="col-8">
                 <div class="heading">
                     <h5>Manage Articles</h5>
                 </div>
             </div>
             <div class="col-4">
-                <div class="add-article-btn">
-                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add Article</a>
+                <div class="text-end">
+                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add New Article</a>
                 </div>
             </div>
         </div>
@@ -63,10 +62,11 @@
                                     <td>{{$news->shortDesc}}</td>
                                     <td><img src="{{$news->image_url}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$news->status}}</td>
-                                    <td style="white-space: nowrap;">{{$news->user->name}}</td>
+                                    <td style="white-space: nowrap;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id }}" >{{$news->user->name}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-bars" aria-hidden="true"></i>
                                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -86,6 +86,46 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{-- USER OFFCANVAS SIDEBAR CODE START  --}}
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasRightLabel">Creator Information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div class="creator-img">
+                                <img src="{{asset('assets/backend/img/user-avater.png')}}" class="img-thumbnail" alt="Creator Image">
+                            </div>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th rowspan="1">Id</th>
+                                        <td><b>:</b> {{$news->user->id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="1">Name</th>
+                                        <td><b>:</b> {{$news->user->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="1">Email</th>
+                                        <td><b>:</b> {{$news->user->email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="1">Contact</th>
+                                        <td><b>:</b> {{$news->user->contacts}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="1">Role</th>
+                                        <td><b>:</b> {{$news->user->role}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="creator-action">
+                                <a href="{{$news->user->id}}" class="btn btn-success btn-sm">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- USER OFFCANVAS SIDEBAR CODE END  --}}
                     <div class="paginate">
                         <div class="col-12">
                             {{$article->links()}}
@@ -121,6 +161,7 @@
 @endsection
 
 @push('script')
+    {{-- DELETE MODAL AJAX SCRIPT --}}
     <script>
         $('.remove').on('click', function () {
             $('#removeModal').modal('show');

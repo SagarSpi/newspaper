@@ -16,9 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::with(['user' => function ($query) {
-            $query->select('id', 'name', 'email', 'contacts', 'role');
-        }])
+        $article = Article::with('user')
         ->orderBy('created_at','DESC')
         ->paginate(9);
 
@@ -101,12 +99,12 @@ class ArticleController extends Controller
         if ($request->hasFile('image')) {
 
             // Old database Image Id 
-            $StoreImageId = $article->image_id;
+            $storedImageId = $article->image_id;
 
             $defaultImageId = 'Newspaper/Default_image/news_defalult_image';
 
-            if ($StoreImageId !== $defaultImageId) {
-                Cloudinary::destroy($StoreImageId);
+            if ($storedImageId && $storedImageId !== $defaultImageId) {
+                Cloudinary::destroy($storedImageId);
             }
 
             $timeStamp = Carbon::now()->format('Y-M');

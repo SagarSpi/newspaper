@@ -1,0 +1,59 @@
+p {
+    margin-bottom: 0;
+}
+.profile-section {
+    width: 100%;
+}
+.profile-section .profile-heading {
+    width: 100%;
+    padding: 20px;
+    background: #033144;
+    color: #fff;
+}
+.profile-section .profile-heading .profile-user-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.profile-section .profile-heading .profile-user-box .user-img {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    border-radius: 50%;
+}
+.profile-section .profile-heading .profile-user-box .user-img img {
+    width: 100%;
+    height: 100%;
+}
+.profile-section .profile-heading .profile-user-box .user-details h3 {
+    font-size: 28px;
+}
+.profile-section .profile-heading .profile-user-box .user-details h4 {
+    font-size: 22px;
+}
+.profile-section .profile-heading .profile-user-box .user-details h5 {
+    padding-top: 10px;
+    font-size: 16px;
+}
+.profile-body {
+    padding: 20px 0px;
+}
+.card-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 20px 15px;
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 2px;
+}
+.card-box h2 {
+    font-size: 40px;
+}
+.font-14 {
+    font-size: 14px;
+}
+.font-35 {
+    font-size: 35px;
+}

@@ -33,8 +33,8 @@
                         </div>
                         <div class="col-6">
                             <ul>
-                                <li><span>Create Date : </span>{{ $article->created_at?->format('H:i d-M-Y') }}</li>
-                                <li><span>Update Date : </span>{{ $article->updated_at?->format('H:i d-M-Y') }}</li>
+                                <li><span>Create Date : </span>{{ $article->created_at ?? 'N/A' }}</li>
+                                <li><span>Update Date : </span>{{ $article->updated_at ?? 'N/A' }}</li>
                                 <li><span>Status : </span>{{ $article->status ?? 'N/A' }}</li>
                             </ul>
                         </div>

@@ -4,10 +4,21 @@
 .article-section .heading {
     padding: 10px 0px;
 }
-.article-section .add-article-btn {
-    text-align: right;
-    padding: 10px 0px;
-}
 .article-section .dropdown-item {
     padding: 5px 0px 5px 10px;
+}
+.offcanvas .offcanvas-body .creator-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.offcanvas .offcanvas-body .creator-img img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.offcanvas .offcanvas-body .creator-action {
+    display: flex;
+    justify-content: flex-end;
 }

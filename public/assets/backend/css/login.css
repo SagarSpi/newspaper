@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+.login-section {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(#30142b, #2772a1);
+}
+.login-section .login-about {
+    width: 100%;
+    margin-top: 220px;
+    display: inline-block;
+    color: #fff;
+}
+.login-section .login-content {
+    margin-top: 20px;
+    background-color: skyblue;
+    padding: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+.login-section .login-content .heading {
+    text-align: center;
+}
+.login-section .login-content .login-form-body .reset-pass {
+    float: right;
+}
+.login-section .login-content .login-form-body .sign-text {
+    padding-top: 10px;
+}
+.login-section .login-content .login-form-body .sign-text a {
+    padding-left: 3px;
+    font-weight: bold;
+}
+.login-section .login-content .login-form-body .or-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    text-align: center;
+}
+.login-section .login-content .login-form-body .or-section::before,
+.login-section .login-content .login-form-body .or-section::after {
+    content: "";
+    height: 2px;
+    background: black;
+    display: block;
+}
