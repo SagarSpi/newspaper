@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="login-about">
-                        <img src="{{asset('assets/backend/img/logo.svg')}}" alt="" width="45%" height="100%">
+                        <img src="{{asset('assets/global/img/logo.svg')}}" alt="" width="45%" height="100%">
                         <p class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur dicta quam ullam at nihil aspernatur facere deleniti molestias nemo illum. Ipsa labore quas corporis error, amet neque odit eos? Aliquam eligendi sit, repellat molestiae tempore accusantium soluta tenetur in animi.</p>
                     </div>
                 </div>

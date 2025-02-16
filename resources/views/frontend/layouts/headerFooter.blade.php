@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> @yield('title')|| BestNews</title>
-    {{-- Bootstrap css File  --}}
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/plugins/bootstrap.min.css')}}">
-    {{-- Fontawesome css File  --}}
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/plugins/all.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/plugins/fontawesome.min.css')}}">
-    {{-- Header Footer Custom css file  --}}
+    {{-- BOOTSTRAP CSS FILE  --}}
+    <link rel="stylesheet" href="{{asset('assets/global/css/bootstrap.min.css')}}">
+    {{-- FONTAWESOME CSS FILE  --}}
+    <link rel="stylesheet" href="{{asset('assets/global/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/global/css/fontawesome.min.css')}}">
+    {{-- HEADER FOOTER CUSTOM CSS FILE  --}}
     <link rel="stylesheet" href="{{asset('assets/frontend/css/headerFooter.css')}}">
     @stack('css')
   </head>
   <body>
-    {{-- Header Section Code Start  --}}
+    {{-- HEADER SECTION CODE END  --}}
     <div class="navber-section">
       <div class="container-fluid">
         <div class="row">
@@ -63,7 +63,7 @@
           <div class="col-12">
             <div class="header-logo text-center">
               <a href="#">
-                <img src="{{asset('assets/backend/img/logo.svg')}}" alt="Logo">
+                <img src="{{asset('assets/global/img/logo.svg')}}" alt="Logo">
               </a>
             </div>
           </div>
@@ -160,8 +160,8 @@
         </div>
       </div>
     </div>
-    {{-- Header Section Code End --}}
-    {{-- Content Section Code Etart --}}
+    {{-- HEADER SECTION CODE END --}}
+    {{-- CONTENT SECTION CODE START --}}
     <div class="content-section">
       <div class="container-fluid">
         <div class="row">
@@ -171,9 +171,9 @@
         </div>
       </div>
     </div>
-    {{-- Content Section Code End --}}
+    {{-- CONTENT SECTION CODE END --}}
 
-    {{-- Footer Section Code Start  --}}
+    {{-- FOOTER SECTION CODE START  --}}
     <div class="footer-section">
       <div class="container-fluid">
         <div class="footer-widget">
@@ -270,17 +270,18 @@
         </div>
       </div>
     </div>
-    {{-- Footer Section Code End  --}}
+    {{-- FOOTER SECTION CODE END  --}}
 
-    {{-- Jquery CDN js link  --}}
+    {{-- JQUERY CDN JS LINK  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    {{-- Language js code file --}}
+    {{-- LANGUAGE JS CODE FILE --}}
     <script src="{{asset('assets/frontend/js/languageChanger.js')}}"></script>
-    {{-- Bootstrap js File  --}}
-    <script src="{{asset('assets/frontend/js/plugins/bootstrap.bundle.js')}}"></script>
-    {{-- Fontawesome js File  --}}
-    <script src="{{asset('assets/frontend/js/plugins/all.min.js')}}"></script>
-    {{-- Language translator cdn link  --}}
+    {{-- BOOTSTRAP JS FILE  --}}
+    <script src="{{asset('assets/global/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/global/js/bootstrap.bundle.js')}}"></script>
+    {{-- FONTAWESOME JS FILE  --}}
+    <script src="{{asset('assets/global/js/all.min.js')}}"></script>
+    {{-- LANGUAGE TRANSLATOR cdn LINK  --}}
     <script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
     
     @stack('script')
