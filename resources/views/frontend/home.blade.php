@@ -25,7 +25,7 @@
                     <div class="col-4">
                         <a href="#">
                             <div class="hero-news-img">
-                                <img src="" alt="">
+                                <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
                             </div>
                             <div class="hero-news-details">
                                 <div class="title">

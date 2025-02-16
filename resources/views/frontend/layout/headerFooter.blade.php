@@ -14,62 +14,62 @@
   </head>
   <body>
     {{-- Header Section Code Start  --}}
-    <div class="header-section">
-      <div class="navber-section">
-        <div class="container-fluid">
-          <div class="row">
-              <div class="col-4">
+    <div class="navber-section">
+      <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+              <ul>
+                  <li>
+                    <a href="">E-paper</a>
+                  </li>
+                  <li>|</li>
+                  <li>
+                    <a href="">Converter</a>
+                  </li>
+                  <li>|</li>
+                  <li>
+                    <a href="">Archive</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="col-4 offset-4">
+              <div class="text-end">
                 <ul>
-                    <li>
-                      <a href="">E-paper</a>
-                    </li>
-                    <li>|</li>
-                    <li>
-                      <a href="">Converter</a>
-                    </li>
-                    <li>|</li>
-                    <li>
-                      <a href="">Archive</a>
-                    </li>
+                  <li class="me-2">
+                    <a href=""><i class="fa-brands fa-facebook fa-lg" style="color: #0866ff;"></i></a>
+                  </li>
+                  <li class="me-2">
+                    <a href=""><i class="fa-brands fa-whatsapp fa-lg" style="color: #0cc042;"></i></a>
+                  </li>
+                  <li class="me-2">
+                    <a href=""><i class="fa-brands fa-x-twitter fa-lg" style="color: #030303;"></i></a>
+                  </li>
+                  <li class="me-2">
+                    <a href=""><i class="fa-brands fa-instagram fa-lg" style="color: #fdbd03;"></i></a>
+                  </li>
+                  <li>
+                    <a href=""><i class="fa-brands fa-youtube fa-lg" style="color: #fb0000;"></i></a>
+                  </li>
                 </ul>
               </div>
-              <div class="col-4 offset-4">
-                <div class="text-end">
-                  <ul>
-                    <li class="me-2">
-                      <a href=""><i class="fa-brands fa-facebook fa-lg" style="color: #0866ff;"></i></a>
-                    </li>
-                    <li class="me-2">
-                      <a href=""><i class="fa-brands fa-whatsapp fa-lg" style="color: #0cc042;"></i></a>
-                    </li>
-                    <li class="me-2">
-                      <a href=""><i class="fa-brands fa-x-twitter fa-lg" style="color: #030303;"></i></a>
-                    </li>
-                    <li class="me-2">
-                      <a href=""><i class="fa-brands fa-instagram fa-lg" style="color: #fdbd03;"></i></a>
-                    </li>
-                    <li>
-                      <a href=""><i class="fa-brands fa-youtube fa-lg" style="color: #fb0000;"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-          </div>
+            </div>
         </div>
       </div>
-      <div class="logo-section">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="header-logo text-center">
-                <a href="#">
-                  <img src="{{asset('assets/backend/img/logo.svg')}}" alt="Logo">
-                </a>
-              </div>
+    </div>
+    <div class="logo-section">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="header-logo text-center">
+              <a href="#">
+                <img src="{{asset('assets/backend/img/logo.svg')}}" alt="Logo">
+              </a>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="sticky-top">
       <div class="menubar-section">
         <div class="container-fluid">
           <div class="row">
@@ -118,10 +118,12 @@
     </div>
     {{-- Header Section Code End --}}
     {{-- Content Section Code Etart --}}
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          @yield('content')
+    <div class="content-section">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            @yield('content')
+          </div>
         </div>
       </div>
     </div>
@@ -129,13 +131,27 @@
 
     {{-- Footer Section Code Start  --}}
     <div class="footer-section">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    
+      <div class="container-fluid">
+        <div class="footer-widget">
+          <div class="row">
+            <div class="col-4">
+                <div class="img">
+                  <img src="{{asset('assets/backend/img/logo.svg')}}" alt="">
+                </div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis minima eaque tempora incidunt aut eius itaque ab ad commodi consequatur.</p>
+            </div>
+            <div class="col-4">
+                <div class="footer-contact">
+                  <h5>Quick Contact</h5>
+                  
                 </div>
             </div>
+            <div class="col-4">
+                
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     {{-- Footer Section Code End  --}}
 
