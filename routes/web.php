@@ -6,12 +6,8 @@ use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 
 
-// Route::get('/', function () {
-//     return view('backend.dashboard');
-// });
-
 Route::get('/', function () {
-    return view('frontend.details');
+    return view('frontend.home');
 });
 
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
