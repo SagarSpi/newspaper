@@ -30,6 +30,7 @@
                             <div class="hero-news-details">
                                 <div class="title">
                                     {{-- title  --}}
+                                    <h2>dsfjdsjfd sfod</h2>
                                 </div>
                                 <div class="subtitle">
                                     {{-- subtitle  --}}

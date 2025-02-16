@@ -9,7 +9,7 @@
     {{-- Fontawesome CDN css link  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
     {{-- Header Footer Custom css file  --}}
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/home.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/headerFooter.css')}}">
     @stack('css')
   </head>
   <body>
@@ -19,35 +19,33 @@
         <div class="container-fluid">
           <div class="row">
               <div class="col-4">
-                <div class="nav-left">
-                    <ul>
-                        <li>
-                          <a href="">E-paper</a>
-                        </li>
-                        <li>|</li>
-                        <li>
-                          <a href="">Converter</a>
-                        </li>
-                        <li>|</li>
-                        <li>
-                          <a href="">Archive</a>
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li>
+                      <a href="">E-paper</a>
+                    </li>
+                    <li>|</li>
+                    <li>
+                      <a href="">Converter</a>
+                    </li>
+                    <li>|</li>
+                    <li>
+                      <a href="">Archive</a>
+                    </li>
+                </ul>
               </div>
               <div class="col-4 offset-4">
-                <div class="nav-right">
+                <div class="text-end">
                   <ul>
-                    <li>
+                    <li class="me-2">
                       <a href=""><i class="fa-brands fa-facebook fa-lg" style="color: #0866ff;"></i></a>
                     </li>
-                    <li>
+                    <li class="me-2">
                       <a href=""><i class="fa-brands fa-whatsapp fa-lg" style="color: #0cc042;"></i></a>
                     </li>
-                    <li>
+                    <li class="me-2">
                       <a href=""><i class="fa-brands fa-x-twitter fa-lg" style="color: #030303;"></i></a>
                     </li>
-                    <li>
+                    <li class="me-2">
                       <a href=""><i class="fa-brands fa-instagram fa-lg" style="color: #fdbd03;"></i></a>
                     </li>
                     <li>
@@ -63,8 +61,10 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <div class="header-logo">
-                <img src="" alt="Logo">
+              <div class="header-logo text-center">
+                <a href="#">
+                  <img src="{{asset('assets/backend/img/logo.svg')}}" alt="Logo">
+                </a>
               </div>
             </div>
           </div>
@@ -74,7 +74,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">
-              <div class="menu-item">
+              <div class="menu-item text-center mb-2">
                 <ul>
                   <li>
                     <a href="" class="active"><i class="fa-solid fa-house fa-lg" style="color: #ff1438;"></i></a>
