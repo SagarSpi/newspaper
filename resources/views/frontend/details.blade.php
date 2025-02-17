@@ -1,210 +1,247 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Details || BestNews</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+@extends('frontend.layouts.headerFooter')
+
+@section('title')
+    Details
+@endsection
+
+@push('css')
     <link rel="stylesheet" href="{{asset('assets/frontend/css/details.css')}}">
-  </head>
-  <body>
-    
-    <div class="blog-single gray-bg">
-        <div class="container">
-            <div class="row align-items-start">
-                <div class="col-lg-8 m-15px-tb">
-                    <article class="article">
-                        <div class="article-img">
-                            <img src="https://www.bootdey.com/image/800x350/87CEFA/000000" title="" alt="">
+@endpush
+
+@section('content')
+    <div class="details-section">
+        <div class="row">
+            <div class="col-9">
+                <div class="datails-body">
+                    <div class="details-topbar">
+                        <div class="publish-time">
+                            <p>Date : 12/12/2005</p>
+                            <p>1 hour ago</p>
                         </div>
-                        <div class="article-title">
-                            <h6><a href="#">Lifestyle</a></h6>
-                            <h2>They Now Bade Farewell To The Kind But Unseen People</h2>
-                            <div class="media">
-                                <div class="avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <label>Rachel Roth</label>
-                                    <span>26 FEB 2020</span>
-                                </div>
-                            </div>
+                        <div class="details-share">
+                            <ul>
+                                <li>
+                                  <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                                </li>
+                                <li>
+                                  <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+                                </li>
+                                <li>
+                                  <a href=""><i class="fa-solid fa-link"></i></a>
+                                </li>
+                                <li>
+                                  <a href=""><i class="fa-solid fa-share"></i></a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="article-content">
-                            <p>Aenean eleifend ante maecenas pulvinar montes lorem et pede dis dolor pretium donec dictum. Vici consequat justo enim. Venenatis eget adipiscing luctus lorem. Adipiscing veni amet luctus enim sem libero tellus viverra venenatis aliquam. Commodo natoque quam pulvinar elit.</p>
-                            <p>Eget aenean tellus venenatis. Donec odio tempus. Felis arcu pretium metus nullam quam aenean sociis quis sem neque vici libero. Venenatis nullam fringilla pretium magnis aliquam nunc vulputate integer augue ultricies cras. Eget viverra feugiat cras ut. Sit natoque montes tempus ligula eget vitae pede rhoncus maecenas consectetuer commodo condimentum aenean.</p>
-                            <h4>What are my payment options?</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <blockquote>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                                <p class="blockquote-footer">Someone famous in <cite title="Source Title">Dick Grayson</cite></p>
-                            </blockquote>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-                        <div class="nav tag-cloud">
-                            <a href="#">Design</a>
-                            <a href="#">Development</a>
-                            <a href="#">Travel</a>
-                            <a href="#">Web Design</a>
-                            <a href="#">Marketing</a>
-                            <a href="#">Research</a>
-                            <a href="#">Managment</a>
-                        </div>
-                    </article>
-                    <div class="contact-form article-comment">
-                        <h4>Leave a Reply</h4>
-                        <form id="contact-form" method="POST">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="send">
-                                        <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                    </div>
+                    <div class="details-img">
+                        <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                    </div>
+                    <div class="details-cat my-3">
+                        <h5>Lifestyle</h5>
+                    </div>
+                    <div class="deatils-title">
+                        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste fugit autem, illum eveniet explicabo quo nisi ea ad atque unde.</h3>
+                    </div>
+                    <div class="details-desc">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed voluptates tempore, unde minus nulla iste labore? Magnam quis quam distinctio quisquam dolore possimus, nostrum, cupiditate ullam soluta dicta accusantium aliquam aliquid atque esse ea nemo? Consequuntur rem eveniet hic id tenetur, maiores iure dolorum officiis totam temporibus illum sit nemo omnis aperiam mollitia error ullam ut unde magni voluptatum voluptatem alias, assumenda ab doloribus. Recusandae necessitatibus vero quos, veniam labore a quo porro molestiae id enim numquam est, ipsam blanditiis natus aperiam, odit aut laboriosam minima rerum unde quis? Animi alias est id enim placeat quibusdam dolorum, atque excepturi illum similique voluptatum eos nostrum mollitia eaque ab doloribus fugiat reprehenderit nam. Explicabo numquam ea distinctio ratione! Voluptatibus amet magni sapiente cum soluta veniam ratione voluptatum. Aspernatur ad in porro recusandae! Nobis consequuntur iste recusandae laudantium rem inventore accusamus ut. Consequuntur facilis quis quam fuga, ratione itaque nulla atque debitis voluptates laudantium corrupti magnam culpa optio cumque quisquam. Officiis, incidunt doloremque. Velit expedita sint nihil impedit laborum sequi! Laborum illum corporis tenetur quia, harum libero maxime at ipsam dicta inventore beatae aliquam soluta hic ut minima. Eos ab expedita nemo facilis autem quaerat architecto eaque libero mollitia dolorem saepe unde voluptate non harum nesciunt eius iusto nisi enim eveniet totam, magnam error. Modi soluta expedita numquam iure maxime vero alias provident nostrum optio, error facere? Maxime, temporibus voluptatibus asperiores quae laborum quasi sit vero autem, cumque molestiae quisquam, aut natus consequatur iure! Non ullam fugit ab provident error dolorum quod accusamus ad, aliquam maiores deserunt architecto odit ex nulla debitis sapiente in voluptatibus accusantium dolores quis explicabo. Natus numquam enim nulla officiis dolor porro, sapiente quibusdam incidunt aperiam minima sequi, eaque quas ipsum suscipit error, similique a aspernatur. Dolor nam, numquam distinctio officiis vel natus eligendi id ab voluptatibus necessitatibus eum omnis doloremque tempore totam veritatis, velit ducimus quibusdam cum libero optio alias expedita! Reiciendis distinctio illum odio blanditiis, alias ea iure fugit doloremque provident sit dignissimos. Repellat reiciendis aspernatur necessitatibus iusto voluptates. Aliquam sed, vitae dolor dolore sapiente laboriosam soluta optio natus. Ipsa ullam, expedita suscipit iste atque ad vel nam nesciunt ex temporibus eveniet sint, necessitatibus aliquam nobis voluptatum ea maiores. Mollitia quas voluptas ut sequi modi sint, beatae, numquam cupiditate debitis, minima consectetur harum voluptatum. Magnam esse, deleniti, quaerat commodi animi veniam eum ipsa quibusdam, libero nulla enim perferendis? Eum mollitia aliquam temporibus, illum magni vel illo voluptatum nobis vitae modi ab, exercitationem iste velit dicta id expedita consequuntur laborum pariatur sed recusandae officia! Provident cumque deserunt, excepturi mollitia nostrum totam minus tenetur vero doloribus nulla pariatur esse dolorum reiciendis optio ipsam? Provident dolorem natus labore unde enim facilis ratione, quas temporibus veniam hic quis inventore accusamus, voluptatem laborum iure dolorum, ipsa reprehenderit fugiat! Facere animi eligendi voluptates nemo, nostrum provident iure nesciunt fugit assumenda maxime odio repellendus dolore! Vitae animi velit id rerum quas! Aut similique sint aperiam itaque, corrupti aliquid libero voluptatem a quasi quisquam ab reiciendis voluptatum explicabo praesentium cumque rem sed amet nisi quas!</p>
                     </div>
                 </div>
-                <div class="col-lg-4 m-15px-tb blog-aside">
-                    <!-- Author -->
-                    <div class="widget widget-author">
-                        <div class="widget-title">
-                            <h3>Author</h3>
+            </div>
+            <div class="col-3">
+                <div class="reporter-details">
+                    <div class="heading">
+                        <h5>Author</h5>
+                    </div>
+                    <div class="details-body text-center">
+                        <div class="reporter-img">
+                            <img src="{{asset('assets/backend/img/user-avater.png')}}" class="img-thumbnail" alt="Creator Image">
                         </div>
-                        <div class="widget-body">
-                            <div class="media align-items-center">
-                                <div class="avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" title="" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <h6>Hello, I'm<br> Rachel Roth</h6>
-                                </div>
-                            </div>
-                            <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores</p>
+                        <h3>Sagar Mondal</h3>
+                        <div class="reating">
+                            <h5>Reating Us</h5>
+                            <ul>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- End Author -->
-                    <!-- Trending Post -->
-                    <div class="widget widget-post">
-                        <div class="widget-title">
-                            <h3>Trending Now</h3>
-                        </div>
-                        <div class="widget-body">
-
-                        </div>
+                </div>
+                <div class="details-sidebar">
+                    <div class="sidebar-heading">
+                      <h1>Trading News</h1>
                     </div>
-                    <!-- End Trending Post -->
-                    <!-- Latest Post -->
-                    <div class="widget widget-latest-post">
-                        <div class="widget-title">
-                            <h3>Latest Post</h3>
-                        </div>
-                        <div class="widget-body">
-                            <div class="latest-post-aside media">
-                                <div class="lpa-left media-body">
-                                    <div class="lpa-title">
-                                        <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                    </div>
-                                    <div class="lpa-meta">
-                                        <a class="name" href="#">
-                                            Rachel Roth
-                                        </a>
-                                        <a class="date" href="#">
-                                            26 FEB 2020
-                                        </a>
-                                    </div>
+                    <div class="sidebar-body">
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
                                 </div>
-                                <div class="lpa-right">
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
-                                    </a>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
                                 </div>
                             </div>
-                            <div class="latest-post-aside media">
-                                <div class="lpa-left media-body">
-                                    <div class="lpa-title">
-                                        <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                    </div>
-                                    <div class="lpa-meta">
-                                        <a class="name" href="#">
-                                            Rachel Roth
-                                        </a>
-                                        <a class="date" href="#">
-                                            26 FEB 2020
-                                        </a>
-                                    </div>
+                        </a>
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
                                 </div>
-                                <div class="lpa-right">
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
-                                    </a>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
                                 </div>
                             </div>
-                            <div class="latest-post-aside media">
-                                <div class="lpa-left media-body">
-                                    <div class="lpa-title">
-                                        <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
-                                    </div>
-                                    <div class="lpa-meta">
-                                        <a class="name" href="#">
-                                            Rachel Roth
-                                        </a>
-                                        <a class="date" href="#">
-                                            26 FEB 2020
-                                        </a>
-                                    </div>
+                        </a>
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
                                 </div>
-                                <div class="lpa-right">
-                                    <a href="#">
-                                        <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
-                                    </a>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <!-- End Latest Post -->
-                    <!-- widget Tags -->
-                    <div class="widget widget-tags">
-                        <div class="widget-title">
-                            <h3>Latest Tags</h3>
-                        </div>
-                        <div class="widget-body">
-                            <div class="nav tag-cloud">
-                                <a href="#">Design</a>
-                                <a href="#">Development</a>
-                                <a href="#">Travel</a>
-                                <a href="#">Web Design</a>
-                                <a href="#">Marketing</a>
-                                <a href="#">Research</a>
-                                <a href="#">Managment</a>
-                            </div>
-                        </div>
+                </div>
+                <div class="details-sidebar mt-5">
+                    <div class="sidebar-heading">
+                      <h1>Latest News</h1>
                     </div>
-                    <!-- End widget Tags -->
+                    <div class="sidebar-body">
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="sidebar-news">
+                                <div class="sidebar-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="sidebar-title">
+                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="related-news mt-5">
+                <div class="mb-4">
+                    <h4>Related News</h4>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <a href="#">
+                            <div class="related-news-content">
+                                <div class="content-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="content-body">
+                                    <dib class="title">
+                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                    </dib>
+                                    <div class="subtitle">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#">
+                            <div class="related-news-content">
+                                <div class="content-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="content-body">
+                                    <dib class="title">
+                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                    </dib>
+                                    <div class="subtitle">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#">
+                            <div class="related-news-content">
+                                <div class="content-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="content-body">
+                                    <dib class="title">
+                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                    </dib>
+                                    <div class="subtitle">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3">
+                        <a href="#">
+                            <div class="related-news-content">
+                                <div class="content-img">
+                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                </div>
+                                <div class="content-body">
+                                    <dib class="title">
+                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                    </dib>
+                                    <div class="subtitle">
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+@endsection

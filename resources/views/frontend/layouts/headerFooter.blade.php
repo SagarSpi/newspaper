@@ -180,7 +180,7 @@
           <div class="row">
             <div class="col-3">
                 <div class="img">
-                  <img src="{{asset('assets/backend/img/logo.svg')}}" alt="">
+                  <img src="{{asset('assets/global/img/logo.svg')}}" alt="">
                 </div>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis minima eaque tempora incidunt aut eius itaque ab ad commodi consequatur.</p>
                 <div class="follow-us">
@@ -240,7 +240,7 @@
             </div>
             <div class="col-3">
               <h5>Newsletter</h5>
-              <p>Subscribe to recieve a monthly email </br> on the latest news!</p>
+              <p class="mb-4">Subscribe to recieve a monthly email </br> on the latest news!</p>
               <form action="" method="POST">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Enter Email">
