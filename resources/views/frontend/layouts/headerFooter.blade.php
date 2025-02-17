@@ -136,7 +136,7 @@
                           <form action="" method="POST">
                             <div class="input-group">
                               <input type="text" class="form-control" placeholder="Search News...">
-                              <button type="submit" class="btn btn-outline-success">Search</button>
+                              <button type="submit" class="btn btn-outline-danger">Search</button>
                             </div>
                           </form>
                         </li>
@@ -244,7 +244,7 @@
               <form action="" method="POST">
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Enter Email">
-                  <button type="submit" class="btn btn-outline-success">Subscribe</button>
+                  <button type="submit" class="btn btn-outline-danger">Subscribe</button>
                 </div>
               </form>
             </div>
@@ -277,7 +277,7 @@
     {{-- LANGUAGE JS CODE FILE --}}
     <script src="{{asset('assets/frontend/js/languageChanger.js')}}"></script>
     {{-- BOOTSTRAP JS FILE  --}}
-    <script src="{{asset('assets/global/js/bootstrap.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/global/js/bootstrap.min.js')}}"></script> --}}
     <script src="{{asset('assets/global/js/bootstrap.bundle.js')}}"></script>
     {{-- FONTAWESOME JS FILE  --}}
     <script src="{{asset('assets/global/js/all.min.js')}}"></script>

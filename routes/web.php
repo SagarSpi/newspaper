@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('frontend.details');
 });
 
+Route::get('/details', function () {
+    return view('frontend.category');
+});
+
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
 
 // Article Backend Route Here
