@@ -13,11 +13,11 @@ Route::get('/home', function () {
     return view('frontend.home');
 });
 
-Route::get('/', function () {
+Route::get('/details', function () {
     return view('frontend.details');
 });
 
-Route::get('/details', function () {
+Route::get('/', function () {
     return view('frontend.category');
 });
 
