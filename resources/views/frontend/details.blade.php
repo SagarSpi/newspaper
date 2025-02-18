@@ -210,10 +210,10 @@
                                 </div>
                                 <div class="content-body">
                                     <dib class="title">
-                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
                                     </dib>
                                     <div class="subtitle">
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
                                     </div>
                                 </div>
                             </div>
@@ -227,10 +227,10 @@
                                 </div>
                                 <div class="content-body">
                                     <dib class="title">
-                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
                                     </dib>
                                     <div class="subtitle">
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
                                     </div>
                                 </div>
                             </div>
@@ -244,10 +244,10 @@
                                 </div>
                                 <div class="content-body">
                                     <dib class="title">
-                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
                                     </dib>
                                     <div class="subtitle">
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
                                     </div>
                                 </div>
                             </div>
@@ -261,10 +261,10 @@
                                 </div>
                                 <div class="content-body">
                                     <dib class="title">
-                                        <h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?</h5>
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
                                     </dib>
                                     <div class="subtitle">
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.</p>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
                                     </div>
                                 </div>
                             </div>

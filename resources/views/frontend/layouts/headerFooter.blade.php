@@ -183,7 +183,7 @@
                   <img src="{{asset('assets/global/img/logo.svg')}}" alt="">
                 </div>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis minima eaque tempora incidunt aut eius itaque ab ad commodi consequatur.</p>
-                <div class="follow-us">
+                <div class="follow-us mt-3">
                   <h5>Follow Us</h5>
                   <ul>
                     <li class="me-2">

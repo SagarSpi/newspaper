@@ -17,8 +17,12 @@ Route::get('/details', function () {
     return view('frontend.details');
 });
 
-Route::get('/', function () {
+Route::get('/category', function () {
     return view('frontend.category');
+});
+
+Route::get('/', function () {
+    return view('frontend.lastestNews');
 });
 
 Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
