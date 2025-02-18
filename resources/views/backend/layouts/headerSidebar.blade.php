@@ -42,15 +42,15 @@
                             </div>
                             <div class="dropdown profile-dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('assets/backend/img/user-avater.png')}}" alt="User Image" class="navbar-profile-img"> Hi, Sagar
+                                    <img src="{{Auth::user()->image_url}}" alt="User Image" class="navbar-profile-img"> Hi, {{Auth::user()->name}}
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item profile-dropdown-info" href="#">
-                                            <img src="{{asset('assets/backend/img/user-avater.png')}}" alt="" class="dropdown-profile-img">
+                                            <img src="{{Auth::user()->image_url}}" alt="" class="dropdown-profile-img">
                                             <div class="profile-name">
-                                                <p>Sagar Mondal</p>
-                                                <p>sagarspi583@gmail.com</p>
+                                                <p>{{Auth::user()->name}}</p>
+                                                <p>{{Auth::user()->email}}</p>
                                             </div>
                                         </a>
                                     </li>
@@ -70,7 +70,7 @@
                                         <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fas fa-th item-icon"></i> Customization</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-right-from-bracket item-icon"></i> Log Out</a>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="{{route('logout')}}"><i class="fa-solid fa-right-from-bracket item-icon"></i> Log Out</a>
                                     </li>
                                 </ul>
                             </div>

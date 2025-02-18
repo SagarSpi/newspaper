@@ -4,9 +4,10 @@ namespace App\Models\Backend;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+// use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
     
@@ -25,6 +26,13 @@ class User extends Model
         'password',
         'remember_token'
     ];
+
+    protected function casts() : array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
 
     protected function Contacts() : Attribute {
         return Attribute::make(

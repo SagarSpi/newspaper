@@ -37,7 +37,9 @@ Route::get('/manage/view/{id}/article',[ArticleController::class,'show'])->name(
 Route::get('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->name('article.remove');
 
 
-Route::get('/login',[LoginController::class,'index'])->name('login');
+Route::get('/login',[LoginController::class,'loginPage'])->name('login');
+Route::post('/login/post',[LoginController::class,'loginPost'])->name('login.post');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
 // Users Backend Route Here

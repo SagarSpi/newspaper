@@ -24,15 +24,17 @@
                             <p>Welcome Back !</p>
                         </div>
                         <div class="login-form-body">
-                            <form action="" method="POST">
+                            <form action="{{route('login.post')}}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Type Email">
+                                    <input type="email" name="email" class="form-control" value="{{old('email')}}" id="email" aria-describedby="emailHelp" placeholder="Type Email">
+                                    @error('email')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" name="password" class="form-control" id="password" placeholder="Type Password">
+                                    @error('password')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="remember">
