@@ -44,7 +44,7 @@
                                 <div class="col-6">
                                     <label class="form-label">User Role</label>
                                     <select name="role" class="form-select" {{$errors->has('role')?'autofocus':''}} required>
-                                        <option value="" selected disabled>Select Role</option>
+                                        <option value="" disabled>Select Role</option>
                                         <option value="admin" {{ old('role', $user->role ?? '') == 'admin' ? 'selected' : '' }}>Admin</option>
                                         <option value="manager" {{ old('role', $user->role ?? '') == 'manager' ? 'selected' : '' }}>Manager</option>
                                         <option value="editor" {{ old('role', $user->role ?? '') == 'editor' ? 'selected' : '' }}>Editor</option>
@@ -58,10 +58,10 @@
                                 <div class="col-6">
                                     <label class="form-label">User Status:</label>
                                     <select name="status" class="form-select" {{$errors->has('status')?'autofocus':''}}>
-                                        <option value="" disabled selected>Select Role</option>
-                                        <option value="active"{{old('status',$user->status ?? '')=='active'?'selected':''}}>Active</option>
-                                        <option value="inactive"{{old('status',$user->status ?? '')=='inactive'?'selected':''}}>Inactive</option>
-                                        <option value="deleted"{{old('status',$user->status ?? '')=='deleted'?'selected':''}}>Deleted</option>
+                                        <option value="" disabled {{ old('status', $user->status ?? '') == '' ? 'selected' : '' }}>Select Role</option>
+                                        <option {{old('status',$user->status ?? '')=='active'?'selected':''}} value="active" >Active</option>
+                                        <option {{old('status',$user->status ?? '')=='inactive'?'selected':''}} value="inactive">Inactive</option>
+                                        <option {{old('status',$user->status ?? '')=='deleted'?'selected':''}} value="deleted">Deleted</option>
                                     </select>
                                     @error('status')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>

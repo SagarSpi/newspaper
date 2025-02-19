@@ -7,7 +7,8 @@ use App\Models\Backend\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends Controller
 {
@@ -64,7 +65,7 @@ class ArticleController extends Controller
         $article->image_id = $public_id;
         $article->description = $request->description;
         $article->tags = $request->tags;
-        $article->user_id = 1;
+        $article->user_id = Auth::id();
         $article->status = 'active';
         $article->save();
 
@@ -77,6 +78,9 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         $article = Article::findOrFail($id);
+
+        // Gate::authorize('view',$article);
+
         return view('backend.articleDetail',compact('article'));
     }
 
@@ -86,6 +90,9 @@ class ArticleController extends Controller
     public function edit(string $id)
     {
         $article = Article::findOrFail($id);
+
+        Gate::authorize('update',$article);
+
         return view('backend.articleEdit',compact('article'));
     }
 
@@ -95,6 +102,10 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, string $id)
     {
         $article = Article::findOrFail($id);
+
+        if ($request->user()->cannot('update',$article)) {
+            abort(403,"You are not authorized");
+        }
 
         if ($request->hasFile('image')) {
 

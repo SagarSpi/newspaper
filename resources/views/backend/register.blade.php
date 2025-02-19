@@ -32,7 +32,7 @@
                     </div>
                     <div class="mb-2">
                       <label for="email" class="form-label">Email address</label>
-                      <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="{{old('email')}}" required>
+                      <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="{{old('email')}}" {{$errors->has('email')?'autofocus': ''}} required>
                       @error('email')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
                     <div class="mb-2">

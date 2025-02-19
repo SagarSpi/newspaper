@@ -28,12 +28,12 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" name="email" class="form-control" value="{{old('email')}}" id="email" aria-describedby="emailHelp" placeholder="Type Email">
+                                    <input type="email" name="email" class="form-control" value="{{old('email')}}" id="email" aria-describedby="emailHelp" placeholder="Type Email" {{$errors->has('email')?'autofocus': ''}} required >
                                     @error('email')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Type Password">
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Type Password" required>
                                     @error('password')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3 form-check">

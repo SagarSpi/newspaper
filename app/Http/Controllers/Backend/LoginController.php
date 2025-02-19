@@ -24,7 +24,7 @@ class LoginController extends Controller
         if (Auth::attempt($inputs)) {
             return redirect()->route('dashboard')->with('success', 'Login successful');
         }
-        // return redirect()->back()->with('error','Login failed ! Please try again');
+        return redirect()->back()->with('error','Login failed ! Please try again');
     }
 
     function logout()

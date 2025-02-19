@@ -63,24 +63,23 @@
                                     <td><img src="{{$news->image_url}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$news->status}}</td>
                                     <td style="white-space: nowrap;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id }}" >{{$news->user->name}}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                <i class="fa fa-bars" aria-hidden="true"></i>
-                                                <i class="fa-solid fa-ellipsis-vertical"></i>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="{{route('article.show',$news->id)}}"><i class="fa-solid fa-eye pe-2"></i> View</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="{{route('article.edit',$news->id)}}"><i class="fa-solid fa-pen-to-square pe-2"></i> Edit</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item remove" data-id="{{$news->id}}"><i class="fa-solid fa-trash pe-2"></i> Delete</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <td style="white-space: nowrap;">
+                                        <a class="text-primary" href="{{route('article.show',$news->id)}}"><i class="fa-solid fa-eye pe-2"></i></a>
+                                        @can('update', $news)
+                                            <a class="text-success" href="{{ route('article.edit', $news->id) }}">
+                                                <i class="fa-solid fa-pen-to-square pe-2"></i>
+                                            </a>
+                                            <a class="remove text-danger" data-id="{{ $news->id }}">
+                                                <i class="fa-solid fa-trash pe-2"></i>
+                                            </a>
+                                        @else
+                                            <a class="text-success disabled" role="button" aria-disabled="true">
+                                                <i class="fa-solid fa-pen-to-square pe-2"></i>
+                                            </a>
+                                            <a class="text-danger disabled">
+                                                <i class="fa-solid fa-trash pe-2"></i>
+                                            </a>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach
