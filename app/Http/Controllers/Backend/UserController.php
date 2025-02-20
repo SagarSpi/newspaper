@@ -36,9 +36,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {   
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
+
             // Default Image
             $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png';
             $public_id = 'Newspaper/Users-image/Default_image/user_default_image';

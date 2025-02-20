@@ -15,259 +15,56 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="lead-news">
-                            <a href="#">
+                            <a href="{{route('news.details',$lead_news->id??'')}}">
                                 <div class="lead-news-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                                    <img src="{{ $lead_news->image_url ?? '' }}" alt="News Image">
                                 </div>
                                 <div class="lead-news-overlay">
                                     <div class="title">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum, quos.
+                                        {{ $lead_news->title ?? 'No title available' }}
                                     </div>
                                     <div class="subtitle">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, doloribus quaerat officia aliquid vel blanditiis reprehenderit illo ut facere eum distinctio necessitatibus quis deserunt magni autem eos sit! Soluta sit quisquam impedit, eligendi deleniti atque eveniet facere nemo? Sunt dolor neque quaerat fuga cupiditate aut ex delectus dignissimos officia incidunt, quos blanditiis quasi minima nisi minus quam quibusdam mollitia officiis!
+                                        {{ $lead_news->shortDesc ?? 'No summary available' }}
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
                     <div class="col-4">
-                        <a href="#">
-                            <div class="lead-news-sidebar">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                        @foreach ($lead_news_side as $news)
+                            <a href="{{route('news.details',$news->id)}}">
+                                <div class="lead-news-sidebar">
+                                    <div class="sidebar-img">
+                                        <img src="{{$news?$news->image_url:''}}" alt="">
+                                    </div>
+                                    <div class="sidebar-title">
+                                        <h5>{{$news?$news->title:''}}</h5>
+                                    </div>
                                 </div>
-                                <div class="sidebar-title">
-                                    <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet?</h5>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="lead-news-sidebar">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet?</h5>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="lead-news-sidebar">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet?</h5>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
+                <div class="row mt-4">
+                    @foreach ($cat_news as $news)
+                        <div class="col-4 mb-4">
+                            <a href="{{route('news.details',$news->id)}}">
+                                <div class="cat-content">
+                                    <div class="cat-content-img">
+                                        <img src="{{$news?$news->image_url:''}}" alt="">
+                                    </div>
+                                    <div class="cat-content-body">
+                                        <div class="content-title">
+                                            {{$news?$news->title:''}}
+                                        </div>
+                                        <div class="content-subtitle">
+                                            {{$news?$news->shortDesc:''}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-4 my-4">
-                        <a href="#">
-                            <div class="cat-content">
-                                <div class="cat-content-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="cat-content-body">
-                                    <dib class="content-title">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium, suscipit?
-                                    </dib>
-                                    <div class="content-subtitle">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt ratione, consectetur incidunt fugiat nisi exercitationem ex dolor placeat veritatis. Necessitatibus dignissimos tempore, quo fuga distinctio atque dolorum voluptate officia molestiae.
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-3">
@@ -293,66 +90,18 @@
                       <h1>Top News</h1>
                     </div>
                     <div class="sidebar-body">
-                        <a href="#">
-                            <div class="sidebar-news">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
+                        @foreach ($cat_news_side as $news)
+                            <a href="{{route('news.details',$news->id)}}">
+                                <div class="sidebar-news">
+                                    <div class="sidebar-img">
+                                        <img src="{{$news?$news->image_url:''}}" alt="">
+                                    </div>
+                                    <div class="sidebar-title">
+                                        <h2>{{$news?$news->title:''}}</h2>
+                                    </div>
                                 </div>
-                                <div class="sidebar-title">
-                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="sidebar-news">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="sidebar-news">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="sidebar-news">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="sidebar-news">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="sidebar-news">
-                                <div class="sidebar-img">
-                                    <img src="https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png" alt="">
-                                </div>
-                                <div class="sidebar-title">
-                                    <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, impedit!</h2>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>

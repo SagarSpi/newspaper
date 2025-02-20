@@ -5,28 +5,29 @@ use App\Http\Controllers\Backend\DashboardContoller;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\Frontend\CategoryController;
+use App\Http\Controllers\Frontend\CommentController;
+use App\Http\Controllers\Frontend\DetailsController;
+use App\Http\Controllers\Frontend\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
-
-Route::get('/home', function () {
-    return view('frontend.home');
-});
-
-Route::get('/details', function () {
-    return view('frontend.details');
-});
 
 Route::get('/category', function () {
     return view('frontend.category');
 });
 
-Route::get('/', function () {
+Route::get('/latestNews', function () {
     return view('frontend.lastestNews');
 });
 
+// Frontend Route here 
+Route::get('/',[HomeController::class,'homePage'])->name('home');
+Route::get('/news/{cat}/category',[CategoryController::class,'categoryPage'])->name('news.category');
+Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name('news.details');
+Route::post('/news/comments/post',[CommentController::class,'store'])->name('news.comment');
 
-
+// Backend Route Here
 
 Route::middleware('auth')->group(function () {
 
@@ -43,15 +44,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-
-
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');
 Route::post('/login/post',[LoginController::class,'loginPost'])->name('login.post');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
-// Users Backend Route Here
 Route::get('/register',[UserController::class,'create'])->name('user.create');
 Route::post('/register/post',[UserController::class,'store'])->name('user.store');
 
@@ -59,11 +56,14 @@ Route::get('/manage/list/users',[UserController::class,'index'])->name('user.lis
 Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
 Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
 
-
-
-
-
 Route::get('/manage/profile/user',[UserController::class,'show'])->name('user.show');
+
+
+
+
+
+
+
 
 Route::get('/manage/biponDa/download',[DownloadController::class,'downloadPage'])->name('download.page');
 Route::get('/manage/biponDa/download/file',[DownloadController::class,'downloadFile'])->name('download.file');

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Frontend\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -28,7 +31,31 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inputs = Validator::make($request->all(),[
+            'title'=>'required|string|max:255',
+            'subject'=>'nullable|string|max:255',
+            'description'=>'required|string'
+        ])->stopOnFirstFailure();
+
+        if ($inputs->fails()) {
+            return back()->withErrors($inputs)->withInput();
+        }
+
+        try {
+            DB::beginTransaction();
+
+            Comment::create([
+                'title'=>$request->title,
+                'subject'=>$request->subject,
+                'description'=>$request->description,
+            ]);
+            DB::commit();
+            return redirect()->back()->with('success','Comment submitted succesfully !');
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+            return back()->with('error','Something went wrong! Please try again !')->withInput();
+        }
     }
 
     /**

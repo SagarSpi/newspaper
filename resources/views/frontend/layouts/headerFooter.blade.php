@@ -62,7 +62,7 @@
         <div class="row">
           <div class="col-12">
             <div class="header-logo text-center">
-              <a href="#">
+              <a href="">
                 <img src="{{asset('assets/global/img/logo.svg')}}" alt="Logo">
               </a>
             </div>
@@ -78,37 +78,37 @@
               <div class="menu-item text-end mb-2">
                 <ul>
                   <li>
-                    <a href="" class="active"><i class="fa-solid fa-house fa-lg" style="color: #ff1438;"></i></a>
+                    <a href="{{route('home')}}" class="active"><i class="fa-solid fa-house fa-lg" style="color: #ff1438;"></i></a>
                   </li>
                   <li>
                     <a href="">Latest</a>
                   </li>
                   <li>
-                    <a href="">Politics</a>
+                    <a href="{{ route('news.category', ['cat' => 'Politics']) }}">Politics</a>
                   </li>
                   <li>
-                    <a href="">Business</a>
+                    <a href="{{ route('news.category', ['cat' => 'Business']) }}">Business</a>
                   </li>
                   <li>
-                    <a href="">Lifestyle</a>
+                    <a href="{{ route('news.category', ['cat' => 'Lifestyle']) }}">Lifestyle</a>
                   </li>
                   <li>
-                    <a href="">Crime</a>
+                    <a href="{{ route('news.category', ['cat' => 'Crime']) }}">Crime</a>
                   </li>
                   <li>
-                    <a href="">Education</a>
+                    <a href="{{ route('news.category', ['cat' => 'Education']) }}">Education</a>
                   </li>
                   <li>
-                    <a href="">Sports</a>
+                    <a href="{{ route('news.category', ['cat' => 'Sports']) }}">Sports</a>
                   </li>
                   <li>
-                    <a href="">Entertainment</a>
+                    <a href="{{ route('news.category', ['cat' => 'Entertainment']) }}">Entertainment</a>
                   </li>
                   <li>
-                    <a href="">Bangladesh</a>
+                    <a href="{{ route('news.category', ['cat' => 'Bangladesh']) }}">Bangladesh</a>
                   </li>
                   <li>
-                    <a href="">International</a>
+                    <a href="{{ route('news.category', ['cat' => 'International']) }}">International</a>
                   </li>
                   <li>
                     <div class="dropdown">
@@ -151,7 +151,7 @@
                   </li>
                   <li>|</li>
                   <li>
-                    <a href="#"><i class="fa-solid fa-user"></i> Login</a>
+                    <a href="{{route('login')}}"><i class="fa-solid fa-user"></i> Login</a>
                   </li>
                 </ul>
               </div>
