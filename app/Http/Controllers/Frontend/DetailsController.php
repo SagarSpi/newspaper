@@ -27,7 +27,7 @@ class DetailsController extends Controller
 
         $trading_news = Article::where('status','active')
                                     ->whereNot('id',$id)
-                                    ->orderByDesc('visitor')
+                                    ->orderByDesc('visits')
                                     ->take(7)
                                     ->get();
 

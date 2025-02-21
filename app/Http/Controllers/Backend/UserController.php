@@ -17,6 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {   
+
         $users = User::orderBy('created_at','DESC')
                     ->paginate(9);
 
@@ -83,9 +84,12 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(int $id)
     {
-        return view('backend.userProfile');
+        $user = User::findOrFail($id);
+        $articles = $user->articles()->paginate(8);
+
+       return view('backend.userProfile',compact('user', 'articles'));
     }
 
     /**
@@ -105,9 +109,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        DB::beginTransaction();
-
         try {
+            DB::beginTransaction();
 
             $uploadedFileUrl = $user->image_url;
             $public_id = $user->image_id;

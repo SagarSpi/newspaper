@@ -151,7 +151,7 @@
                   </li>
                   <li>|</li>
                   <li>
-                    <a href="{{route('login')}}"><i class="fa-solid fa-user"></i> Login</a>
+                    <a href="{{route('login')}}" target="_blank"><i class="fa-solid fa-user"></i> Login</a>
                   </li>
                 </ul>
               </div>

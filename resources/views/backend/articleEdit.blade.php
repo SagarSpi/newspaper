@@ -37,17 +37,17 @@
                         </div>
                         <div class="mb-2">
                             <label>Category :</label>
-                            <select name="category" id="category" class="form-control" {{$errors->has('category')?'autofocus':''}}>
+                            <select name="category" id="category" class="form-select" {{$errors->has('category')?'autofocus':''}}>
                                 <option value="">Select Category</option>
-                                <option value="Politics" {{old('category', $article->category ?? '')=='Politics'?'selected':''}}>Politics</option>
-                                <option value="Business"{{old('category', $article->category ?? '')=='Business'?'selected':''}}>Business</option>
-                                <option value="Sports" {{old('category', $article->category ?? '')=='Sports'?'selected':''}}>Sports</option>
-                                <option value="Crime" {{old('category', $article->category ?? '')=='Crime'?'selected':''}}>Crime</option>
-                                <option value="Lifestyle" {{old('category', $article->category ?? '')=='Lifestyle'?'selected':''}}>Lifestyle</option>
-                                <option value="Education"{{old('category', $article->category ?? '')=='Education'?'selected':''}}>Education</option>
-                                <option value="Bangladesh"{{old('category', $article->category ?? '')=='Bangladesh'?'selected':''}}>Bangladesh</option>
-                                <option value="Entertainment"{{old('category', $article->category ?? '')=='Entertainment'?'selected':''}}>Entertainment</option>
-                                <option value="International"{{old('category', $article->category ?? '')=='International'?'selected':''}}>International</option>
+                                <option value="politics" {{old('category', $article->category ?? '')=='Politics'?'selected':''}}>Politics</option>
+                                <option value="business"{{old('category', $article->category ?? '')=='Business'?'selected':''}}>Business</option>
+                                <option value="sports" {{old('category', $article->category ?? '')=='Sports'?'selected':''}}>Sports</option>
+                                <option value="crime" {{old('category', $article->category ?? '')=='Crime'?'selected':''}}>Crime</option>
+                                <option value="lifestyle" {{old('category', $article->category ?? '')=='Lifestyle'?'selected':''}}>Lifestyle</option>
+                                <option value="education"{{old('category', $article->category ?? '')=='Education'?'selected':''}}>Education</option>
+                                <option value="bangladesh"{{old('category', $article->category ?? '')=='Bangladesh'?'selected':''}}>Bangladesh</option>
+                                <option value="entertainment"{{old('category', $article->category ?? '')=='Entertainment'?'selected':''}}>Entertainment</option>
+                                <option value="international"{{old('category', $article->category ?? '')=='International'?'selected':''}}>International</option>
                             </select>
                             @error('category')<span class="text-danger">{{$message}}</span>@enderror
                         </div>

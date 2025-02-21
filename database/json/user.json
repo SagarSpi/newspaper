@@ -2,31 +2,21 @@
     {
         "name": "Sagar Mondal",
         "email": "sagarspi583@gmail.com",
-        "password": "1234",
-        "image_url": "avatar_1",
-        "image_id": "avatar_1",
+        "password": "1111",
+        "image_url": "https://res.cloudinary.com/demeqriqu/image/upload/v1740113308/Newspaper/Users-image/2025-Feb/1740113309.jpg",
+        "image_id": "Newspaper/Users-image/2025-Feb/1740113309",
         "contacts": "01725540583",
         "role": "admin",
         "status": "active"
     },
     {
-        "name": "Rahim Uddin",
-        "email": "rahim@gmail.com",
-        "password": "5678",
-        "image_url": "avatar_2",
-        "image_id": "avatar_2",
-        "contacts": "01833445566",
-        "role": "editor",
-        "status": "active"
-    },
-    {
-        "name": "Karim Hasan",
-        "email": "karim@gmail.com",
-        "password": "abcd1234",
-        "image_url": "avatar_3",
-        "image_id": "avatar_3",
-        "contacts": "01922334455",
+        "name": "Akash Mondal",
+        "email": "akash@gmail.com",
+        "password": "1234",
+        "image_url": "https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png",
+        "image_id": "Newspaper/Users-image/Default_image/user_default_image",
+        "contacts": "01997350435",
         "role": "user",
-        "status": "inactive"
+        "status": "active"
     }
 ]

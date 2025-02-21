@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class ArticleController extends Controller
@@ -18,8 +19,9 @@ class ArticleController extends Controller
     public function index()
     {
         $article = Article::with('user')
-        ->orderBy('created_at','DESC')
-        ->paginate(9);
+                        ->withCount('comments')
+                        ->orderByDesc('created_at')
+                        ->paginate(9);
 
         return view('backend.article',compact('article'));
     }
@@ -36,40 +38,50 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(ArticleRequest $request)
-    {
+    {   
 
-        if ($request->hasFile('image')) {
+        try {
+            DB::beginTransaction();
+            if ($request->hasFile('image')) {
 
-            $timeStamp = Carbon::now()->format('Y-M');
-            $folderName = 'Newspaper/'. $timeStamp;
-            $imageUniqueName = time();
+                $timeStamp = Carbon::now()->format('Y-M');
+                $folderName = 'Newspaper/'. $timeStamp;
+                $imageUniqueName = time();
+    
+                // Upload with image to cloudinary
+                $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
+                    'folder' => $folderName,
+                    'public_id'=> $imageUniqueName
+                ]);
+                
+                $uploadedFileUrl = $uploadimage->getSecurePath();
+                $public_id = $uploadimage->getPublicId();
+            }else{
+                $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png';
+                $public_id = 'Newspaper/Default_image/news_defalult_image';
+            }
 
-            // Upload with image to cloudinary
-            $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
-                'folder' => $folderName,
-                'public_id'=> $imageUniqueName
+            Article::create([
+                'title'=>$request->title,
+                'category'=> $request->category,
+                'shortDesc'=> $request->shortDesc,
+                'image_url'=> $uploadedFileUrl,
+                'image_id'=> $public_id,
+                'description'=> $request->description,
+                'tags'=> $request->tags,
+                'user_id'=> Auth::id(),
+                'status'=> 'active',
             ]);
-            
-            $uploadedFileUrl = $uploadimage->getSecurePath();
-            $public_id = $uploadimage->getPublicId();
-        }else{
-            $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1737737855/Newspaper/Default_image/news_defalult_image.png';
-            $public_id = 'Newspaper/Default_image/news_defalult_image';
+
+            DB::commit();
+            return redirect()->route('article.list')->with('success','News Create Successfully !');
+
+        } catch (\Exception $err) {
+
+            DB::rollBack();
+            return back()->with('error', 'Something went wrong! Please try again.'.$err->getMessage());
         }
 
-        $article = new Article();
-        $article->title = $request->title;
-        $article->category = $request->category;
-        $article->shortDesc = $request->shortDesc;
-        $article->image_url = $uploadedFileUrl;
-        $article->image_id = $public_id;
-        $article->description = $request->description;
-        $article->tags = $request->tags;
-        $article->user_id = Auth::id();
-        $article->status = 'active';
-        $article->save();
-
-        return redirect()->route('article.create')->with('success','News Create Successfully !');
     }
 
     /**
@@ -99,7 +111,7 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ArticleRequest $request, string $id)
+    public function update(ArticleRequest $request, int $id)
     {
         $article = Article::findOrFail($id);
 
@@ -107,40 +119,56 @@ class ArticleController extends Controller
             abort(403,"You are not authorized");
         }
 
-        if ($request->hasFile('image')) {
+        try {
+            DB::beginTransaction();
 
-            // Old database Image Id 
-            $storedImageId = $article->image_id;
+            $uploadedFileUrl = $article->image_url; // Default to current image
+            $public_id = $article->image_id; // Default to current image ID
 
-            $defaultImageId = 'Newspaper/Default_image/news_defalult_image';
+            if ($request->hasFile('image')) {
 
-            if ($storedImageId && $storedImageId !== $defaultImageId) {
-                Cloudinary::destroy($storedImageId);
+                // Old database Image Id 
+                $storedImageId = $article->image_id;
+                $defaultImageId = 'Newspaper/Default_image/news_defalult_image';
+    
+                if ($storedImageId && $storedImageId !== $defaultImageId) {
+                    Cloudinary::destroy($storedImageId);
+                }
+    
+                $timeStamp = Carbon::now()->format('Y-M');
+                $folderName = 'Newspaper/'. $timeStamp;
+                $imageUniqueName = time();
+    
+                // Upload with image to cloudinary
+                $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
+                    'folder' => $folderName,
+                    'public_id'=> $imageUniqueName
+                ]);
+                
+                $uploadedFileUrl = $uploadimage->getSecurePath();
+                $public_id = $uploadimage->getPublicId();
             }
 
-            $timeStamp = Carbon::now()->format('Y-M');
-            $folderName = 'Newspaper/'. $timeStamp;
-            $imageUniqueName = time();
-
-            // Upload with image to cloudinary
-            $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
-                'folder' => $folderName,
-                'public_id'=> $imageUniqueName
+            $article->update([
+                'title'       => $request->title,
+                'category'    => $request->category,
+                'shortDesc'   => $request->shortDesc,
+                'image_url'   => $uploadedFileUrl,
+                'image_id'    => $public_id,
+                'description' => $request->description,
+                'tags'        => $request->tags,
             ]);
+
+            DB::commit();
+    
+            return redirect()->route('article.show',$article->id)->with('success', 'News Update Successfully !');
             
-            $article->image_url = $uploadimage->getSecurePath();
-            $article->image_id = $uploadimage->getPublicId();
+        } catch (\Exception $err) {
+
+            DB::rollBack();
+            return back()->with('error', 'Something went wrong! Please try again.'.$err->getMessage());
         }
-
-        $article->title = $request->title;
-        $article->category = $request->category;
-        $article->shortDesc = $request->shortDesc;
-        $article->description = $request->description;
-        $article->tags = $request->tags;
-        $article->status = 'active';
-        $article->save();
-
-        return redirect()->route('article.show',$article->id)->with('success', 'News Update Successfully !');
+        
     }
 
     /**

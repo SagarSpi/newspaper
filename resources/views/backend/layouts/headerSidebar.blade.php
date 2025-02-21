@@ -42,15 +42,15 @@
                             </div>
                             <div class="dropdown profile-dropdown">
                                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{Auth::user()->image_url}}" alt="User Image" class="navbar-profile-img"> Hi, {{Auth::user()->name}}
+                                    <img src="{{Auth::user()->image_url ??''}}" alt="User Image" class="navbar-profile-img"> Hi, {{Auth::user()->name ??'N/A'}}
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item profile-dropdown-info" href="#">
-                                            <img src="{{Auth::user()->image_url}}" alt="" class="dropdown-profile-img">
+                                            <img src="{{Auth::user()->image_url ??''}}" alt="" class="dropdown-profile-img">
                                             <div class="profile-name">
-                                                <p>{{Auth::user()->name}}</p>
-                                                <p>{{Auth::user()->email}}</p>
+                                                <p>{{Auth::user()->name ??'N/A'}}</p>
+                                                <p>{{Auth::user()->email ??'N/A'}}</p>
                                             </div>
                                         </a>
                                     </li>
@@ -100,6 +100,9 @@
                                 </li>
                                 <li>
                                     <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('article.comment')}}" class="nav-link">Comment List</a>
                                 </li>
                                 <li>
                                     <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>

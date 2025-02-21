@@ -16,9 +16,9 @@
                 <div class="row">
                     <div class="col-8">
                         <div class="lead-news">
-                            <a href="{{route('news.details',$lead_news->id??'')}}">
+                            <a href="{{route('news.details',$lead_news->id ??'')}}">
                                 <div class="lead-news-img">
-                                    <img src="{{ $lead_news->image_url ?? '' }}" alt="Lead image">
+                                    <img src="{{ $lead_news->image_url ??''}}" alt="Lead image">
                                 </div>
                                 <div class="lead-news-overlay">
                                     <div class="title">

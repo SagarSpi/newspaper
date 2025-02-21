@@ -53,7 +53,7 @@
                         <div class="col-10 offset-1">
                             <div class="comment-body">
                                 <h4 class="mb-4">Leave a Reply</h4>
-                                <form action="{{route('news.comment')}}" method="POST">
+                                <form action="{{route('news.comment',$news_details->id)}}" method="POST">
                                     @csrf
                                     <div class="mb-2">
                                         <label class="form-label">Title :</label>

@@ -37,15 +37,15 @@
                             <label class="form-label">Category :</label>
                             <select name="category" id="category" class="form-control" {{$errors->has('category')?'autofocus':''}}>
                                 <option value="">Select Category</option>
-                                <option value="Politics" {{old('category')=='Politics'?'selected':''}}>Politics</option>
-                                <option value="Business"{{old('category')=='Business'?'selected':''}}>Business</option>
-                                <option value="Sports" {{old('category')=='Sports'?'selected':''}}>Sports</option>
-                                <option value="Crime" {{old('category')=='Crime'?'selected':''}}>Crime</option>
-                                <option value="Lifestyle" {{old('category')=='Lifestyle'?'selected':''}}>Lifestyle</option>
-                                <option value="Education"{{old('category')=='Education'?'selected':''}}>Education</option>
-                                <option value="Bangladesh"{{old('category')=='Bangladesh'?'selected':''}}>Bangladesh</option>
-                                <option value="Entertainment"{{old('category')=='Entertainment'?'selected':''}}>Entertainment</option>
-                                <option value="International"{{old('category')=='International'?'selected':''}}>International</option>
+                                <option value="politics" {{old('category')=='politics'?'selected':''}}>Politics</option>
+                                <option value="business"{{old('category')=='business'?'selected':''}}>Business</option>
+                                <option value="sports" {{old('category')=='sports'?'selected':''}}>Sports</option>
+                                <option value="crime" {{old('category')=='crime'?'selected':''}}>Crime</option>
+                                <option value="lifestyle" {{old('category')=='lifestyle'?'selected':''}}>Lifestyle</option>
+                                <option value="education"{{old('category')=='education'?'selected':''}}>Education</option>
+                                <option value="bangladesh"{{old('category')=='bangladesh'?'selected':''}}>Bangladesh</option>
+                                <option value="entertainment"{{old('category')=='entertainment'?'selected':''}}>Entertainment</option>
+                                <option value="international"{{old('category')=='international'?'selected':''}}>International</option>
                             </select>
                             @error('category')<span class="text-danger">{{$message}}</span>@enderror
                         </div>

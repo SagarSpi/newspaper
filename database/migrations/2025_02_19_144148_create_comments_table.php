@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('subject')->nullable();
             $table->text('description',1000);
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('commentable_id');
+            $table->string('commentable_type');
             $table->timestamps();
         });
     }

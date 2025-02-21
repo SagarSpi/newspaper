@@ -2,21 +2,14 @@
 
 namespace App\Models\Backend;
 
-use App\Models\Frontend\Comment;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-// use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
     use HasFactory;
 
-    public function comments()
-    {
-        return $this->morphToMany(Comment::class,'commentable');
-    }
-    
     protected $fillable = [
         'name',
         'email',
@@ -32,6 +25,11 @@ class User extends Authenticatable
         'password',
         'remember_token'
     ];
+    public function articles()
+    {
+        return $this->hasMany(Article::class)
+                ->select(['id', 'title', 'category', 'shortDesc', 'image_url', 'visits','user_id']);
+    }
 
     protected function Contacts() : Attribute {
         return Attribute::make(
@@ -46,6 +44,11 @@ class User extends Authenticatable
     protected function Role() : Attribute {
         return Attribute::make(
             get:fn(string $value)=>ucwords($value)
+        );
+    }
+    protected function CreatedAt() : Attribute{
+        return Attribute::make(
+            get: fn(string $value)=>date('d M Y', strtotime($value))
         );
     }
 

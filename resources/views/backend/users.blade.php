@@ -50,13 +50,13 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <th scope="row">{{$user->id}}</th>
-                                <td><img src="{{$user->image_url}}" class="rounded-circle" alt="User Image" height="40" width="40"></td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->contacts}}</td>
-                                <td>{{$user->role}}</td>
-                                <td>{{$user->status}}</td>
+                                <th scope="row">{{$user->id ??''}}</th>
+                                <td><img src="{{$user->image_url ??''}}" class="rounded-circle" alt="User Image" height="40" width="40"></td>
+                                <td>{{$user->name ??'N/A'}}</td>
+                                <td>{{$user->email ??'N/A'}}</td>
+                                <td>{{$user->contacts ??'N/A'}}</td>
+                                <td>{{$user->role ??'N/A'}}</td>
+                                <td>{{$user->status ??'N/A'}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,7 +65,7 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li>
-                                                <a class="dropdown-item" href="{{route('user.show')}}"><i class="fa-solid fa-eye pe-2"></i> View</a>
+                                                <a class="dropdown-item" href="{{route('user.show',$user->id)}}"><i class="fa-solid fa-eye pe-2"></i> View</a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="{{route('user.edit',$user->id)}}"><i class="fa-solid fa-pen-to-square pe-2"></i> Edit</a>

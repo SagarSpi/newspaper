@@ -2,27 +2,28 @@
 
 namespace App\Models\Frontend;
 
-use App\Models\Backend\Article;
-use App\Models\Backend\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'subject',
-        'description',
+    protected $guarded = [];
+
+    protected $hidden = [
+        'commentable_type'
     ];
 
-    public function articles()
+    public function commentable()
     {
-        return $this->morphedByMany(Article::class,'commentable');
+        return $this->morphTo();
     }
-    public function users()
-    {
-        return $this->morphedByMany(User::class,'commentable');
+    
+    protected function CreatedAt() : Attribute{
+        return Attribute::make(
+            get: fn(string $value)=>date('H:i d-M-Y', strtotime($value))
+        );
     }
 }

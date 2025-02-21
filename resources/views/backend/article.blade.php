@@ -48,6 +48,7 @@
                                 <th scope="col">Category</th>
                                 <th scope="col">Summary</th>
                                 <th scope="col">Image</th>
+                                <th scope="col">Commnets</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Created by</th>
                                 <th scope="col">Action</th>
@@ -56,20 +57,21 @@
                         <tbody>
                             @foreach ($article as $news)
                                 <tr>
-                                    <th scope="row">{{$news->id}}</th>
-                                    <td>{{$news->title}}</td>
-                                    <td>{{$news->category}}</td>
-                                    <td>{{$news->shortDesc}}</td>
-                                    <td><img src="{{$news->image_url}}" alt="News Image" height="40" width="40"></td>
-                                    <td>{{$news->status}}</td>
-                                    <td style="white-space: nowrap;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id }}" >{{$news->user->name}}</td>
+                                    <th scope="row">{{$news->id ??''}}</th>
+                                    <td>{{$news->title ??'N/A'}}</td>
+                                    <td>{{$news->category ??'N/A'}}</td>
+                                    <td>{{$news->shortDesc ??'N/A'}}</td>
+                                    <td><img src="{{$news->image_url ?? ''}}" alt="News Image" height="40" width="40"></td>
+                                    <td class="text-center">{{$news->comments_count ?? 'N/A'}}</td>
+                                    <td>{{$news->status ??'N/A'}}</td>
+                                    <td style="white-space: nowrap;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id ??'' }}" >{{$news->user->name ??'N/A'}}</td>
                                     <td style="white-space: nowrap;">
-                                        <a class="text-primary" href="{{route('article.show',$news->id)}}"><i class="fa-solid fa-eye pe-2"></i></a>
+                                        <a class="text-primary" href="{{route('article.show',$news->id ??'N/A')}}"><i class="fa-solid fa-eye pe-2"></i></a>
                                         @can('update', $news)
-                                            <a class="text-success" href="{{ route('article.edit', $news->id) }}">
+                                            <a class="text-success" href="{{ route('article.edit', $news->id ??'N/A')}}">
                                                 <i class="fa-solid fa-pen-to-square pe-2"></i>
                                             </a>
-                                            <a class="remove text-danger" data-id="{{ $news->id }}">
+                                            <a class="remove text-danger" data-id="{{ $news->id ??'N/A'}}">
                                                 <i class="fa-solid fa-trash pe-2"></i>
                                             </a>
                                         @else
@@ -99,28 +101,28 @@
                                 <tbody>
                                     <tr>
                                         <th rowspan="1">Id</th>
-                                        <td><b>:</b> {{$news->user->id}}</td>
+                                        <td><b>:</b> {{$news->user->id ??'N/A'}}</td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Name</th>
-                                        <td><b>:</b> {{$news->user->name}}</td>
+                                        <td><b>:</b> {{$news->user->name ??'N/A'}}</td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Email</th>
-                                        <td><b>:</b> {{$news->user->email}}</td>
+                                        <td><b>:</b> {{$news->user->email ??'N/A'}}</td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Contact</th>
-                                        <td><b>:</b> {{$news->user->contacts}}</td>
+                                        <td><b>:</b> {{$news->user->contacts ??'N/A'}}</td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Role</th>
-                                        <td><b>:</b> {{$news->user->role}}</td>
+                                        <td><b>:</b> {{$news->user->role ??'N/A'}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="creator-action">
-                                <a href="{{$news->user->id}}" class="btn btn-success btn-sm">View More</a>
+                                <a href="{{$news->user->id ??'N/A'}}" class="btn btn-success btn-sm">View More</a>
                             </div>
                         </div>
                     </div>

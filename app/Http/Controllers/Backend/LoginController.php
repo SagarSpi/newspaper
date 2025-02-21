@@ -20,7 +20,6 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        
         if (Auth::attempt($inputs)) {
             return redirect()->route('dashboard')->with('success', 'Login successful');
         }

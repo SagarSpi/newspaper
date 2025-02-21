@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backend\Article;
 use App\Models\Frontend\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +17,11 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::with('commentable')
+                        ->latest()
+                        ->paginate(9);
+
+        return view('backend.comments',compact('comments'));
     }
 
     /**
@@ -29,8 +35,10 @@ class CommentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, int $id)
     {
+        $news = Article::findOrFail($id);
+
         $inputs = Validator::make($request->all(),[
             'title'=>'required|string|max:255',
             'subject'=>'nullable|string|max:255',
@@ -44,11 +52,13 @@ class CommentController extends Controller
         try {
             DB::beginTransaction();
 
-            Comment::create([
+            $news->comments()->create([
                 'title'=>$request->title,
                 'subject'=>$request->subject,
                 'description'=>$request->description,
+                'user_id'=>Auth::id()
             ]);
+
             DB::commit();
             return redirect()->back()->with('success','Comment submitted succesfully !');
 

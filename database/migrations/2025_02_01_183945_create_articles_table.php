@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('image_id');
             $table->text('description')->nullable();
             $table->string('tags')->nullable();
-            $table->unsignedBigInteger('visitor')->default(0);
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('visits')->default(0);
+            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->string('status',20);
             $table->timestamps();
             $table->softDeletes();
