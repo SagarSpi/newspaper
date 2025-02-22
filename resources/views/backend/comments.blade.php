@@ -55,12 +55,8 @@
                                     <td><a href="{{route('article.show',$comment->commentable_id)}}">{{$comment->commentable_id ??'N/A'}}</a></td>
                                     <td><a href="{{route('user.show',$comment->user_id)}}">{{$comment->user_id ??'N/A'}}</a></td>
                                     <td style="white-space: nowrap;">
-                                        <a class="text-primary" href="">
-                                            <i class="fa-solid fa-eye pe-2"></i>
-                                        </a>
-                                        <a class="text-success" href="">
-                                            <i class="fa-solid fa-pen-to-square pe-2"></i>
-                                        </a>
+                                        <a href="#" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{route('comment.edit',$comment->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

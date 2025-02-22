@@ -71,7 +71,11 @@
                                         @error('description') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                     <div class="text-end mt-4">
-                                        <button type="submit" class="btn btn-lg">Submit</button>
+                                        @if (Auth::check())
+                                            <button type="submit" class="btn btn-lg">Submit</button>
+                                        @else
+                                            <button type="button" class="btn btn-lg disabled">Submit</button>
+                                        @endif
                                     </div>
                                 </form>
                             </div>

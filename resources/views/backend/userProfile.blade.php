@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-4">
                     <div class="text-end">
-                        <a href="#" class="btn btn-light">Edit Profile</a>
+                        <a href="{{route('user.edit',$user->id)}}" class="btn btn-light">Edit Profile</a>
                     </div>
                 </div>
             </div>
@@ -169,8 +169,8 @@
                                     <td><img src="{{$article->image_url}}" alt="News Image" height="40" width="40"></td>
                                     <td>{{$article->visits}}</td>
                                     <td>
-                                        <a href="#" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="#" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                                        <a href="{{route('article.show',$article->id)}}" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{route('article.edit',$article->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="#" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>

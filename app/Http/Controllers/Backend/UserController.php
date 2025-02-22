@@ -87,7 +87,7 @@ class UserController extends Controller
     public function show(int $id)
     {
         $user = User::findOrFail($id);
-        $articles = $user->articles()->paginate(8);
+        $articles = $user->articles()->latest()->paginate(8);
 
        return view('backend.userProfile',compact('user', 'articles'));
     }

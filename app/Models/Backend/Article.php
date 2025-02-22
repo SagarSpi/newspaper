@@ -27,7 +27,7 @@ class Article extends Model
     protected $hidden = [
         'user_id',
     ];
-
+    // ONE TO MANY RELATION POLYMORPHIC
     public function comments()
     {
         return $this->morphMany(Comment::class,'commentable');
@@ -42,10 +42,11 @@ class Article extends Model
         return $this->morphOne(Comment::class,'commentable')
                     ->oldestOfMany();
     }
-
+    // ONE TO MANY RELATION 
     public function user() {
         return $this->belongsTo(User::class)->select(['id', 'name', 'email', 'image_url', 'contacts', 'role']);
     }
+
     protected function Category() : Attribute {
         return Attribute::make(
             get: fn(string $value)=>ucwords($value)

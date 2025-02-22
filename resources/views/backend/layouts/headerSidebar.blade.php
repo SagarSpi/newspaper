@@ -58,13 +58,13 @@
                                         <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-download item-icon"></i> Downloads</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-clock-rotate-left item-icon"></i> Purchase History</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-ticket item-icon"></i> Support Tickets</a>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="{{route('user.show',Auth::id())}}"><i class="fa-regular fa-circle-user item-icon"></i>View Profile</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-regular fa-address-card item-icon"></i> Profile Setting</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-ticket item-icon"></i> Support Tickets</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fas fa-th item-icon"></i> Customization</a>
@@ -102,10 +102,13 @@
                                     <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('article.comment')}}" class="nav-link">Comment List</a>
+                                    <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>
+                                    <a href="{{route('comment.list')}}" class="nav-link">Comment List</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('email.list')}}" class="nav-link">Newsletter List</a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link">Settings</a>

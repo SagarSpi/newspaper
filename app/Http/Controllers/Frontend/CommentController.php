@@ -81,7 +81,9 @@ class CommentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        return view('backend.commentEdit',compact('comment'));
     }
 
     /**
@@ -89,7 +91,37 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        $inputs = Validator::make($request->all(),[
+            'title'=>'required|string|max:255',
+            'subject'=>'nullable|string|max:255',
+            'description'=>'required|string'
+        ])->stopOnFirstFailure();
+
+        if ($inputs->fails()) {
+            return back()->withErrors($inputs)->withInput();
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $comment->update([
+                'title'=>$request->title,
+                'subject'=>$request->subject,
+                'description'=>$request->description,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('comment.list')->with('success','Comment Updated Successfully !');
+
+        } catch (\Exception $err) {
+
+            DB::rollBack();
+
+            return redirect()->back()->with('error','Something went wrong! Please try again !'.$err->getMessage());
+        }
     }
 
     /**

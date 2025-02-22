@@ -241,10 +241,14 @@
             <div class="col-3">
               <h5>Newsletter</h5>
               <p class="mb-4">Subscribe to recieve a monthly email </br> on the latest news!</p>
-              <form action="" method="POST">
+              <form action="{{route('email.store')}}" method="POST">
+                @csrf
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Enter Email">
+                  <input type="email" name="email" value="{{old('email')}}" class="form-control" placeholder="Enter Email" required>
                   <button type="submit" class="btn btn-outline-danger">Subscribe</button>
+                  @error('email')
+                    <span class="text-danger">{{$message}}</span>
+                  @enderror
                 </div>
               </form>
             </div>

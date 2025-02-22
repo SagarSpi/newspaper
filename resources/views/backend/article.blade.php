@@ -66,20 +66,22 @@
                                     <td>{{$news->status ??'N/A'}}</td>
                                     <td style="white-space: nowrap;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id ??'' }}" >{{$news->user->name ??'N/A'}}</td>
                                     <td style="white-space: nowrap;">
-                                        <a class="text-primary" href="{{route('article.show',$news->id ??'N/A')}}"><i class="fa-solid fa-eye pe-2"></i></a>
+                                        <a href="{{route('article.show',$news->id ??'N/A')}}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
                                         @can('update', $news)
-                                            <a class="text-success" href="{{ route('article.edit', $news->id ??'N/A')}}">
-                                                <i class="fa-solid fa-pen-to-square pe-2"></i>
+                                            <a href="{{ route('article.edit', $news->id ??'N/A')}}" class="btn btn-outline-warning btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <a class="remove text-danger" data-id="{{ $news->id ??'N/A'}}">
-                                                <i class="fa-solid fa-trash pe-2"></i>
+                                            <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $news->id ??'N/A'}}">
+                                                <i class="fa-solid fa-trash"></i>
                                             </a>
                                         @else
-                                            <a class="text-success disabled" role="button" aria-disabled="true">
-                                                <i class="fa-solid fa-pen-to-square pe-2"></i>
+                                            <a class="btn btn-outline-warning btn-sm disabled" role="button" aria-disabled="true">
+                                                <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
-                                            <a class="text-danger disabled">
-                                                <i class="fa-solid fa-trash pe-2"></i>
+                                            <a class="btn btn-outline-danger btn-sm disabled">
+                                                <i class="fa-solid fa-trash"></i>
                                             </a>
                                         @endcan
                                     </td>
