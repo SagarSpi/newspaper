@@ -42,9 +42,8 @@ Route::post('/register/post',[UserController::class,'store'])->name('user.store'
 Route::middleware(['auth',ValidUser::class.':admin'])->group(function () {
 
     Route::get('/newsletter/email/list',[NewsletterController::class,'index'])->name('email.list');
-    Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit'])->name('email.edit');
-    // Route::get('newsletter/update/email',[NewsletterController::class,'update']);
-    Route::put('student-update',[NewsletterController::class,'update']);
+    Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit']);
+    Route::put('newsletter/update/email',[NewsletterController::class,'update']);
 
 
 

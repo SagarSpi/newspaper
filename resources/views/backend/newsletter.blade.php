@@ -55,6 +55,7 @@
                                     <td style="white-space: nowrap;">
 
                                         <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
+
                                         <a href="#" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
@@ -69,8 +70,6 @@
         </div>
     </div>
 
-
-
     {{-- EDIT MODAL CODE STATR --}}
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -80,17 +79,19 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="{{url('student-update')}}" method="POST">
+              <form action="{{url('newsletter/update/email')}}" method="POST">
                 @csrf
                 @method('PUT')
-                <input type="hidden" name="email_id" id="email_id">
+                <input type="hidden" name="id" id="id">
                 <div class="mb-3">
                   <label for="email" class="col-form-label">Email</label>
-                  <input type="email" name="email" class="form-control" id="email">
+                  <input type="email" name="email" value="{{old('email')}}" class="form-control" id="email">
+                  @error('email') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
                 <div class="mb-3">
                     <label for="status" class="col-form-label">Status</label>
-                    <input type="text" name="status" class="form-control" id="status">
+                    <input type="text" name="status" value="{{old('status')}}" class="form-control" id="status">
+                    @error('status') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -102,15 +103,6 @@
         </div>
       </div>
     {{-- EDIT MODAL CODE END --}}
-
-
-
-
-    {{-- @if (session('status'))
-        <div class="alert alert-primary" role="alert">
-            {{session('status')}}
-        </div>
-    @endif --}}
 
 @endsection
 
@@ -127,7 +119,7 @@
                     url: "/newsletter/" + email_id + "/email",
                     success: function (response) {
                         // console.log(response.email.id);
-                        $('#email_id').val(email_id);
+                        $('#id').val(email_id);
                         $('#email').val(response.email.email);
                         $('#status').val(response.email.status);
                     }

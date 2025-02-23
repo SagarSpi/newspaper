@@ -84,48 +84,201 @@
     {{--  CONTENT SECTION START --}}
     <section class="content-section">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-2 px-0">
-                    <div class="content-sidebar">
-                        <div class="sideber-title">
-                            <h5>NAVIGATION PANEL</h5>
-                        </div>
-                        <nav class="sidebar-nav">
-                            <ul>
-                                <li>
-                                    <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('article.list')}}" class="nav-link">Article List</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('comment.list')}}" class="nav-link">Comment List</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('email.list')}}" class="nav-link">Newsletter List</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('download.page')}}" class="nav-link">Download</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+          <div class="row">
+            <div class="col-2 px-0">
+              <div class="content-sidebar">
+                <div class="sideber-title">
+                    <h5>NAVIGATION PANEL</h5>
                 </div>
-                <div class="col-10">
-                    <div class="content-body">
-                        @yield('content')
-                    </div>
+                <nav class="sidebar-nav">
+                  <div class="menu">
+                    <p class="title">Main</p>
+                    <ul>
+                      <li>
+                        <a href="#">
+                          <i class="fa-solid fa-home icon"></i>
+                          <span class="text">Dashboard</span>
+                        </a>
+                      </li>
+                      <p class="title">Article</p>
+                      <li>
+                        <a href="#">
+                          <i class="fa-solid fa-newspaper icon"></i>
+                          <span class="text">Article</span>
+                          <i class="fa-solid fa-arrow-down arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                            <a href="{{route('article.list')}}">
+                              <span class="text">Article List</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="text">Create Article</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa-solid fa-home icon"></i>
+                          <span class="text">Newsletter List</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <i class="fa-solid fa-user icon"></i>
+                          <span class="text">Comment Management</span>
+                        </a>
+                      </li>
+
+
+                      <p class="title">Users</p>
+                      <li>
+                        <a href="#">
+                          <i class="fa-regular fa-user icon"></i>
+                          <span class="text">User Management</span>
+                          <i class="fa-solid fa-arrow-down arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                            <a href="#">
+                              <span class="text">Users list</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="text">Create Users</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+
+                      <p class="title">Users</p>
+                      <li>
+                        <a href="#">
+                          <i class="fa-regular fa-user icon"></i>
+                          <span class="text">User Management</span>
+                          <i class="fa-solid fa-arrow-down arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                            <a href="#">
+                              <span class="text">Users list</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="text">Create Users</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <p class="title">Users</p>
+                      <li>
+                        <a href="#">
+                          <i class="fa-regular fa-user icon"></i>
+                          <span class="text">User Management</span>
+                          <i class="fa-solid fa-arrow-down arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                            <a href="#">
+                              <span class="text">Users list</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="text">Create Users</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <p class="title">Users</p>
+                      <li>
+                        <a href="#">
+                          <i class="fa-regular fa-user icon"></i>
+                          <span class="text">User Management</span>
+                          <i class="fa-solid fa-arrow-down arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                            <a href="#">
+                              <span class="text">Users list</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="text">Create Users</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <p class="title">Users</p>
+                      <li>
+                        <a href="#">
+                          <i class="fa-regular fa-user icon"></i>
+                          <span class="text">User Management</span>
+                          <i class="fa-solid fa-arrow-down arrow"></i>
+                        </a>
+                        <ul class="sub-menu">
+                          <li>
+                            <a href="#">
+                              <span class="text">Users list</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#">
+                              <span class="text">Create Users</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      
+
+
+                    </ul>
+                  </div>
+                </nav>
+
+
+                {{-- <ul>
+                    <li>
+                        <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{{route('article.list')}}" class="nav-link">Article List</a>
+                    </li>
+                    <li>
+                        <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
+                    </li>
+                    <li>
+                        <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>
+                    </li>
+                    <li>
+                        <a href="{{route('comment.list')}}" class="nav-link">Comment List</a>
+                    </li>
+                    <li>
+                        <a href="{{route('email.list')}}" class="nav-link">Newsletter List</a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link">Settings</a>
+                    </li>
+                    <li>
+                        <a href="{{route('download.page')}}" class="nav-link">Download</a>
+                    </li>
+                  </ul> --}}
+
+
+              </div>
+            </div>
+            <div class="col-10">
+                <div class="content-body">
+                    @yield('content')
                 </div>
             </div>
+          </div>
         </div>
     </section>
     {{-- CONTENT SECTION END  --}}
@@ -138,6 +291,10 @@
     <script src="{{asset('assets/global/js/bootstrap.bundle.js')}}"></script>
     {{-- FONTAWESOME JS FILE  --}}
     <script src="{{asset('assets/global/js/all.min.js')}}"></script>
+    <script src="{{asset('assets/backend/js/headerSidebar.js')}}"></script>
+
+
+    
     @stack('script')
   </body>
 </html>

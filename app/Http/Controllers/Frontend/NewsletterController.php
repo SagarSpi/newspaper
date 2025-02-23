@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Mail\newslattermail;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Frontend\Newsletter;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class NewsletterController extends Controller
 {
@@ -82,15 +84,29 @@ class NewsletterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,)
+    public function update(Request $request)
     {
-        $email_id = $request->input('email_id');
-        $email = Newsletter::findOrFail($email_id);
-        $email->email = $request->input('email');
-        $email->status = $request->input('status');
-        $email->update();
+        $email = Newsletter::findOrFail($request->id);
 
-        return redirect()->back()->with('success','Email Updated Successfully !');
+        $inputs = $request->validate([
+            'email' => 'required|email|unique:newsletters,email,'.$request->id,
+            'status' => 'required|string|min:3'
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $email->update([
+                'email'=>$request->email,
+                'status'=>$request->status
+            ]);
+
+            DB::commit();
+            return redirect()->back()->with('success','Email Updated Successfully !');
+        } catch (\Exception $err) {
+            DB::rollBack();
+            return redirect()->back()->with('error','Email Update Unsuccessful !');
+        }
     }
 
     /**

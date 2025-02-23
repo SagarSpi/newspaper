@@ -47,8 +47,15 @@ ul li {
     background: #033144;
     color: #ffffff;
     position: fixed;
-    height: 100%;
+    height: 560px;
     width: 17%;
+    overflow-y: auto;
+}
+.content-section .content-sidebar::-webkit-scrollbar {
+    width: 0.25rem;
+}
+.content-section .content-sidebar::-webkit-scrollbar-thumb {
+    background-color: gray;
 }
 .content-section .content-sidebar .sideber-title h5 {
     padding: 15px 0px 15px 30px;
@@ -57,8 +64,72 @@ ul li {
     text-transform: uppercase;
     font-weight: 300;
     letter-spacing: 1px;
+    border-bottom: 1px solid red;
 }
-.content-section .content-sidebar .sidebar-nav ul li {
+
+/* start: Sidebar */
+/* .sidebar-nav {
+} */
+.menu .title {
+    font-size: 10px;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.menu ul li {
+    position: relative;
+    list-style: none;
+    margin-bottom: 5px;
+}
+.menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 8px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+.menu ul li > a:hover,
+.menu ul li.active > a {
+    color: #000;
+    background-color: #f6f6f6;
+}
+.menu ul li .icon {
+    font-size: 20px;
+}
+.menu ul li .text {
+    flex: 1;
+}
+.menu ul li .arrow {
+    font-size: 14px;
+    transform: all 0.3s;
+}
+.menu ul li.active .arrow {
+    transform: rotate(180deg);
+}
+.menu .sub-menu {
+    display: none;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    /* border-left: 1px solid #f6f6f6; */
+}
+.menu .sub-menu li a {
+    padding: 10px 8px;
+    font-size: 12px;
+}
+/* .menu :not(:last-child) {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f6f6f6;
+} */
+/* end: Sidebar */
+/* .content-section .content-sidebar .sidebar-nav ul li {
     padding: 2px 0px;
 }
 .content-section .content-sidebar .sidebar-nav .nav-link {
@@ -81,7 +152,7 @@ ul li {
 .content-section .content-body {
     padding: 10px 10px 20px;
     background: #f1f1f1;
-}
+} */
 
 /* dropdown image css code here  */
 .profile-dropdown .navbar-profile-img {
