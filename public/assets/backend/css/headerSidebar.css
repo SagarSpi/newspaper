@@ -54,9 +54,6 @@ ul li {
 .content-section .content-sidebar::-webkit-scrollbar {
     width: 0.25rem;
 }
-.content-section .content-sidebar::-webkit-scrollbar-thumb {
-    background-color: gray;
-}
 .content-section .content-sidebar .sideber-title h5 {
     padding: 15px 0px 15px 30px;
     color: #ffffff;
@@ -66,7 +63,6 @@ ul li {
     letter-spacing: 1px;
     border-bottom: 1px solid red;
 }
-
 /* start: Sidebar */
 /* .sidebar-nav {
 } */
@@ -96,8 +92,8 @@ ul li {
 }
 .menu ul li > a:hover,
 .menu ul li.active > a {
-    color: #000;
-    background-color: #f6f6f6;
+    color: #ffffff;
+    background-color: #fd6930;
 }
 .menu ul li .icon {
     font-size: 20px;
@@ -114,46 +110,15 @@ ul li {
 }
 .menu .sub-menu {
     display: none;
-    margin-left: 20px;
-    padding-left: 20px;
+    margin-left: 46px;
+    padding-left: 5px;
     padding-top: 5px;
-    /* border-left: 1px solid #f6f6f6; */
 }
 .menu .sub-menu li a {
     padding: 10px 8px;
-    font-size: 12px;
+    font-size: 13px;
 }
-/* .menu :not(:last-child) {
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #f6f6f6;
-} */
 /* end: Sidebar */
-/* .content-section .content-sidebar .sidebar-nav ul li {
-    padding: 2px 0px;
-}
-.content-section .content-sidebar .sidebar-nav .nav-link {
-    text-align: left;
-    font-weight: 500;
-    font-size: 16px;
-    padding: 7px 0px 7px 28px;
-    text-decoration: none;
-    color: #ffffff;
-    transition: 0.3s all ease;
-}
-.content-section .content-sidebar .sidebar-nav .nav-link:hover,
-.content-section .content-sidebar .sidebar-nav .nav-link:focus {
-    cursor: pointer;
-    color: #ffffff;
-    background: #ff003b;
-    border-radius: 25px;
-    padding-left: 50px;
-}
-.content-section .content-body {
-    padding: 10px 10px 20px;
-    background: #f1f1f1;
-} */
-
 /* dropdown image css code here  */
 .profile-dropdown .navbar-profile-img {
     width: 30px;

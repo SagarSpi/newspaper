@@ -27,54 +27,54 @@
                         </div>
                     </div>
                     <div class="col-10">
-                        <div class="header-content">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search Tools (/)" aria-label="search" aria-describedby="button-addon2">
-                                <button class="btn btn-outline-danger" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass fa-sm"></i></button>
-                            </div>
-                            <div class="dropdown mx-2">
-                                <button class="btn py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-regular fa-bell"></i>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">No Notification </a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown profile-dropdown">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{Auth::user()->image_url ??''}}" alt="User Image" class="navbar-profile-img"> Hi, {{Auth::user()->name ??'N/A'}}
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-info" href="#">
-                                            <img src="{{Auth::user()->image_url ??''}}" alt="" class="dropdown-profile-img">
-                                            <div class="profile-name">
-                                                <p>{{Auth::user()->name ??'N/A'}}</p>
-                                                <p>{{Auth::user()->email ??'N/A'}}</p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-download item-icon"></i> Downloads</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="{{route('user.show',Auth::id())}}"><i class="fa-regular fa-circle-user item-icon"></i>View Profile</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-regular fa-address-card item-icon"></i> Profile Setting</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-ticket item-icon"></i> Support Tickets</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fas fa-th item-icon"></i> Customization</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item profile-dropdown-list-item" href="{{route('logout')}}"><i class="fa-solid fa-right-from-bracket item-icon"></i> Log Out</a>
-                                    </li>
-                                </ul>
-                            </div>
+                      <div class="header-content">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Tools (/)" aria-label="search" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-danger" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass fa-sm"></i></button>
                         </div>
+                        <div class="dropdown mx-2">
+                            <button class="btn py-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-regular fa-bell"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">No Notification </a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown profile-dropdown">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{Auth::user()->image_url ??''}}" alt="User Image" class="navbar-profile-img"> Hi, {{Auth::user()->name ??'N/A'}}
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-info" href="#">
+                                        <img src="{{Auth::user()->image_url ??''}}" alt="" class="dropdown-profile-img">
+                                        <div class="profile-name">
+                                            <p>{{Auth::user()->name ??'N/A'}}</p>
+                                            <p>{{Auth::user()->email ??'N/A'}}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-download item-icon"></i> Downloads</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-list-item" href="{{route('user.show',Auth::id())}}"><i class="fa-regular fa-circle-user item-icon"></i>View Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-regular fa-address-card item-icon"></i> Profile Setting</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fa-solid fa-ticket item-icon"></i> Support Tickets</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-list-item" href="#"><i class="fas fa-th item-icon"></i> Customization</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item profile-dropdown-list-item" href="{{route('logout')}}"><i class="fa-solid fa-right-from-bracket item-icon"></i> Log Out</a>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -95,17 +95,16 @@
                     <p class="title">Main</p>
                     <ul>
                       <li>
-                        <a href="#">
+                        <a href="{{route('dashboard')}}">
                           <i class="fa-solid fa-home icon"></i>
                           <span class="text">Dashboard</span>
                         </a>
                       </li>
-                      <p class="title">Article</p>
                       <li>
                         <a href="#">
                           <i class="fa-solid fa-newspaper icon"></i>
                           <span class="text">Article</span>
-                          <i class="fa-solid fa-arrow-down arrow"></i>
+                          <i class="fa-solid fa-chevron-down arrow"></i>
                         </a>
                         <ul class="sub-menu">
                           <li>
@@ -114,163 +113,57 @@
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="{{route('article.create')}}">
                               <span class="text">Create Article</span>
                             </a>
                           </li>
                         </ul>
                       </li>
                       <li>
-                        <a href="#">
-                          <i class="fa-solid fa-home icon"></i>
-                          <span class="text">Newsletter List</span>
+                        <a href="{{route('comment.list')}}">
+                          <i class="fa-regular fa-comments icon"></i>
+                          <span class="text">Comments </span>
                         </a>
                       </li>
                       <li>
-                        <a href="#">
-                          <i class="fa-solid fa-user icon"></i>
-                          <span class="text">Comment Management</span>
+                        <a href="{{route('email.list')}}">
+                          <i class="fa-regular fa-envelope-open icon"></i>
+                          <span class="text">Newsletter Mail</span>
                         </a>
-                      </li>
-
-
-                      <p class="title">Users</p>
-                      <li>
-                        <a href="#">
-                          <i class="fa-regular fa-user icon"></i>
-                          <span class="text">User Management</span>
-                          <i class="fa-solid fa-arrow-down arrow"></i>
-                        </a>
-                        <ul class="sub-menu">
-                          <li>
-                            <a href="#">
-                              <span class="text">Users list</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <span class="text">Create Users</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <p class="title">Users</p>
-                      <li>
-                        <a href="#">
-                          <i class="fa-regular fa-user icon"></i>
-                          <span class="text">User Management</span>
-                          <i class="fa-solid fa-arrow-down arrow"></i>
-                        </a>
-                        <ul class="sub-menu">
-                          <li>
-                            <a href="#">
-                              <span class="text">Users list</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <span class="text">Create Users</span>
-                            </a>
-                          </li>
-                        </ul>
                       </li>
                       <p class="title">Users</p>
                       <li>
                         <a href="#">
                           <i class="fa-regular fa-user icon"></i>
                           <span class="text">User Management</span>
-                          <i class="fa-solid fa-arrow-down arrow"></i>
+                          <i class="fa-solid fa-chevron-down arrow"></i>
                         </a>
                         <ul class="sub-menu">
                           <li>
-                            <a href="#">
+                            <a href="{{route('user.list')}}">
                               <span class="text">Users list</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <span class="text">Create Users</span>
                             </a>
                           </li>
                         </ul>
                       </li>
-                      <p class="title">Users</p>
+                      <p class="title">Settings</p>
                       <li>
                         <a href="#">
-                          <i class="fa-regular fa-user icon"></i>
-                          <span class="text">User Management</span>
-                          <i class="fa-solid fa-arrow-down arrow"></i>
+                          <i class="fa-solid fa-gear icon"></i> 
+                          <span class="text">Settings</span>
+                          <i class="fa-solid fa-chevron-down arrow"></i>
                         </a>
                         <ul class="sub-menu">
                           <li>
                             <a href="#">
-                              <span class="text">Users list</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <span class="text">Create Users</span>
+                              <span class="text">Social Links</span>
                             </a>
                           </li>
                         </ul>
                       </li>
-                      <p class="title">Users</p>
-                      <li>
-                        <a href="#">
-                          <i class="fa-regular fa-user icon"></i>
-                          <span class="text">User Management</span>
-                          <i class="fa-solid fa-arrow-down arrow"></i>
-                        </a>
-                        <ul class="sub-menu">
-                          <li>
-                            <a href="#">
-                              <span class="text">Users list</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <span class="text">Create Users</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      
-
-
                     </ul>
                   </div>
                 </nav>
-
-
-                {{-- <ul>
-                    <li>
-                        <a href="{{route('dashboard')}}" class="nav-link">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="{{route('article.list')}}" class="nav-link">Article List</a>
-                    </li>
-                    <li>
-                        <a href="{{route('article.create')}}" class="nav-link">Create Article</a>
-                    </li>
-                    <li>
-                        <a href="{{route('user.list')}}" class="nav-link">Users Manager</a>
-                    </li>
-                    <li>
-                        <a href="{{route('comment.list')}}" class="nav-link">Comment List</a>
-                    </li>
-                    <li>
-                        <a href="{{route('email.list')}}" class="nav-link">Newsletter List</a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link">Settings</a>
-                    </li>
-                    <li>
-                        <a href="{{route('download.page')}}" class="nav-link">Download</a>
-                    </li>
-                  </ul> --}}
-
-
               </div>
             </div>
             <div class="col-10">
@@ -292,9 +185,6 @@
     {{-- FONTAWESOME JS FILE  --}}
     <script src="{{asset('assets/global/js/all.min.js')}}"></script>
     <script src="{{asset('assets/backend/js/headerSidebar.js')}}"></script>
-
-
-    
     @stack('script')
   </body>
 </html>
