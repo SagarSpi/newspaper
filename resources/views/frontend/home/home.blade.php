@@ -1,4 +1,4 @@
-@extends('frontend.layouts.headerFooter')
+@extends('layouts.headerFooter')
 
 @section('title')
     Home 

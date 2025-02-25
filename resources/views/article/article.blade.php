@@ -1,5 +1,5 @@
 
-@extends('backend.layouts.headerSidebar')
+@extends('layouts.headerSidebar')
 
 @section('title')
     Article Page
@@ -13,15 +13,25 @@
     <div class="article-section">
         <div class="row">
             <div class="col-8 offset-2">
-                <div class="search-bar">
-                    <form action="" method="GET">
+                <div class="search-bar mt-3">
+                    <form action="{{route('article.search')}}" method="GET">
                         <div class="input-group mt-2">
-                            <input class="form-control" name="search" placeholder="Keyword">
-                            <input class="form-control" name="search" placeholder="Title">
-                            <input class="form-control" name="search" placeholder="Category">
-                            <input class="form-control" name="search" placeholder="Status">
+                            <input class="form-control" name="keyword" placeholder="Keyword">
+                            <input type="text" class="form-control" name="title" placeholder="Title">
+                            <input type="text" class="form-control" name="category" placeholder="Category">
+                            <input type="text" class="form-control" name="status" placeholder="Status">
+                            <select class="form-select" name="date_filter">
+                                <option selected disabled>Filter By Date</option>
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="this_week">This Week</option>
+                                <option value="last_week">Last Week</option>
+                                <option value="this_month">This Month</option>
+                                <option value="last_month">Last Month</option>
+                                <option value="this_year">This Year</option>
+                                <option value="last_year">Last Year</option>
+                            </select>
                             <button type="submit" class="btn btn-outline-success" id="search-btn">Search</button>
-                            <button type="button" class="btn btn-outline-danger" id="reset-btn">Reset</button>
                         </div>
                     </form>
                 </div>
@@ -29,10 +39,12 @@
             <div class="col-8">
                 <div class="heading">
                     <h5>Manage Articles</h5>
+                    <a href="#" id="deleteAllSelectedRecord" class="btn btn-outline-danger btn-sm">Delete All Selected</a>
                 </div>
             </div>
             <div class="col-4">
                 <div class="text-end">
+                    <a href="{{route('article.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
                     <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add New Article</a>
                 </div>
             </div>
@@ -43,10 +55,11 @@
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
+                                <th scope="col"><input type="checkbox" name="" id="select_all_ids"></th>
                                 <th scope="col">Id</th>
+                                <th style="white-space: nowrap;" scope="col">Created Date</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Category</th>
-                                <th scope="col">Summary</th>
                                 <th scope="col">Image</th>
                                 <th scope="col">Commnets</th>
                                 <th scope="col">Status</th>
@@ -55,12 +68,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($article as $news)
-                                <tr>
+                            @foreach ($articles as $news)
+                                <tr id="article_ids{{$news->id}}">
+                                    <th><input type="checkbox" value="{{$news->id}}" name="ids" id="" class="checkbox_ids"></th>
                                     <th scope="row">{{$news->id ??''}}</th>
+                                    <td>{{$news->created_at ??'N/A'}}</td>
                                     <td>{{$news->title ??'N/A'}}</td>
                                     <td>{{$news->category ??'N/A'}}</td>
-                                    <td>{{$news->shortDesc ??'N/A'}}</td>
                                     <td><img src="{{$news->image_url ?? ''}}" alt="News Image" height="40" width="40"></td>
                                     <td class="text-center">{{$news->comments_count ?? 'N/A'}}</td>
                                     <td>{{$news->status ??'N/A'}}</td>
@@ -131,7 +145,7 @@
                     {{-- USER OFFCANVAS SIDEBAR CODE END  --}}
                     <div class="paginate">
                         <div class="col-12">
-                            {{$article->links()}}
+                            {{$articles->links()}}
                         </div>
                     </div>
                 </div>
@@ -141,7 +155,7 @@
 
     <!-- Delete Modal Start-->
     <div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog  modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
@@ -166,16 +180,72 @@
 @push('script')
     {{-- DELETE MODAL AJAX SCRIPT --}}
     <script>
-        $('.remove').on('click', function () {
-            $('#removeModal').modal('show');
-            let id=$(this).attr('data-id');
+        $(document).ready(function () {
+            $('.remove').on('click', function () {
+                let id = $(this).data('id'); // ডিলিট করার আইডি বের করা
+                $('#removeModal').modal('show'); // মডাল দেখানো
 
-            $('#delete').on('click', function () {
+                // আগের ক্লিক ইভেন্ট রিসেট করে নতুন ইভেন্ট যুক্ত করা
+                $('#delete').off('click').on('click', function () {
+                    $.ajax({
+                        url: "{{ route('article.delete', ':id') }}".replace(':id', id),
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: "DELETE" 
+                        },
+                        success: function (response) {
+                            toastr.success(response.success); // সফল হলে টোস্ট দেখানো
+                            $('#removeModal').modal('hide'); // মডাল বন্ধ করা
+                            location.reload(); // পেজ রিফ্রেশ করা
+                        },
+                        error: function (xhr) {
+                            toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
-                $.ajax({url: '/manage/remove/'+ id +'/article', success: function(result){
-                    location.reload();
-                }});
-            })
-        })
+
+    {{-- DELETE ALL AJAX SCRIPT --}}
+    <script>
+        $(function (e) {
+            $('#select_all_ids').click(function () {
+                $('.checkbox_ids').prop('checked',$(this).prop('checked'));
+            });
+
+            $('#deleteAllSelectedRecord').click(function (e) {
+                e.preventDefault();
+                var all_ids = [];
+                $('input:checkbox[name=ids]:checked').each(function () {
+                    all_ids.push($(this).val());
+                });
+                if (all_ids.length === 0) {
+                    toastr.error("Please select at least one record to delete.");
+                    return;
+                }
+
+                $.ajax({
+                    url: "{{ route('article.deleteAll') }}",
+                    type: "POST",
+                    data: {
+                        ids: all_ids,
+                        _token: "{{ csrf_token() }}",
+                        _method: "DELETE" 
+                    },
+                    success:function (response) {
+                        toastr.success(response.success);
+                        $.each(all_ids,function (key,val) {
+                            $('#article_ids'+val).remove();
+                        })
+                    },
+                    error: function (xhr) {
+                        toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                    }
+                });
+            });
+        });
     </script>
 @endpush

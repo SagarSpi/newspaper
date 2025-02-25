@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     function loginPage() 
     {
-        return view('backend.login');
+        return view('login.login');
     }
 
     function loginPost(Request $request)

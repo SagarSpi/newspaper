@@ -83,7 +83,7 @@ class HomeController extends Controller
                                         ->take(6)
                                         ->get();
 
-        return view('frontend.home',[
+        return view('frontend.home.home',[
             'lead_news'=>$lead_news,
             'lead_news_side'=>$lead_sidebar_news,
             'hero_news'=>$hero_news,

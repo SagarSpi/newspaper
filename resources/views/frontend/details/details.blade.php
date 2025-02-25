@@ -1,4 +1,4 @@
-@extends('frontend.layouts.headerFooter')
+@extends('layouts.headerFooter')
 
 @section('title')
     Details
@@ -71,11 +71,7 @@
                                         @error('description') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                     <div class="text-end mt-4">
-                                        @if (Auth::check())
-                                            <button type="submit" class="btn btn-lg">Submit</button>
-                                        @else
-                                            <button type="button" class="btn btn-lg disabled">Submit</button>
-                                        @endif
+                                        <button type="submit" class="btn btn-lg">Submit</button>
                                     </div>
                                 </form>
                             </div>

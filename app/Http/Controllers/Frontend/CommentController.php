@@ -5,13 +5,78 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Article;
 use App\Models\Frontend\Comment;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
-{
+{   
+
+    public function searchData(Request $request)
+    {
+        $query = Comment::query()->latest();
+
+        if (!empty($request->id)) {
+            $query->where('id',$request->id);
+        }
+
+        // Jodi title thake, tahole search query add korbo
+        if (!empty($request->title)) {
+            $query->where('title','like',"%{$request->title}%");
+        }
+
+        // Jodi subject thake, tahole search query add korbo
+        if (!empty($request->subject)) {
+            $query->where('subject','like',"%{$request->subject}%");
+        }
+
+        if (!empty($request->article_id)) {
+            $query->where('commentable_type', Article::class)
+                  ->where('commentable_id', $request->article_id);
+        }
+
+        if (!empty($request->date_filter)) {
+            $date = $request->date_filter;
+            switch ($date) {
+                case 'today':
+                    $query->whereDate('created_at',Carbon::today());
+                    break;
+                case 'yesterday':
+                    $query->whereDate('created_at',Carbon::yesterday());
+                    break;
+                case 'this_week':
+                    $query->whereBetween('created_at',[Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
+                    break;
+                case 'last_week':
+                    $query->whereBetween('created_at',[Carbon::now()->subWeek(),Carbon::now()]);
+                    break;
+                case 'this_month':
+                    $query->whereMonth('created_at',Carbon::now()->month);
+                    break;
+                case 'last_month':
+                    $query->whereMonth('created_at',Carbon::now()->subMonth()->month);
+                    break;
+                case 'this_year':
+                    $query->whereYear('created_at',Carbon::now()->year);
+                    break;
+                case 'last_year':
+                    $query->whereYear('created_at',Carbon::now()->subYear()->year());
+                    break;
+            }
+        }
+
+        $comments = $query->paginate(9);
+
+        // Jodi kono result na thake, tahole back pathay dibo
+        if ($comments->isEmpty()) {
+            return redirect()->back()->with('warning', 'No comments found.');
+        }
+
+        return view('comments.comments',compact('comments'));
+    }
+
+
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +86,7 @@ class CommentController extends Controller
                         ->latest()
                         ->paginate(9);
 
-        return view('backend.comments',compact('comments'));
+        return view('comments.comments',compact('comments'));
     }
 
     /**
@@ -56,7 +121,6 @@ class CommentController extends Controller
                 'title'=>$request->title,
                 'subject'=>$request->subject,
                 'description'=>$request->description,
-                'user_id'=>Auth::id()
             ]);
 
             DB::commit();
@@ -83,7 +147,7 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
-        return view('backend.commentEdit',compact('comment'));
+        return view('comments.commentEdit',compact('comment'));
     }
 
     /**
@@ -113,22 +177,25 @@ class CommentController extends Controller
             ]);
 
             DB::commit();
-
             return redirect()->route('comment.list')->with('success','Comment Updated Successfully !');
 
         } catch (\Exception $err) {
 
             DB::rollBack();
-
-            return redirect()->back()->with('error','Something went wrong! Please try again !'.$err->getMessage());
+            return redirect()->back()->with('error','Something went wrong! Please try again !');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroyAll(Request $request)
     {
-        //
+        $ids = $request->ids;
+
+        Comment::whereIn('id',$ids)->delete();
+        
+        return response()->json(["success"=>"Comment have been deleted ! "]);
+        
     }
 }

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Frontend\Newsletter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
 class NewsletterController extends Controller
 {
@@ -32,7 +31,7 @@ class NewsletterController extends Controller
         $emails = Newsletter::latest()
                             ->paginate();
 
-        return view('backend.newsletter',compact('emails'));
+        return view('newsletter.newsletter',compact('emails'));
     }
 
     /**

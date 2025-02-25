@@ -5,13 +5,79 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Backend\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Jobs\SendMailJob;
 use Carbon\Carbon;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
-{
+{   
+
+    public function searchData(Request $request) 
+    {
+
+        $query = User::query()->latest();
+
+        // Jodi name thake, tahole search query add korbo
+        if (!empty($request->name)) {
+            $query->where('name','like',"%{$request->name}%");
+        }
+
+        // Jodi email thake, tahole search query add korbo
+        if (!empty($request->email)) {
+            $query->where('email', 'like', "%{$request->email}%");
+        }
+
+        // Jodi contact thake, tahole search query add korbo
+        if (!empty($request->contact)) {
+            $query->whereRaw('CAST(contacts AS CHAR) LIKE ?', ["%{$request->contact}%"]);
+        }
+
+        // Jodi role thake, tahole search query add korbo
+        if (!empty($request->role)) {
+            $query->where('role', 'like', "%{$request->role}%");
+        }
+
+        if (!empty($request->date_filter)) {
+            $date = $request->date_filter;
+            switch ($date) {
+                case 'today':
+                    $query->whereDate('created_at',Carbon::today());
+                    break;
+                case 'yesterday':
+                    $query->whereDate('created_at',Carbon::yesterday());
+                    break;
+                case 'this_week':
+                    $query->whereBetween('created_at',[Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
+                    break;
+                case 'last_week':
+                    $query->whereBetween('created_at',[Carbon::now()->subWeek(),Carbon::now()]);
+                    break;
+                case 'this_month':
+                    $query->whereMonth('created_at',Carbon::now()->month);
+                    break;
+                case 'last_month':
+                    $query->whereMonth('created_at',Carbon::now()->subMonth()->month);
+                    break;
+                case 'this_year':
+                    $query->whereYear('created_at',Carbon::now()->year);
+                    break;
+                case 'last_year':
+                    $query->whereYear('created_at',Carbon::now()->subYear()->year());
+                    break;
+            }
+        }
+
+        $users = $query->paginate(9);
+
+        if ($users->isEmpty()) {
+            return redirect()->back()->with('error', 'No Users found.');
+        }
+
+        return view('users.users',compact('users'));
+    }
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +87,7 @@ class UserController extends Controller
         $users = User::orderBy('created_at','DESC')
                     ->paginate(9);
 
-        return view('backend.users',compact('users'));
+        return view('users.users',compact('users'));
     }
 
     /**
@@ -29,7 +95,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.register');
+        return view('register.register');
     }
 
     /**
@@ -72,12 +138,16 @@ class UserController extends Controller
             ]);
             
             DB::commit();
+
+            dispatch(new SendMailJob((object)$request->all()));
+
+
             return redirect()->route('login')->with('success','Users Created Succesfully !');
 
         } catch (\Exception $err) {
 
             DB::rollBack();
-            return redirect()->back()->with('error','Failed To Create Users !'.$err->getMessage());
+            return redirect()->back()->with('error','Failed To Create Users !');
         }
     }
 
@@ -89,7 +159,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $articles = $user->articles()->latest()->paginate(8);
 
-       return view('backend.userProfile',compact('user', 'articles'));
+       return view('users.userProfile',compact('user', 'articles'));
     }
 
     /**
@@ -99,7 +169,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('backend.userEdit',compact('user'));
+        return view('users.userEdit',compact('user'));
     }
 
     /**

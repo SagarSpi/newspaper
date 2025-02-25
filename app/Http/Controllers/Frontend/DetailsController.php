@@ -31,7 +31,7 @@ class DetailsController extends Controller
                                     ->take(7)
                                     ->get();
 
-        return view('frontend.details',[
+        return view('frontend.details.details',[
             'news_details'=>$news_details,
             'related_news'=>$related_news,
             'latest_news'=>$latest_news,

@@ -1,4 +1,4 @@
-@extends('backend.layouts.headerSidebar')
+@extends('layouts.headerSidebar')
 
 @section('title')
     Users List
@@ -8,15 +8,25 @@
     <div class="user-list-section">
         <div class="row">
             <div class="col-8 offset-2">
-                <div class="search-bar">
-                    <form action="" method="GET">
+                <div class="search-bar mt-3">
+                    <form action="{{route('user.search')}}" method="GET">
                         <div class="input-group mt-2">
-                            <input class="form-control" name="search" placeholder="Name">
-                            <input class="form-control" name="search" placeholder="Email">
-                            <input class="form-control" name="search" placeholder="Phone">
-                            <input class="form-control" name="search" placeholder="Role">
+                            <input type="text" class="form-control" name="name" placeholder="Name">
+                            <input type="text" class="form-control" name="email" placeholder="Email">
+                            <input type="text" class="form-control" name="contact" placeholder="Phone">
+                            <input type="text" class="form-control" name="role" placeholder="Role">
+                            <select class="form-select" name="date_filter">
+                                <option selected disabled>Filter By Date</option>
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="this_week">This Week</option>
+                                <option value="last_week">Last Week</option>
+                                <option value="this_month">This Month</option>
+                                <option value="last_month">Last Month</option>
+                                <option value="this_year">This Year</option>
+                                <option value="last_year">Last Year</option>
+                            </select>
                             <button type="submit" class="btn btn-outline-success" id="search-btn">Search</button>
-                            <button type="button" class="btn btn-outline-danger" id="reset-btn">Reset</button>
                         </div>
                     </form>
                 </div>
@@ -28,6 +38,7 @@
             </div>
             <div class="col-4">
                 <div class="text-end">
+                    <a href="{{route('user.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
                     <a href="{{route('user.create')}}" class="btn btn-success btn-sm">Add New User</a>
                 </div>
             </div>

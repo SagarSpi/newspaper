@@ -19,8 +19,6 @@ Route::get('/latestNews', function () {
 
 
 Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
-
-
 Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
 
 
@@ -38,6 +36,8 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/register',[UserController::class,'create'])->name('user.create');
 Route::post('/register/post',[UserController::class,'store'])->name('user.store');
 
+
+
 // Backend Route Here
 Route::middleware(['auth',ValidUser::class.':admin'])->group(function () {
 
@@ -45,26 +45,31 @@ Route::middleware(['auth',ValidUser::class.':admin'])->group(function () {
     Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit']);
     Route::put('newsletter/update/email',[NewsletterController::class,'update']);
 
-
-
-
-
     // Dashboard Route here 
     Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
+
     // Article Route Here
     Route::get('/manage/list/article',[ArticleController::class,'index'])->name('article.list');
+    Route::get('/manage/article/search',[ArticleController::class,'searchData'])->name('article.search');
     Route::get('/manage/create/article',[ArticleController::class,'create'])->name('article.create');
     Route::post('/manage/create/article/post', [ArticleController::class,'store'])->name('article.store');
     Route::get('/manage/edit/{id}/article',[ArticleController::class,'edit'])->name('article.edit');
     Route::put('/manage/edit/{id}/article/post',[ArticleController::class,'update'])->name('article.update');
     Route::get('/manage/view/{id}/article',[ArticleController::class,'show'])->name('article.show');
-    Route::get('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->name('article.remove');
-    // Comments Route Here 
+    Route::delete('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->name('article.delete');
+    Route::delete('/manage/article/delete',[ArticleController::class,'destroyAll'])->name('article.deleteAll');
+
+
+    // Comments Route Here
     Route::get('/manage/comments',[CommentController::class,'index'])->name('comment.list');
+    Route::get('/manage/comments/search',[CommentController::class,'searchData'])->name('comment.search');
     Route::get('/manage/edit/{id}/comment',[CommentController::class,'edit'])->name('comment.edit');
     Route::put('/manage/edit/{id}/comments/post',[CommentController::class,'update'])->name('comment.update');
-    // User Route here 
+    Route::delete('/manage/delete/comments',[CommentController::class,'destroyAll'])->name('comment.deleteAll');
+
+    // User Route here
     Route::get('/manage/list/users',[UserController::class,'index'])->name('user.list');
+    Route::get('/manage/users/search',[UserController::class,'searchData'])->name('user.search');
     Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
     Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
     Route::get('/manage/profile/{id}/user',[UserController::class,'show'])->name('user.show');

@@ -1,4 +1,4 @@
-@extends('backend.layouts.headerSidebar')
+@extends('layouts.headerSidebar')
 
 @section('title')
     Details News

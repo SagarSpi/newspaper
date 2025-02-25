@@ -1,4 +1,4 @@
-@extends('backend.layouts.headerSidebar')
+@extends('layouts.headerSidebar')
 
 @section('title')
     Newsletter
@@ -54,8 +54,8 @@
                                     <td>{{$email->status ??'N/A'}}</td>
                                     <td style="white-space: nowrap;">
 
+                                        <a href="#" class="btn btn-outline-success btn-sm"><i class="fa-regular fa-paper-plane"></i></a>
                                         <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
-
                                         <a href="#" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>

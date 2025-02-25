@@ -9,6 +9,8 @@
     {{-- FONTAWESOME CSS FILE  --}}
     <link rel="stylesheet" href="{{asset('assets/global/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/global/css/fontawesome.min.css')}}">
+    {{-- NOTIFICATION TOSTER CSS CDN LINK  --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     {{-- HEADER SIDEBAR CUSTOM CSS FILE  --}}
     <link rel="stylesheet" href="{{asset('assets/backend/css/headerSidebar.css')}}">
     @stack('css')
@@ -22,7 +24,7 @@
                     <div class="col-2">
                         <div class="header-logo">
                             <a href="{{route('dashboard')}}">
-                                <img src="{{asset('assets/global/img/logo.svg')}}">
+                              <img src="{{asset('assets/global/img/logo.svg')}}">
                             </a>
                         </div>
                     </div>
@@ -185,6 +187,24 @@
     {{-- FONTAWESOME JS FILE  --}}
     <script src="{{asset('assets/global/js/all.min.js')}}"></script>
     <script src="{{asset('assets/backend/js/headerSidebar.js')}}"></script>
+    {{-- NOTIFICATION TOSTER JS CDN LINK  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+      toastr.options = {
+        "closeButton": true,
+        "progressBar": true
+      };
+      
+      @if (Session::has('success'))
+        toastr.success("{{session('success')}}",'Success !',{timeOut:6000});
+      @elseif (Session::has('error'))
+        toastr.error("{{session('error')}}",'Error !',{timeOut:6000});
+      @elseif (Session::has('warning'))
+        toastr.warning("{{session('warning')}}",'Warning !',{timeOut:6000});
+      @endif
+    </script>
+
     @stack('script')
   </body>
 </html>

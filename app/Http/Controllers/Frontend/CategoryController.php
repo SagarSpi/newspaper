@@ -43,7 +43,7 @@ class CategoryController extends Controller
                         ->take(10)
                         ->get();
 
-        return view('frontend.category',[
+        return view('frontend.category.category',[
             'lead_news'=> $lead_news,
             'lead_news_side'=>$lead_news_sidebar,
             'cat_news' => $cat_news,
