@@ -11,6 +11,8 @@ class DetailsController extends Controller
     {
         $news_details = Article::findOrFail($id);
 
+        $news_details->increment('visits');
+
         $related_news = Article::where([
                                 ['status','active'],
                                 ['category',$news_details->category],

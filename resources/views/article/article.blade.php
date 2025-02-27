@@ -55,31 +55,31 @@
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col"><input type="checkbox" name="" id="select_all_ids"></th>
-                                <th scope="col">Id</th>
-                                <th style="white-space: nowrap;" scope="col">Created Date</th>
+                                <th scope="col" class="text-center"><input type="checkbox" name="" id="select_all_ids"></th>
+                                <th scope="col" class="text-center">Id</th>
+                                <th scope="col" class="text-center text-nowrap">Created At</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Category</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Commnets</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created by</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center">Image</th>
+                                <th scope="col" class="text-center">Commnets</th>
+                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center text-nowrap">Created by</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($articles as $news)
                                 <tr id="article_ids{{$news->id}}">
-                                    <th><input type="checkbox" value="{{$news->id}}" name="ids" id="" class="checkbox_ids"></th>
-                                    <th scope="row">{{$news->id ??''}}</th>
-                                    <td>{{$news->created_at ??'N/A'}}</td>
+                                    <th class="text-center"><input type="checkbox" value="{{$news->id}}" name="ids" id="" class="checkbox_ids"></th>
+                                    <th scope="row" class="text-center">{{$news->id ??''}}</th>
+                                    <td class="text-center">{{$news->created_at ??'N/A'}}</td>
                                     <td>{{$news->title ??'N/A'}}</td>
                                     <td>{{$news->category ??'N/A'}}</td>
-                                    <td><img src="{{$news->image_url ?? ''}}" alt="News Image" height="40" width="40"></td>
+                                    <td class="text-center"><img src="{{$news->image_url ?? ''}}" alt="News Image" height="40" width="40"></td>
                                     <td class="text-center">{{$news->comments_count ?? 'N/A'}}</td>
-                                    <td>{{$news->status ??'N/A'}}</td>
-                                    <td style="white-space: nowrap;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id ??'' }}" >{{$news->user->name ??'N/A'}}</td>
-                                    <td style="white-space: nowrap;">
+                                    <td class="text-center">{{$news->status ??'N/A'}}</td>
+                                    <td class="text-center text-nowrap" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id ??'' }}" >{{$news->user->name ??'N/A'}}</td>
+                                    <td class="text-center text-nowrap">
                                         <a href="{{route('article.show',$news->id ??'N/A')}}" class="btn btn-outline-primary btn-sm">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Backend;
 
+use App\Models\Frontend\Comment;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,7 +29,7 @@ class User extends Authenticatable
     public function articles()
     {
         return $this->hasMany(Article::class)
-                ->select(['id', 'title', 'category', 'shortDesc', 'image_url', 'visits','user_id']);
+                ->select(['id', 'title', 'category', 'shortDesc', 'image_url', 'visits','user_id','status']);
     }
 
     protected function Contacts() : Attribute {
@@ -56,6 +57,7 @@ class User extends Authenticatable
     {
         return [
             'password' => 'hashed',
+            'last_seen' => 'datetime',
         ];
     }
 }

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Backend\User;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
-use App\Jobs\SendMailJob;
 use Carbon\Carbon;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Jobs\SendMailJob;
+use App\Models\Backend\User;
 use Illuminate\Http\Request;
+use App\Models\Frontend\Comment;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\Article;
 use Illuminate\Support\Facades\Hash;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class UserController extends Controller
 {   
@@ -19,6 +21,11 @@ class UserController extends Controller
     {
 
         $query = User::query()->latest();
+
+        // Jodi contact thake, tahole search query add korbo
+        // if (!empty($request->contact)) {
+        //     $query->whereRaw('CAST(contacts AS CHAR) LIKE ?', ["%{$request->contact}%"]);
+        // }
 
         // Jodi name thake, tahole search query add korbo
         if (!empty($request->name)) {
@@ -30,9 +37,9 @@ class UserController extends Controller
             $query->where('email', 'like', "%{$request->email}%");
         }
 
-        // Jodi contact thake, tahole search query add korbo
-        if (!empty($request->contact)) {
-            $query->whereRaw('CAST(contacts AS CHAR) LIKE ?', ["%{$request->contact}%"]);
+        // Jodi status thake, tahole search query add korbo
+        if (!empty($request->status)) {
+            $query->where('status', $request->status);
         }
 
         // Jodi role thake, tahole search query add korbo
@@ -78,13 +85,14 @@ class UserController extends Controller
 
         return view('users.users',compact('users'));
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {   
 
-        $users = User::orderBy('created_at','DESC')
+        $users = User::orderBy('last_seen','DESC')
                     ->paginate(9);
 
         return view('users.users',compact('users'));
@@ -141,7 +149,6 @@ class UserController extends Controller
 
             dispatch(new SendMailJob((object)$request->all()));
 
-
             return redirect()->route('login')->with('success','Users Created Succesfully !');
 
         } catch (\Exception $err) {
@@ -156,10 +163,46 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
+
         $user = User::findOrFail($id);
+
+        $userWitharticleCount = User::withCount(['articles' => function($query) {
+                $query->where('status', 'active'); // শুধুমাত্র 'active' status এর articles গুলো গণনা করা
+            }])
+            ->findOrFail($id);
+
+        // ইউজারের মোট visits যোগফল বের করা
+        $totalUserVisits = $user->articles()->sum('visits');
+
+        // ইউজারের inactive status-এর মোট article সংখ্যা বের করা
+        $pendingNewsCount = $user->articles()->where('status', 'inactive')->count();
+
+        $rejectedNewsCount = $user->articles()->where('status', 'rejected')->count();
+
+        $totalUserComments = $user->articles->load('comments')->pluck('comments')->flatten()->count();
+
+        $activeArticle = Article::where('status','active')->count();
+        $percentageArticleShow = $activeArticle ? number_format(($userWitharticleCount->articles_count / $activeArticle) * 100, 1) : 0;
+
+        $inactiveArticle = Article::where('status','inactive')->count();
+        $percentageArticleRequest = $inactiveArticle ? number_format(($pendingNewsCount / $inactiveArticle) * 100,1):0;
+
+
+        $rejectedArticle = Article::where('status','rejected')->count();
+        $percentageRejectedArticle = $rejectedArticle ? number_format(($rejectedNewsCount / $rejectedArticle )* 100,1):0;
+        
+
+        $totalComments = Comment::count();
+        $percentageComments = $totalComments ? number_format(($totalUserComments / $totalComments)*100,1): 0;
+
+
+        $totalVisits = Article::sum('visits');
+        $percentageVisits = $totalVisits ? number_format(($totalUserVisits / $totalVisits)*100,1):0;
+
+        // ইউজারের সর্বশেষ ৮টি আর্টিকেল পেজিনেশনসহ নিয়ে আসা
         $articles = $user->articles()->latest()->paginate(8);
 
-       return view('users.userProfile',compact('user', 'articles'));
+        return view('users.userProfile', compact('user', 'userWitharticleCount','percentageArticleShow', 'totalUserVisits','percentageVisits','pendingNewsCount','percentageArticleRequest','rejectedNewsCount','percentageRejectedArticle','totalUserComments','percentageComments', 'articles'));
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Backend\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -28,7 +29,11 @@ class LoginController extends Controller
 
     function logout()
     {
+        
+        User::where('id',Auth::user()->id)->update(['status'=>'inactive']);
+
         Auth::logout();
+        
         return redirect()->route('login');
     }
 }

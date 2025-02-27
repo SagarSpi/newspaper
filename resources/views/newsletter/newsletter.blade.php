@@ -23,7 +23,7 @@
             </div>
             <div class="col-8">
                 <div class="heading">
-                    <h5>Manage Emails</h5>
+                    <h5>Manage Newsletters</h5>
                 </div>
             </div>
             <div class="col-4">
@@ -38,25 +38,30 @@
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Create Time</th>
+                                <th scope="col" class="text-center">Id</th>
+                                <th scope="col" class="text-center text-nowrap">Create Time</th>
                                 <th scope="col">Email</th>
-                                <th scope="col" style="white-space: nowrap">Status</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($emails as $email)
                                 <tr>
-                                    <th scope="row">{{$email->id ??''}}</th>
-                                    <td>{{$email->created_at ??'N/A'}}</td>
+                                    <th scope="row" class="text-center">{{$email->id ??''}}</th>
+                                    <td class="text-center">{{$email->created_at ??'N/A'}}</td>
                                     <td>{{$email->email ??'N/A'}}</td>
-                                    <td>{{$email->status ??'N/A'}}</td>
-                                    <td style="white-space: nowrap;">
-
-                                        <a href="#" class="btn btn-outline-success btn-sm"><i class="fa-regular fa-paper-plane"></i></a>
-                                        <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        <a href="#" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                    <td class="text-center">{{$email->status ??'N/A'}}</td>
+                                    <td class="text-center text-nowrap">
+                                        <a href="#" class="btn btn-outline-success btn-sm">
+                                            <i class="fa-regular fa-paper-plane"></i>
+                                        </a>
+                                        <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
+                                        <a href="#" class="btn btn-outline-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -13,8 +13,13 @@
                         <div class="input-group mt-2">
                             <input type="text" class="form-control" name="name" placeholder="Name">
                             <input type="text" class="form-control" name="email" placeholder="Email">
-                            <input type="text" class="form-control" name="contact" placeholder="Phone">
                             <input type="text" class="form-control" name="role" placeholder="Role">
+                            <select class="form-select" name="status">
+                                <option disabled selected>Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="deleted">Deleted</option>
+                            </select>
                             <select class="form-select" name="date_filter">
                                 <option selected disabled>Filter By Date</option>
                                 <option value="today">Today</option>
@@ -48,44 +53,42 @@
                 <table class="table table-striped table-hover">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Image</th>
+                            <th scope="col" class="text-center">Id</th>
+                            <th scope="col" class="text-center">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Contacts</th>
-                            <th scope="col">Rols</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" class="text-center">Role</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center text-nowrap">Last Seen</th>
+                            <th scope="col" class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <th scope="row">{{$user->id ??''}}</th>
+                                <th scope="row" class="text-center">{{$user->id ??''}}</th>
                                 <td><img src="{{$user->image_url ??''}}" class="rounded-circle" alt="User Image" height="40" width="40"></td>
                                 <td>{{$user->name ??'N/A'}}</td>
                                 <td>{{$user->email ??'N/A'}}</td>
                                 <td>{{$user->contacts ??'N/A'}}</td>
-                                <td>{{$user->role ??'N/A'}}</td>
-                                <td>{{$user->status ??'N/A'}}</td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="dropdown-item" href="{{route('user.show',$user->id)}}"><i class="fa-solid fa-eye pe-2"></i> View</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="{{route('user.edit',$user->id)}}"><i class="fa-solid fa-pen-to-square pe-2"></i> Edit</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item"><i class="fa-solid fa-trash pe-2"></i> Delete</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <td class="text-center">{{$user->role ??'N/A'}}</td>
+                                <td class="text-center">
+                                    <span class="bg-{{ $user->status === 'Active' ? 'success' : ($user->status === 'Inactive' ? 'danger' : 'transparent') }} py-1 px-3 rounded-pill text-lg text-white">
+                                        {{ $user->status ?? 'N/A' }}
+                                    </span>
+                                </td>
+                                <td class="text-center text-nowrap">{{ $user->last_seen ? $user->last_seen->diffForHumans() : 'N/A' }}</td>
+                                <td class="text-center text-nowrap">
+                                    <a class="btn btn-outline-primary btn-sm" href="{{route('user.show',$user->id)}}">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                    <a class="btn btn-outline-warning btn-sm" href="{{route('user.edit',$user->id)}}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a class="btn btn-outline-danger btn-sm">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

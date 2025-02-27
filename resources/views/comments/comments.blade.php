@@ -49,25 +49,25 @@
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
                             <tr>
-                                <th scope="col"><input type="checkbox" name="" id="select_all_ids"></th>
-                                <th scope="col">Id</th>
-                                <th scope="col">Create At</th>
+                                <th scope="col" class="text-center"><input type="checkbox" name="" id="select_all_ids"></th>
+                                <th scope="col" class="text-center">Id</th>
+                                <th scope="col" class="text-center">Create At</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col" style="white-space: nowrap">Article Id</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center text-nowrap">Article Id</th>
+                                <th scope="col" class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($comments as $comment)
                                 <tr id="comment_ids{{$comment->id}}">
-                                    <td><input type="checkbox" value="{{$comment->id}}" name="ids" id="" class="checkbox_ids"></td>
-                                    <th scope="row">{{$comment->id ??''}}</th>
-                                    <td>{{$comment->created_at ??'N/A'}}</td>
+                                    <td class="text-center"><input type="checkbox" value="{{$comment->id}}" name="ids" id="" class="checkbox_ids"></td>
+                                    <th scope="row" class="text-center">{{$comment->id ??''}}</th>
+                                    <td class="text-center">{{$comment->created_at ??'N/A'}}</td>
                                     <td>{{$comment->title ??'N/A'}}</td>
                                     <td>{{$comment->subject ??'N/A'}}</td>
-                                    <td><a href="{{route('article.show',$comment->commentable_id)}}">{{$comment->commentable_id ??'N/A'}}</a></td>
-                                    <td style="white-space: nowrap;">
+                                    <td class="text-center"><a href="{{route('article.show',$comment->commentable_id)}}">{{$comment->commentable_id ??'N/A'}}</a></td>
+                                    <td class="text-center text-nowrap">
                                         <a href="#" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{route('comment.edit',$comment->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="#" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>

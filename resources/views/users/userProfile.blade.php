@@ -34,7 +34,7 @@
         <div class="profile-body">
             <div class="row">
                 <div class="col-4">
-                    <table class="table">
+                    <table class="table table-hover">
                         <tbody>
                             <tr>
                                 <th rowspan="1">Id</th>
@@ -72,36 +72,36 @@
                         <div class="col-4">
                             <div class="card-box">
                                 <div>
-                                    <h2>7857 <i class="fa-solid fa-arrow-up font-14"></i></h2>
+                                    <h2>{{$userWitharticleCount->articles_count}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
                                     <p>News Show</p>
                                 </div>
                                 <div>
-                                    <i class="fa-solid fa-cart-shopping font-35"></i>
-                                    <p class="font-14 mt-3">+45.4%</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="card-box">
-                                <div>
-                                    <h2>457 <i class="fa-solid fa-arrow-down font-14"></i></h2>
-                                    <p>News Request</p>
-                                </div>
-                                <div>
                                     <i class="fa-solid fa-newspaper font-35"></i>
-                                    <p class="font-14 mt-3">+21.8%</p>
+                                    <p class="font-14 mt-3">+{{$percentageArticleShow}}%</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card-box">
                                 <div>
-                                    <h2>8 <i class="fa-solid fa-arrow-up font-14"></i></h2>
+                                    <h2>{{$pendingNewsCount}} <i class="fa-solid fa-arrow-down font-14"></i></h2>
+                                    <p>Request News</p>
+                                </div>
+                                <div>
+                                    <i class="fa-solid fa-download font-35"></i>
+                                    <p class="font-14 mt-3">+{{$percentageArticleRequest}}%</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card-box">
+                                <div>
+                                    <h2>{{$rejectedNewsCount}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
                                     <p>Cancelled News</p>
                                 </div>
                                 <div>
                                     <i class="fa-solid fa-ban font-35"></i>
-                                    <p class="font-14 mt-3">-2.1%</p>
+                                    <p class="font-14 mt-3">-{{$percentageRejectedArticle}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -110,11 +110,11 @@
                         <div class="col-4">
                             <div class="card-box">
                                 <div>
-                                    <h2>7857 <i class="fa-solid fa-arrow-up font-14"></i></h2>
-                                    <p>News Show</p>
+                                    <h2> <i class="fa-solid fa-arrow-up font-14"></i></h2>
+                                    <p>Rating</p>
                                 </div>
                                 <div>
-                                    <i class="fa-solid fa-cart-shopping font-35"></i>
+                                    <i class="fa-regular fa-star font-35"></i>
                                     <p class="font-14 mt-3">+45.4%</p>
                                 </div>
                             </div>
@@ -122,24 +122,24 @@
                         <div class="col-4">
                             <div class="card-box">
                                 <div>
-                                    <h2>457 <i class="fa-solid fa-arrow-down font-14"></i></h2>
-                                    <p>News Request</p>
+                                    <h2>{{$totalUserComments}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
+                                    <p>Total Commnets</p>
                                 </div>
                                 <div>
-                                    <i class="fa-solid fa-newspaper font-35"></i>
-                                    <p class="font-14 mt-3">+21.8%</p>
+                                    <i class="fa-regular fa-comments font-35"></i>
+                                    <p class="font-14 mt-3">+{{$percentageComments}}%</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-4">
                             <div class="card-box">
                                 <div>
-                                    <h2>8 <i class="fa-solid fa-arrow-up font-14"></i></h2>
-                                    <p>Cancelled News</p>
+                                    <h2>{{$totalUserVisits}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
+                                    <p>Total Visits</p>
                                 </div>
                                 <div>
-                                    <i class="fa-solid fa-ban font-35"></i>
-                                    <p class="font-14 mt-3">-2.1%</p>
+                                    <i class="fa-regular fa-eye font-35"></i>
+                                    <p class="font-14 mt-3">+{{$percentageVisits}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -152,23 +152,23 @@
                     <table class="table table-striped table-hover mt-3">
                         <thead class="table-dark">
                           <tr>
-                            <th scope="col">Id</th>
+                            <th scope="col" class="text-center">Id</th>
                             <th scope="col">Category</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Visits</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" class="text-center">Image</th>
+                            <th scope="col" class="text-center">Visits</th>
+                            <th scope="col" class="text-center">Action</th>
                           </tr>
                         </thead>
                         <tbody>
                             @foreach ($articles as $article)
                                 <tr>
-                                    <th scope="row">{{$article->id}}</th>
+                                    <th scope="row" class="text-center">{{$article->id}}</th>
                                     <td>{{$article->category}}</td>
                                     <td>{{$article->title}}</td>
-                                    <td><img src="{{$article->image_url}}" alt="News Image" height="40" width="40"></td>
-                                    <td>{{$article->visits}}</td>
-                                    <td>
+                                    <td class="text-center"><img src="{{$article->image_url}}" alt="News Image" height="40" width="40"></td>
+                                    <td class="text-center">{{$article->visits}}</td>
+                                    <td class="text-center text-nowrap">
                                         <a href="{{route('article.show',$article->id)}}" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                         <a href="{{route('article.edit',$article->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <a href="#" class="btn btn-outline-danger btn-sm"><i class="fa-solid fa-trash"></i></a>

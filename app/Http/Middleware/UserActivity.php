@@ -2,12 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Backend\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class ValidUser
+class UserActivity
 {
     /**
      * Handle an incoming request.
@@ -15,12 +16,12 @@ class ValidUser
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {   
+    {
         if (Auth::check()) {
-            return $next($request);
+            // last seen 
+            User::where('id',Auth::user()->id)->update(['last_seen'=>now()]);
+
         }
-        else {
-            return redirect()->route('login');
-        }
+        return $next($request);
     }
 }

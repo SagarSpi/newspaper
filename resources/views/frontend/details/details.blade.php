@@ -89,16 +89,32 @@
                             <img src="{{$news_details->user->image_url??''}}" class="img-thumbnail" alt="Creator Image">
                         </div>
                         <h3>{{$news_details->user->name??'Reporter Name'}}</h3>
-                        <div class="reating">
-                            <h5>Reating Us</h5>
-                            <ul>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                            </ul>
+
+
+                        <div class="star-widget">
+                            <input type="radio" name="rate" id="rate-5">
+                            <label for="rate-5" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-4">
+                            <label for="rate-4" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-3">
+                            <label for="rate-3" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-2">
+                            <label for="rate-2" class="fas fa-star"></label>
+                            <input type="radio" name="rate" id="rate-1">
+                            <label for="rate-1" class="fas fa-star"></label>
+                            <p>
+                              <header></header>
+                            </p>
                         </div>
+
+
+                            {{-- <ul>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                            </ul> --}}
                     </div>
                 </div>
                 <div class="details-sidebar">

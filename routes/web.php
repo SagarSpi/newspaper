@@ -10,7 +10,7 @@ use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\DetailsController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\NewsletterController;
-use App\Http\Middleware\ValidUser;
+use App\Http\Middleware\UserActivity;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/latestNews', function () {
@@ -20,7 +20,6 @@ Route::get('/latestNews', function () {
 
 Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
 Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
-
 
 
 // Frontend Route here 
@@ -39,7 +38,7 @@ Route::post('/register/post',[UserController::class,'store'])->name('user.store'
 
 
 // Backend Route Here
-Route::middleware(['auth',ValidUser::class.':admin'])->group(function () {
+Route::middleware(['auth',UserActivity::class])->group(function () {
 
     Route::get('/newsletter/email/list',[NewsletterController::class,'index'])->name('email.list');
     Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit']);
