@@ -58,7 +58,6 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::delete('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->name('article.delete');
     Route::delete('/manage/article/delete',[ArticleController::class,'destroyAll'])->name('article.deleteAll');
 
-
     // Comments Route Here
     Route::get('/manage/comments',[CommentController::class,'index'])->name('comment.list');
     Route::get('/manage/comments/search',[CommentController::class,'searchData'])->name('comment.search');

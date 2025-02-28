@@ -10,9 +10,23 @@ use Illuminate\Http\Request;
 class DashboardContoller extends Controller
 {
     function index(Request $request)
-    {   
+    {
+        $totalArticle = Article::count();
 
-        $pendingUsers = User::where('status','active')->latest()->paginate(5);
+        $articleShow = Article::where('status','active')->count();
+        $percentageArticleShow = $totalArticle ? number_format(($articleShow / $totalArticle ) * 100,1):0;
+
+        $articlePending = Article::where('status','inactive')->count();
+        $percentageArticlePending = $articlePending ? number_format(($articlePending / $totalArticle) * 100,1): 0;
+
+        $rejectedArticle = Article::where('status','rejected')->count();
+        $percentageRejectedArticle = $rejectedArticle ? number_format(($rejectedArticle / $totalArticle) * 100,1): 0;
+        
+        $totalUsers = User::count();
+        $pendingUsersCount = User::where('status','pending')->count();
+        $percentagePendingUsers = $pendingUsersCount ? number_format(($pendingUsersCount / $totalUsers) * 100,1):0;
+
+        $pendingUsers = User::where('status','pending')->latest()->paginate(5);
 
         $usersChart = User::whereYear('created_at', now()->year)
             ->selectRaw('COUNT(*) as count, DATE_FORMAT(created_at, "%b") as month_name')
@@ -47,8 +61,7 @@ class DashboardContoller extends Controller
         ];
         // ARTICLE CHART CODE END 
 
-
-        return view('dashboard.dashboard', compact('pendingUsers','articleChart', 'usersChart'));
+        return view('dashboard.dashboard', compact('articleShow','percentageArticleShow','articlePending','percentageArticlePending','rejectedArticle','percentageRejectedArticle','pendingUsersCount','percentagePendingUsers','pendingUsers','articleChart', 'usersChart'));
 
     }
 }

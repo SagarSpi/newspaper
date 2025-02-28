@@ -73,7 +73,7 @@
                             <div class="card-box">
                                 <div>
                                     <h2>{{$userWitharticleCount->articles_count}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
-                                    <p>News Show</p>
+                                    <p>Articles Show</p>
                                 </div>
                                 <div>
                                     <i class="fa-solid fa-newspaper font-35"></i>
@@ -85,7 +85,7 @@
                             <div class="card-box">
                                 <div>
                                     <h2>{{$pendingNewsCount}} <i class="fa-solid fa-arrow-down font-14"></i></h2>
-                                    <p>Request News</p>
+                                    <p>Request Articles</p>
                                 </div>
                                 <div>
                                     <i class="fa-solid fa-download font-35"></i>
@@ -97,7 +97,7 @@
                             <div class="card-box">
                                 <div>
                                     <h2>{{$rejectedNewsCount}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
-                                    <p>Cancelled News</p>
+                                    <p>Cancelled Articles</p>
                                 </div>
                                 <div>
                                     <i class="fa-solid fa-ban font-35"></i>
@@ -135,7 +135,7 @@
                             <div class="card-box">
                                 <div>
                                     <h2>{{$totalUserVisits}} <i class="fa-solid fa-arrow-up font-14"></i></h2>
-                                    <p>Total Visits</p>
+                                    <p>Total Visits Articles</p>
                                 </div>
                                 <div>
                                     <i class="fa-regular fa-eye font-35"></i>

@@ -19,17 +19,17 @@
                 <div class="card-body">
                   <div class="d-flex align-items-center">
                     <div>
-                      <h2 class="mb-0 text-white">1 <i class="fa-solid fa-arrow-up font-14 text-white"></i></h2>
+                      <h2 class="mb-0 text-white">{{$articleShow}} <i class="fa-solid fa-arrow-up font-14 text-white"></i></h2>
                     </div>
                     <div class="ms-auto font-35 text-white">
-                      <i class="fa-solid fa-cart-shopping"></i>
+                      <i class="fa-solid fa-newspaper"></i>
                     </div>
                   </div>
                   <div class="d-flex align-items-center">
                     <div>
-                      <p class="mb-0 text-white">News Show</p>
+                      <p class="mb-0 text-white">Articles Show</p>
                     </div>
-                    <div class="ms-auto font-14 text-white">+23.4%</div>
+                    <div class="ms-auto font-14 text-white">+{{$percentageArticleShow}}%</div>
                   </div>
                 </div>
               </div>
@@ -39,17 +39,17 @@
                 <div class="card-body">
                   <div class="d-flex align-items-center">
                     <div>
-                      <h2 class="mb-0 text-white">265 <i class="fa-solid fa-arrow-down font-14 text-white"></i></h2>
+                      <h2 class="mb-0 text-white">{{$articlePending}} <i class="fa-solid fa-arrow-down font-14 text-white"></i></h2>
                     </div>
                     <div class="ms-auto font-35 text-white">
-                      <i class="fa-solid fa-newspaper"></i>
+                      <i class="fa-solid fa-download"></i>
                     </div>
                   </div>
                   <div class="d-flex align-items-center">
                     <div>
-                      <p class="mb-0 text-white">News Request</p>
+                      <p class="mb-0 text-white">Articles Request</p>
                     </div>
-                    <div class="ms-auto font-14 text-white">+14.7%</div>
+                    <div class="ms-auto font-14 text-white">+{{$percentageArticlePending}}%</div>
                   </div>
                 </div>
               </div>
@@ -59,7 +59,7 @@
                 <div class="card-body">
                   <div class="d-flex align-items-center">
                     <div>
-                      <h2 class="mb-0 text-white">11 <i class="fa-solid fa-arrow-up font-14 text-white"></i></h2>
+                      <h2 class="mb-0 text-white">{{$rejectedArticle}} <i class="fa-solid fa-arrow-up font-14 text-white"></i></h2>
                     </div>
                     <div class="ms-auto font-35 text-white">
                       <i class="fa-solid fa-ban"></i>
@@ -67,9 +67,9 @@
                   </div>
                   <div class="d-flex align-items-center">
                     <div>
-                      <p class="mb-0 text-white">Cancelled News</p>
+                      <p class="mb-0 text-white">Cancelled Articles</p>
                     </div>
-                    <div class="ms-auto font-14 text-white">-12.9%</div>
+                    <div class="ms-auto font-14 text-white">-{{$percentageRejectedArticle}}%</div>
                   </div>
                 </div>
               </div>
@@ -79,7 +79,7 @@
                 <div class="card-body">
                   <div class="d-flex align-items-center">
                     <div>
-                      <h2 class="mb-0 text-white">22 <i class="fa-solid fa-arrow-up font-14 text-white"></i></h2>
+                      <h2 class="mb-0 text-white">{{$pendingUsersCount}} <i class="fa-solid fa-arrow-down font-14 text-white"></i></h2>
                     </div>
                     <div class="ms-auto font-35 text-white"><i class="fa-regular fa-user"></i>
                     </div>
@@ -88,7 +88,7 @@
                     <div>
                       <p class="mb-0 text-white">New Users</p>
                     </div>
-                    <div class="ms-auto font-14 text-white">+13.6%</div>
+                    <div class="ms-auto font-14 text-white">+{{$percentagePendingUsers}}%</div>
                   </div>
                 </div>
               </div>
