@@ -70,7 +70,7 @@ class CommentController extends Controller
 
         // Jodi kono result na thake, tahole back pathay dibo
         if ($comments->isEmpty()) {
-            return redirect()->back()->with('warning', 'No comments found.');
+            return redirect()->back()->with('info', 'No Comments Cound.');
         }
 
         return view('comments.comments',compact('comments'));
@@ -124,11 +124,11 @@ class CommentController extends Controller
             ]);
 
             DB::commit();
-            return redirect()->back()->with('success','Comment submitted succesfully !');
+            return redirect()->back()->with('success','Comment Submitted Succesfully !');
 
         } catch (\Exception $err) {
             DB::rollBack();
-            return back()->with('error','Something went wrong! Please try again !')->withInput();
+            return back()->with('error','Something Went Wrong! Please Try Again !')->withInput();
         }
     }
 
@@ -191,11 +191,21 @@ class CommentController extends Controller
      */
     public function destroyAll(Request $request)
     {
-        $ids = $request->ids;
+        try {
+            DB::beginTransaction();
 
-        Comment::whereIn('id',$ids)->delete();
-        
-        return response()->json(["success"=>"Comment have been deleted ! "]);
-        
+            $ids = $request->ids;
+            Comment::whereIn('id',$ids)->delete();
+
+            DB::commit();
+            // return redirect()->back()->with('success','Comment Delected Successfully !');
+
+            return response()->json(["success"=>"Comment have been deleted ! "]);
+            
+        } catch (\Exception $th) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error','Comment Not Deleted !');
+        }
     }
 }

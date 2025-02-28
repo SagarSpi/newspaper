@@ -80,7 +80,7 @@ class UserController extends Controller
         $users = $query->paginate(9);
 
         if ($users->isEmpty()) {
-            return redirect()->back()->with('error', 'No Users found.');
+            return redirect()->back()->with('info', 'No Users found.');
         }
 
         return view('users.users',compact('users'));
@@ -141,7 +141,7 @@ class UserController extends Controller
                 'image_url'=>$uploadedFileUrl,
                 'image_id'=>$public_id,
                 'contacts'=>$request->number,
-                'status'=>'active',
+                'status'=>'inactive',
                 'role'=>'user',
             ]);
             
@@ -266,7 +266,7 @@ class UserController extends Controller
 
         } catch (\Exception $err) {
             DB::rollBack();
-            return redirect()->route('user.edit',$id)->with('error',"Failed To Update User !". $err->getMessage());
+            return redirect()->route('user.edit',$id)->with('error',"Failed To Update User !");
         }
     }
 

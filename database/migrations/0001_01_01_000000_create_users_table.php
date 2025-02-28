@@ -18,8 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('ip_address', 45)->nullable();
             $table->string('password');
-            $table->string('image_url');
-            $table->string('image_id');
+            $table->string('auth_provider')->nullable();
+            $table->string('auth_provider_id')->nullable();
+            $table->string('image_url')->nullable();
+            $table->string('image_id')->nullable();
             $table->integer('contacts')->nullable();
             $table->string('role',20);
             $table->string('status')->nullable();

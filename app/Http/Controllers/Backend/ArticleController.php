@@ -81,7 +81,9 @@ class ArticleController extends Controller
 
         // Jodi kono result na thake, tahole back pathay dibo
         if ($articles->isEmpty()) {
-            return redirect()->back()->with('error', 'No articles found.');
+            
+            // toastr()->closeButton(true)->info('No Article Found !');
+            return redirect()->back()->with('info','No Article Found !');
         }
 
         return view('article.article', compact('articles'));
@@ -240,9 +242,8 @@ class ArticleController extends Controller
         } catch (\Exception $err) {
 
             DB::rollBack();
-            return back()->with('error', 'Something went wrong! Please try again.'.$err->getMessage());
+            return back()->with('error', 'Something went wrong! Please try again.');
         }
-        
     }
 
     /**
@@ -252,17 +253,38 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        $article->delete();
+        try {
+            DB::beginTransaction();
 
-        return response()->json(["success"=>"Article Deleted Successfully !"]);
+            $article->delete();
+            DB::commit();
+
+            // return response()->json(["success"=>"Article Deleted Successfully !"]);
+
+        } catch (\Exception $th) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error','Article Not Deleted ! Please Try Again.');
+        }
     }
 
     public function destroyAll(Request $request)
     {
-        $ids = $request->ids;
+        try {
 
-        Article::whereIn('id',$ids)->delete();
+            DB::beginTransaction();
+
+            $ids = $request->ids;
+            Article::whereIn('id',$ids)->delete();
+
+            DB::commit();
+            // return response()->json(["success"=>"Article Deleted Successfully !"]);
+
+        } catch (\Exception $th) {
+            DB::rollBack();
+            return redirect()->back()->with('error','Article Not Deleted ! Please Try Again.');
+        }
         
-        return response()->json(["success"=>"Article Deleted Successfully !"]);
+        
     }
 }

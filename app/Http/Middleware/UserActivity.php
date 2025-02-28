@@ -18,9 +18,12 @@ class UserActivity
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            // last seen 
-            User::where('id',Auth::user()->id)->update(['last_seen'=>now()]);
-
+            // ইউজারের আইপি এবং লাস্ট সীন আপডেট করা
+            User::where('id', Auth::id())->update([
+                'last_seen' => now(),
+                'status'=>'active',
+                'ip_address' => $request->ip(),
+            ]);
         }
         return $next($request);
     }

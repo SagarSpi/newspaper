@@ -9,8 +9,6 @@
     {{-- FONTAWESOME CSS FILE  --}}
     <link rel="stylesheet" href="{{asset('assets/global/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/global/css/fontawesome.min.css')}}">
-    {{-- NOTIFICATION TOSTER CSS CDN LINK  --}}
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     {{-- HEADER SIDEBAR CUSTOM CSS FILE  --}}
     <link rel="stylesheet" href="{{asset('assets/backend/css/headerSidebar.css')}}">
     @stack('css')
@@ -187,10 +185,7 @@
     {{-- FONTAWESOME JS FILE  --}}
     <script src="{{asset('assets/global/js/all.min.js')}}"></script>
     <script src="{{asset('assets/backend/js/headerSidebar.js')}}"></script>
-    {{-- NOTIFICATION TOSTER JS CDN LINK  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    <script>
+    {{-- <script>
       toastr.options = {
         "closeButton": true,
         "progressBar": true
@@ -203,7 +198,7 @@
       @elseif (Session::has('warning'))
         toastr.warning("{{session('warning')}}",'Warning !',{timeOut:6000});
       @endif
-    </script>
+    </script> --}}
 
     @stack('script')
   </body>

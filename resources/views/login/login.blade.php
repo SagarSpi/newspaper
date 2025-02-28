@@ -44,14 +44,14 @@
                                 <button type="submit"  class="btn btn-primary form-control">Log In</button>
                                 <p class="sign-text">Don't have an account ? <a href="/register">Sign Up</a></p>
                                 <p class="or-section">Or</p>
-                                <button type="button" href="#" class="btn btn-outline-primary form-control mb-3">
+                                <a href="{{route('auth.redirection','google')}}" class="btn btn-outline-primary form-control mb-3">
                                     <span><i class="fa-brands fa-google"></i></span>
                                     <span>Continue with Google</span>
-                                </button>
-                                <button type="button" href="#" class="btn btn-outline-primary form-control mb-3">
+                                </a>
+                                <a href="{{route('auth.redirection','facebook')}}" class="btn btn-outline-primary form-control mb-3">
                                     <span><i class="fa-brands fa-facebook"></i></span>
                                     <span>Continue with Facebook</span>
-                                </button>
+                                </a>
                             </form>
                         </div>
                     </div>

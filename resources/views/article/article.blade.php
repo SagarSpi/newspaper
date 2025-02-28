@@ -19,7 +19,12 @@
                             <input class="form-control" name="keyword" placeholder="Keyword">
                             <input type="text" class="form-control" name="title" placeholder="Title">
                             <input type="text" class="form-control" name="category" placeholder="Category">
-                            <input type="text" class="form-control" name="status" placeholder="Status">
+                            <select class="form-select" name="status">
+                                <option disabled selected>Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
                             <select class="form-select" name="date_filter">
                                 <option selected disabled>Filter By Date</option>
                                 <option value="today">Today</option>

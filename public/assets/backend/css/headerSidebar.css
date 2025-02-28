@@ -19,6 +19,9 @@ ul li {
     background-color: #198754;
     border-color: #198754;
 }
+.fl-wrapper[data-position^="top-"] {
+    top: 3.5em !important;
+}
 /* GLOBAL Pagination css code End */
 .header-section {
     background-color: #ffffff;

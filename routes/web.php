@@ -27,6 +27,15 @@ Route::get('/',[HomeController::class,'homePage'])->name('home');
 Route::get('/news/{cat}/category',[CategoryController::class,'categoryPage'])->name('news.category');
 Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name('news.details');
 Route::post('/news/details/{id}/comment/post',[CommentController::class,'store'])->name('news.comment');
+
+
+
+Route::get('/auth/redirection/{provider}',[LoginController::class,'authProviderRedirect'])->name('auth.redirection');
+Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentication'])->name('auth.callback');
+
+
+
+
 // Login Route here 
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');
 Route::post('/login/post',[LoginController::class,'loginPost'])->name('login.post');
