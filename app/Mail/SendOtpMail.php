@@ -9,17 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RegistrationSuccesFullMail extends Mailable
+class SendOtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
     /**
      * Create a new message instance.
      */
-    public function __construct($request)
+    public function __construct()
     {
-        $this->name = $request->name;
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class RegistrationSuccesFullMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Registration Success Full Mail',
+            subject: 'Send Otp Mail',
         );
     }
 
@@ -38,7 +37,7 @@ class RegistrationSuccesFullMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.registrationSuccessMail',
+            markdown: 'mail.OtpSend',
         );
     }
 
@@ -50,5 +49,10 @@ class RegistrationSuccesFullMail extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+
+    public function build()
+    {
+        $this->markdown('mail.otpSend')->subject('Your OTP');
     }
 }

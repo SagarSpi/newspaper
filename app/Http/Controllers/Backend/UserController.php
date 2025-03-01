@@ -10,9 +10,13 @@ use App\Models\Frontend\Comment;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendOtpJob;
+use App\Mail\RegistrationSuccesFullMail;
+use App\Mail\UserReportMail;
 use App\Models\Backend\Article;
 use Illuminate\Support\Facades\Hash;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {   
@@ -113,7 +117,6 @@ class UserController extends Controller
     {   
         try {
             DB::beginTransaction();
-
             // Default Image
             $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png';
             $public_id = 'Newspaper/Users-image/Default_image/user_default_image';
@@ -147,9 +150,14 @@ class UserController extends Controller
             
             DB::commit();
 
-            dispatch(new SendMailJob((object)$request->all()));
+            
+            for ($i=0; $i <10; $i++) { 
+                dispatch(new SendMailJob((object)$request->all()));
+            }
 
+            // dispatch(new SendMailJob((object)$request->all()));
             return redirect()->route('login')->with('success','Users Created Succesfully !');
+            // return redirect()->route('user.verification')->with('success','Users Created Succesfully !');
 
         } catch (\Exception $err) {
 
@@ -158,12 +166,22 @@ class UserController extends Controller
         }
     }
 
+    public function sendOtp()
+    {
+        dispatch(new SendOtpJob())->onQueue('high');
+        return redirect()->back()->with('success','OTP Send !');
+    }
+
+    public function otpVerification()
+    {
+        return view('register.otpVerification');
+    }
+
     /**
      * Display the specified resource.
      */
     public function show(int $id)
     {
-
         $user = User::findOrFail($id);
 
         $userWitharticleCount = User::withCount(['articles' => function($query) {
@@ -187,14 +205,11 @@ class UserController extends Controller
         $inactiveArticle = Article::where('status','inactive')->count();
         $percentageArticleRequest = $inactiveArticle ? number_format(($pendingNewsCount / $inactiveArticle) * 100,1):0;
 
-
         $rejectedArticle = Article::where('status','rejected')->count();
         $percentageRejectedArticle = $rejectedArticle ? number_format(($rejectedNewsCount / $rejectedArticle )* 100,1):0;
         
-
         $totalComments = Comment::count();
         $percentageComments = $totalComments ? number_format(($totalUserComments / $totalComments)*100,1): 0;
-
 
         $totalVisits = Article::sum('visits');
         $percentageVisits = $totalVisits ? number_format(($totalUserVisits / $totalVisits)*100,1):0;

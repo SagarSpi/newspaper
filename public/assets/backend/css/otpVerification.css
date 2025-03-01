@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+}
+.otp-verifcation-section {
+    width: 100%;
+    height: 100vh;
+    background-color: aqua;
+    padding-top: 90px;
+}

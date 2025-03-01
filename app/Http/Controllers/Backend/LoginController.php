@@ -6,7 +6,6 @@ use App\Models\Backend\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -68,7 +67,7 @@ class LoginController extends Controller
             abort(404);
             
         } catch (\Exception $err) {
-            return redirect()->route('login')->with('error','Google Authentication Failed ! Please Try Again.');
+            return redirect()->route('login')->with('error','Authentication Failed ! Please Try Again.');
         }
     }
 

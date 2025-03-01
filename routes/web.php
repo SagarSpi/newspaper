@@ -18,6 +18,11 @@ Route::get('/latestNews', function () {
 });
 
 
+Route::get('/v', function () {
+    return view('login.otpVerification');
+});
+
+
 Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
 Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
 
@@ -30,19 +35,23 @@ Route::post('/news/details/{id}/comment/post',[CommentController::class,'store']
 
 
 
+// Login Route here 
+Route::get('/login',[LoginController::class,'loginPage'])->name('login');
+Route::post('/login/post',[LoginController::class,'loginPost'])->name('login.post');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+// Login with Social account 
 Route::get('/auth/redirection/{provider}',[LoginController::class,'authProviderRedirect'])->name('auth.redirection');
 Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentication'])->name('auth.callback');
 
 
 
-
-// Login Route here 
-Route::get('/login',[LoginController::class,'loginPage'])->name('login');
-Route::post('/login/post',[LoginController::class,'loginPost'])->name('login.post');
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 // Register Route here 
 Route::get('/register',[UserController::class,'create'])->name('user.create');
 Route::post('/register/post',[UserController::class,'store'])->name('user.store');
+Route::get('/register/user/otp-verification',[UserController::class,'otpVerification'])->name('user.verification');
+
+Route::get('/send-otp',[UserController::class,'sendOtp'])->name('send-otp');
+
 
 
 

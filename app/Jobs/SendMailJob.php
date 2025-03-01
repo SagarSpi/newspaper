@@ -27,6 +27,6 @@ class SendMailJob implements ShouldQueue
     public function handle(): void
     {
         Mail::to($this->request->email)->send(new RegistrationSuccesFullMail($this->request));
-        Mail::to('sagarspi583@gmail.com')->send(new UserReportMail);
+        Mail::to('bestnews@gmail.com')->send(new UserReportMail);
     }
 }

@@ -83,7 +83,7 @@
                                     <td class="text-center"><img src="{{$news->image_url ?? ''}}" alt="News Image" height="40" width="40"></td>
                                     <td class="text-center">{{$news->comments_count ?? 'N/A'}}</td>
                                     <td class="text-center">{{$news->status ??'N/A'}}</td>
-                                    <td class="text-center text-nowrap" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-creator-id="{{ $news->user->id ??'' }}" >{{$news->user->name ??'N/A'}}</td>
+                                    <td class="showCreator text-center text-nowrap" data-id="{{ $news->user->id ?? 'N/A' }},{{ $news->user->name ?? 'N/A' }},{{ $news->user->email ?? 'N/A' }},{{ $news->user->image_url ?? 'N/A' }},{{ $news->user->contacts ?? 'N/A' }},{{ $news->user->role ?? 'N/A' }}" >{{$news->user->name ??'N/A'}}</td>
                                     <td class="text-center text-nowrap">
                                         <a href="{{route('article.show',$news->id ??'N/A')}}" class="btn btn-outline-primary btn-sm">
                                             <i class="fa-solid fa-eye"></i>
@@ -108,6 +108,7 @@
                             @endforeach
                         </tbody>
                     </table>
+
                     {{-- USER OFFCANVAS SIDEBAR CODE START  --}}
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                         <div class="offcanvas-header">
@@ -116,34 +117,34 @@
                         </div>
                         <div class="offcanvas-body">
                             <div class="creator-img">
-                                <img src="{{asset('assets/backend/img/user-avater.png')}}" class="img-thumbnail" alt="Creator Image">
+                                <img id="userImage" src="" class="img-thumbnail" alt="Creator Image">
                             </div>
-                            <table class="table">
+                            <table class="table table-hover">
                                 <tbody>
                                     <tr>
                                         <th rowspan="1">Id</th>
-                                        <td><b>:</b> {{$news->user->id ??'N/A'}}</td>
+                                        <td><b>:</b> <span id="userId">N/A</span></td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Name</th>
-                                        <td><b>:</b> {{$news->user->name ??'N/A'}}</td>
+                                        <td><b>:</b> <span id="userName">N/A</span></td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Email</th>
-                                        <td><b>:</b> {{$news->user->email ??'N/A'}}</td>
+                                        <td><b>:</b> <span id="userEmail">N/A</span></td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Contact</th>
-                                        <td><b>:</b> {{$news->user->contacts ??'N/A'}}</td>
+                                        <td><b>:</b> <span id="userContact">N/A</span></td>
                                     </tr>
                                     <tr>
                                         <th rowspan="1">Role</th>
-                                        <td><b>:</b> {{$news->user->role ??'N/A'}}</td>
+                                        <td><b>:</b> <span id="userRole">N/A</span></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="creator-action">
-                                <a href="{{$news->user->id ??'N/A'}}" class="btn btn-success btn-sm">View More</a>
+                                <a href="#" id="viewMoreBtn" class="btn btn-success btn-sm">View More</a>
                             </div>
                         </div>
                     </div>
@@ -161,21 +162,21 @@
     <!-- Delete Modal Start-->
     <div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-1">
+                        <h4 class="mb-1">Are you sure you want to remove this news?</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
+                </div>
             </div>
-            <div class="modal-body">
-              <div class="mt-1">
-                  <h4 class="mb-1">Are you sure you want to remove this news?</h4>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
-            </div>
-          </div>
         </div>
     </div>
     <!-- Delete Modal End-->
@@ -183,6 +184,71 @@
 @endsection
 
 @push('script')
+
+    <script>
+        $(document).ready(function () {
+            $('.showCreator').on('click', function () {
+                // data-id থেকে মান নিয়ে আসা
+                var dataId = $(this).data('id');
+                
+                // কমা দিয়ে আলাদা করা
+                var dataParts = dataId.split(',');
+
+                // প্রতিটি ভ্যারিয়েবল আলাদা করা
+                var userId = dataParts[0];
+                var userName = dataParts[1];
+                var userEmail = dataParts[2];
+                var userImage = dataParts[3];
+                var userContact = dataParts[4];
+                var userRole = dataParts[5];
+
+                // টেবিলের ভেতরে ডেটা আপডেট করা
+                $('#userId').text(userId);
+                $('#userName').text(userName);
+                $('#userEmail').text(userEmail);
+                $('#userImage').attr('src', userImage); // ইমেজ src আপডেট
+                $('#userContact').text(userContact);
+                $('#userRole').text(userRole);
+
+                 // `View More` বাটনে ডাইনামিক URL সেট করা
+                var viewMoreUrl = "{{ route('user.show', ['id' => 'userId']) }}";
+                viewMoreUrl = viewMoreUrl.replace('userId', userId); // `userId` প্যারামিটার দিয়ে রাউটটি আপডেট করা
+
+                // href অ্যাট্রিবিউটে URL সেট করা
+                $('#viewMoreBtn').attr('href', viewMoreUrl);
+
+                // Bootstrap Offcanvas ইন্সট্যান্স ওপেন করা
+                var offcanvasElement = document.getElementById('offcanvasRight');
+                var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+                offcanvas.show();
+
+                // "View More" বাটনে ক্লিক করলে URL এ রিডিরেক্ট করতে
+                $('#viewMoreBtn').on('click', function() {
+                    var url = $(this).attr('href');
+                    if (url) {
+                        window.location.href = url;  // রিডিরেক্ট করা
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    {{-- <script>
+        $(document).ready(function () {
+            $('.showCreator').on('click', function () {
+                var userId = $(this).data('id');
+                console.log("User ID: " + userId); // Debugging জন্য
+                
+                // Bootstrap Offcanvas ইন্সট্যান্স ওপেন করা
+                var offcanvasElement = document.getElementById('offcanvasRight');
+                var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+                offcanvas.show();
+            });
+        });
+    </script> --}}
+
+
     {{-- DELETE MODAL AJAX SCRIPT --}}
     <script>
         $(document).ready(function () {
@@ -200,12 +266,12 @@
                             _method: "DELETE" 
                         },
                         success: function (response) {
-                            toastr.success(response.success); // সফল হলে টোস্ট দেখানো
+                            // toastr.success(response.success);
                             $('#removeModal').modal('hide'); // মডাল বন্ধ করা
                             location.reload(); // পেজ রিফ্রেশ করা
                         },
                         error: function (xhr) {
-                            toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                            // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
                         }
                     });
                 });
@@ -228,9 +294,9 @@
                     all_ids.push($(this).val());
                 });
                 if (all_ids.length === 0) {
-                    toastr.error("Please select at least one record to delete.");
+                    // toastr.error("Please select at least one record to delete.");
                     return;
-                }
+                };
 
                 $.ajax({
                     url: "{{ route('article.deleteAll') }}",
@@ -241,13 +307,13 @@
                         _method: "DELETE" 
                     },
                     success:function (response) {
-                        toastr.success(response.success);
+                        // toastr.success(response.success);
                         $.each(all_ids,function (key,val) {
                             $('#article_ids'+val).remove();
                         })
                     },
                     error: function (xhr) {
-                        toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                        // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
                     }
                 });
             });

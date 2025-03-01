@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('tags')->nullable();
             $table->unsignedBigInteger('visits')->default(0);
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('status',20);
             $table->timestamps();
             $table->softDeletes();

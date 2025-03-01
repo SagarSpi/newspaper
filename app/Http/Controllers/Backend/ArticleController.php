@@ -99,6 +99,8 @@ class ArticleController extends Controller
                         ->orderByDesc('created_at')
                         ->paginate(9);
 
+        // return $articles;
+
         return view('article.article',compact('articles'));
     }
 
@@ -278,13 +280,11 @@ class ArticleController extends Controller
             Article::whereIn('id',$ids)->delete();
 
             DB::commit();
-            // return response()->json(["success"=>"Article Deleted Successfully !"]);
+            return response()->json(["success"=>"Article Deleted Successfully !"]);
 
         } catch (\Exception $th) {
             DB::rollBack();
             return redirect()->back()->with('error','Article Not Deleted ! Please Try Again.');
         }
-        
-        
     }
 }
