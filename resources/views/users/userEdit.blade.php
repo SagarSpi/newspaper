@@ -47,11 +47,10 @@
                                         <option value="" >Select Role</option>
                                         <option value="admin" {{old('role',$user->role??'')=='Admin'?'selected':''}}>Admin</option>
                                         <option value="manager" {{ old('role', $user->role ?? '') == 'Manager' ? 'selected' : '' }}>Manager</option>
-                                        <option value="editor" {{ old('role', $user->role ?? '') == 'Editor' ? 'selected' : '' }}>Editor</option>
                                         <option value="reporter" {{ old('role', $user->role ?? '') == 'Reporter' ? 'selected' : '' }}>Reporter</option>
                                         <option value="visitor" {{ old('role', $user->role ?? '') == 'Visitor' ? 'selected' : '' }}>Visitor</option>
                                         <option value="guest" {{ old('role', $user->role ?? '') == 'Guest' ? 'selected' : '' }}>Guest</option>
-                                        <option value="user" {{ old('role', $user->role ?? '') == 'User' ? 'selected' : '' }}>User</option>
+                                        <option value="client" {{ old('role', $user->role ?? '') == 'Client' ? 'selected' : '' }}>Client</option>
                                     </select>
                                     @error('role') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
@@ -61,7 +60,7 @@
                                         <option value="" disabled {{ old('status', $user->status ?? '') == '' ? 'selected' : '' }}>Select Role</option>
                                         <option {{old('status',$user->status ?? '')=='Active'?'selected':''}} value="active" >Active</option>
                                         <option {{old('status',$user->status ?? '')=='Inactive'?'selected':''}} value="inactive">Inactive</option>
-                                        <option {{old('status',$user->status ?? '')=='Deleted'?'selected':''}} value="deleted">Deleted</option>
+                                        <option {{old('status',$user->status ?? '')=='Rejected'?'selected':''}} value="rejected">Rejected</option>
                                     </select>
                                     @error('status')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>

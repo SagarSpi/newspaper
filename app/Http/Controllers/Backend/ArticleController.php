@@ -99,8 +99,6 @@ class ArticleController extends Controller
                         ->orderByDesc('created_at')
                         ->paginate(9);
 
-        // return $articles;
-
         return view('article.article',compact('articles'));
     }
 
@@ -148,7 +146,7 @@ class ArticleController extends Controller
                 'description'=> $request->description,
                 'tags'=> $request->tags,
                 'user_id'=> Auth::id(),
-                'status'=> 'active',
+                'status'=> 'pending',
             ]);
 
             DB::commit();
@@ -159,7 +157,6 @@ class ArticleController extends Controller
             DB::rollBack();
             return back()->with('error', 'Something went wrong! Please try again.');
         }
-
     }
 
     /**
@@ -245,6 +242,52 @@ class ArticleController extends Controller
 
             DB::rollBack();
             return back()->with('error', 'Something went wrong! Please try again.');
+        }
+    }
+
+    public function articleRequest()
+    {   
+        $articles = Article::where('status','pending')
+                            ->latest()
+                            ->paginate(9);
+
+        return view('article.articleRequest',compact('articles'));
+    }
+
+    public function articleReqApproved(string $id)
+    {
+        $article = Article::findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+
+            $article->update([
+                'status'=>'active'
+            ]);
+
+            DB::commit();
+
+            // return response()->json(["success"=>"Article Approved Successfully !"]);
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+            return redirect()->back()->with('error','Article Not Approved ! Please Try Again.');
+        }
+    }
+    public function approvedAll(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $ids = $request->ids;
+
+            Article::whereIn('id',$ids)->update([
+                'status'=>'active'
+            ]);
+
+            DB::commit();
+        } catch (\Exception $err) {
+            DB::rollBack();
+
         }
     }
 

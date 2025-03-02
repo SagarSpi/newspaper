@@ -16,17 +16,22 @@ class DashboardContoller extends Controller
         $articleShow = Article::where('status','active')->count();
         $percentageArticleShow = $totalArticle ? number_format(($articleShow / $totalArticle ) * 100,1):0;
 
-        $articlePending = Article::where('status','inactive')->count();
+        $articlePending = Article::where('status','pending')->count();
         $percentageArticlePending = $articlePending ? number_format(($articlePending / $totalArticle) * 100,1): 0;
 
         $rejectedArticle = Article::where('status','rejected')->count();
         $percentageRejectedArticle = $rejectedArticle ? number_format(($rejectedArticle / $totalArticle) * 100,1): 0;
         
+
+
+
+// AII KHANE KAJ KORTE HOBBE 
+
         $totalUsers = User::count();
         $pendingUsersCount = User::where('status','pending')->count();
         $percentagePendingUsers = $pendingUsersCount ? number_format(($pendingUsersCount / $totalUsers) * 100,1):0;
 
-        $pendingUsers = User::where('status','pending')->latest()->paginate(5);
+        $pendingUsers = User::where('status','rejected')->latest()->paginate(5);
 
         $usersChart = User::whereYear('created_at', now()->year)
             ->selectRaw('COUNT(*) as count, DATE_FORMAT(created_at, "%b") as month_name')

@@ -145,7 +145,7 @@ class UserController extends Controller
                 'image_id'=>$public_id,
                 'contacts'=>$request->number,
                 'status'=>'inactive',
-                'role'=>'user',
+                'role'=>'client',
             ]);
             
             DB::commit();

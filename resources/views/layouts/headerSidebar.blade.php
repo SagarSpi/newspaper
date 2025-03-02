@@ -113,6 +113,11 @@
                             </a>
                           </li>
                           <li>
+                            <a href="{{route('article.request')}}">
+                              <span class="text">Article Request</span>
+                            </a>
+                          </li>
+                          <li>
                             <a href="{{route('article.create')}}">
                               <span class="text">Create Article</span>
                             </a>

@@ -42,12 +42,12 @@ class UserRequest extends FormRequest
             return $input->password !== null;
         });
         // Apply 'required' validation if 'role' is provided
-        $validator->sometimes('role', 'required|string|in:admin,manager,editor,reporter,visitor,guest,user', function ($input) {
+        $validator->sometimes('role', 'required|string|in:admin,manager,reporter,visitor,guest,client', function ($input) {
             return $input->role !== null;
         });
 
         // Apply 'required' validation if 'status' is provided
-        $validator->sometimes('status', 'required|string|in:active,inactive,deleted', function ($input) {
+        $validator->sometimes('status', 'required|string|in:active,inactive,rejected', function ($input) {
             return $input->status !== null;
         });
     }
