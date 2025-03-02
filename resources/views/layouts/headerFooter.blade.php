@@ -18,42 +18,42 @@
     <div class="navber-section">
       <div class="container-fluid">
         <div class="row">
-            <div class="col-6">
+          <div class="col-6">
+            <ul>
+                <li>
+                  <a href="">E-paper</a>
+                </li>
+                <li>|</li>
+                <li>
+                  <a href="">Converter</a>
+                </li>
+                <li>|</li>
+                <li>
+                  <a href="">Archive</a>
+                </li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <div class="text-end">
               <ul>
-                  <li>
-                    <a href="">E-paper</a>
-                  </li>
-                  <li>|</li>
-                  <li>
-                    <a href="">Converter</a>
-                  </li>
-                  <li>|</li>
-                  <li>
-                    <a href="">Archive</a>
-                  </li>
+                <li class="me-2">
+                  <a href=""><i class="fa-brands fa-facebook fa-lg" style="color: #0866ff;"></i></a>
+                </li>
+                <li class="me-2">
+                  <a href=""><i class="fa-brands fa-whatsapp fa-lg" style="color: #0cc042;"></i></a>
+                </li>
+                <li class="me-2">
+                  <a href=""><i class="fa-brands fa-x-twitter fa-lg" style="color: #030303;"></i></a>
+                </li>
+                <li class="me-2">
+                  <a href=""><i class="fa-brands fa-instagram fa-lg" style="color: #fdbd03;"></i></a>
+                </li>
+                <li>
+                  <a href=""><i class="fa-brands fa-youtube fa-lg" style="color: #fb0000;"></i></a>
+                </li>
               </ul>
             </div>
-            <div class="col-6">
-              <div class="text-end">
-                <ul>
-                  <li class="me-2">
-                    <a href=""><i class="fa-brands fa-facebook fa-lg" style="color: #0866ff;"></i></a>
-                  </li>
-                  <li class="me-2">
-                    <a href=""><i class="fa-brands fa-whatsapp fa-lg" style="color: #0cc042;"></i></a>
-                  </li>
-                  <li class="me-2">
-                    <a href=""><i class="fa-brands fa-x-twitter fa-lg" style="color: #030303;"></i></a>
-                  </li>
-                  <li class="me-2">
-                    <a href=""><i class="fa-brands fa-instagram fa-lg" style="color: #fdbd03;"></i></a>
-                  </li>
-                  <li>
-                    <a href=""><i class="fa-brands fa-youtube fa-lg" style="color: #fb0000;"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
                     <a href="{{route('home')}}" class="active"><i class="fa-solid fa-house fa-lg" style="color: #ff1438;"></i></a>
                   </li>
                   <li>
-                    <a href="">Latest</a>
+                    <a href="{{route('news.latest')}}">Latest</a>
                   </li>
                   <li>
                     <a href="{{ route('news.category', ['cat' => 'Politics']) }}">Politics</a>
@@ -112,11 +112,17 @@
                   </li>
                   <li>
                     <div class="dropdown">
-                      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >Others</a>
+                      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Others</a>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li>
+                          <a href="{{ route('news.category', ['cat' => 'Opinion']) }}" class="dropdown-item">Opinion</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('news.category', ['cat' => 'Corporate']) }}" class="dropdown-item">Corporate</a>
+                        </li>
+                        <li>
+                          <a href="{{ route('news.category', ['cat' => 'Science_Technolog']) }}" class="dropdown-item">Science & Technology</a>
+                        </li>
                       </ul>
                     </div>
                   </li>
@@ -133,9 +139,9 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li class="dropdown-item width-size">
-                          <form action="" method="POST">
+                          <form action="{{route('news.search')}}" method="GET">
                             <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Search News...">
+                              <input type="text" name="search" class="form-control" placeholder="Search News...">
                               <button type="submit" class="btn btn-outline-danger">Search</button>
                             </div>
                           </form>

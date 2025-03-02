@@ -7,7 +7,7 @@ use App\Models\Backend\Article;
 
 class CategoryController extends Controller
 {
-    function categoryPage(string $category)
+    public function categoryPage(string $category)
     {
         $lead_news = Article::where([
                             ['status','active'],

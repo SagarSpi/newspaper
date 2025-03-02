@@ -48,6 +48,9 @@
                                 <option value="bangladesh"{{old('category', $article->category ?? '')=='Bangladesh'?'selected':''}}>Bangladesh</option>
                                 <option value="entertainment"{{old('category', $article->category ?? '')=='Entertainment'?'selected':''}}>Entertainment</option>
                                 <option value="international"{{old('category', $article->category ?? '')=='International'?'selected':''}}>International</option>
+                                <option value="opinion"{{old('category', $article->category ?? '')=='Opinion'?'selected':''}}>Opinion</option>
+                                <option value="corporate"{{old('category', $article->category ?? '')=='Corporate'?'selected':''}}>Corporate</option>
+                                <option value="science_technology"{{old('category', $article->category ?? '')=='Science_technology'?'selected':''}}>Science & Technology</option>
                             </select>
                             @error('category')<span class="text-danger">{{$message}}</span>@enderror
                         </div>

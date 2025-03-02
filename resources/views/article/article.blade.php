@@ -63,8 +63,8 @@
                                 <th scope="col" class="text-center"><input type="checkbox" name="" id="select_all_ids"></th>
                                 <th scope="col" class="text-center">Id</th>
                                 <th scope="col" class="text-center text-nowrap">Created At</th>
-                                <th scope="col">Title</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Title</th>
                                 <th scope="col" class="text-center">Image</th>
                                 <th scope="col" class="text-center">Commnets</th>
                                 <th scope="col" class="text-center">Status</th>
@@ -78,8 +78,8 @@
                                     <th class="text-center"><input type="checkbox" value="{{$news->id}}" name="ids" id="" class="checkbox_ids"></th>
                                     <th scope="row" class="text-center">{{$news->id ??''}}</th>
                                     <td class="text-center">{{$news->created_at ??'N/A'}}</td>
-                                    <td>{{$news->title ??'N/A'}}</td>
                                     <td>{{$news->category ??'N/A'}}</td>
+                                    <td>{{$news->title ??'N/A'}}</td>
                                     <td class="text-center"><img src="{{$news->image_url ?? ''}}" alt="News Image" height="40" width="40"></td>
                                     <td class="text-center">{{$news->comments_count ?? 'N/A'}}</td>
                                     <td class="text-center">{{$news->status ??'N/A'}}</td>

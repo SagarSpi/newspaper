@@ -74,14 +74,30 @@
                     </div>
                     <div class="menu-body">
                         <ul>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Politics</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Business</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Lifestyle</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Crime</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Education</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Sports</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Entertainment</a></li>
-                            <li><a href="" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> International</a></li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Politics']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Politics</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Business']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Business</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Science_technolog']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Science & Technology</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Education']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Education</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Sports']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Sports</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Corporate']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Corporate</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'Opinion']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Opinion</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('news.category', ['cat' => 'International']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> International</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

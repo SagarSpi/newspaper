@@ -9,13 +9,11 @@ use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\DetailsController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\LatestArticleController;
 use App\Http\Controllers\Frontend\NewsletterController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Middleware\UserActivity;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/latestNews', function () {
-    return view('frontend.lastestNews');
-});
 
 
 Route::get('/v', function () {
@@ -32,8 +30,8 @@ Route::get('/',[HomeController::class,'homePage'])->name('home');
 Route::get('/news/{cat}/category',[CategoryController::class,'categoryPage'])->name('news.category');
 Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name('news.details');
 Route::post('/news/details/{id}/comment/post',[CommentController::class,'store'])->name('news.comment');
-
-
+Route::get('/news/latest',[LatestArticleController::class,'latestArticles'])->name('news.latest');
+Route::get('/news/search',[SearchController::class,'searchNews'])->name('news.search');
 
 // Login Route here 
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');

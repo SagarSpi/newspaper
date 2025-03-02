@@ -29,6 +29,7 @@ class Article extends Model
 
     protected $hidden = [
         'user_id',
+        'deleted_at',
     ];
     // ONE TO MANY RELATION POLYMORPHIC
     public function comments()

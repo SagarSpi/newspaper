@@ -46,6 +46,15 @@
                                 <option value="bangladesh"{{old('category')=='bangladesh'?'selected':''}}>Bangladesh</option>
                                 <option value="entertainment"{{old('category')=='entertainment'?'selected':''}}>Entertainment</option>
                                 <option value="international"{{old('category')=='international'?'selected':''}}>International</option>
+
+
+                                <option value="opinion"{{old('category')=='opinion'?'selected':''}}>Opinion</option>
+                                <option value="corporate"{{old('category')=='corporate'?'selected':''}}>Corporate</option>
+                                <option value="science_technology"{{old('category')=='science_technology'?'selected':''}}>Science & Technology</option>
+
+
+
+
                             </select>
                             @error('category')<span class="text-danger">{{$message}}</span>@enderror
                         </div>

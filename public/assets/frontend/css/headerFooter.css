@@ -17,6 +17,17 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.active > .page-link,
+.page-link.active {
+    color: #fff;
+    background-color: #ff1438;
+    border-color: #ff1438;
+}
+.page-link {
+    color: #000000;
+}
+
 /*translator css code start*/
 .language-changer {
     text-align: right;
