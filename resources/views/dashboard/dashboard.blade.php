@@ -102,30 +102,32 @@
             </div>
             <div class="col-6">
               <div class="pending-user radius-15 px-3 pt-3">
-                <h5 class="mb-2">Pending Users to Access</h5>
+                <h5 class="mb-2">Rejected Users to Access</h5>
                 <table class="table table-striped table-hover">
                   <thead class="table-dark">
                     <tr>
-                      <th scope="col">Image</th>
+                      <th scope="col" class="text-center">Image</th>
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Action</th>
+                      <th scope="col" class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-
                     @foreach ($pendingUsers as $user)
                       <tr>
-                        <td><img src="{{$user->image_url ??''}}" class="rounded-circle" alt="User Image" height="40" width="40"></td>
+                        <td class="text-center"><img src="{{$user->image_url ??''}}" class="rounded-circle" alt="User Image" height="40" width="40"></td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td  style="white-space: nowrap;">
-                          <a href="" class="btn btn-outline-success btn-sm">
+                        <td class="text-center text-nowrap">
+                          <a class="btn btn-outline-primary btn-sm" href="{{route('user.show',$user->id)}}">
+                            <i class="fa-solid fa-eye"></i>
+                          </a>
+                          <a class="approved btn btn-outline-success btn-sm" data-id="{{ $user->id ??''}}"">
                             <i class="fa-solid fa-check"></i>
                           </a>
-                          <a href="" class="btn btn-outline-danger btn-sm">
+                          <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $user->id ??''}}">
                             <i class="fa-solid fa-trash"></i>
-                          </a>
+                        </a>
                         </td>
                       </tr>
                     @endforeach
@@ -151,12 +153,118 @@
       </div>
     </div>
   </div>
+
+  <!-- Appreved Modal Start-->
+  <div class="modal fade" id="approvedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Approved Conformation</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mt-1">
+                    <h4 class="mb-1">Are you sure you want to approved this user ?</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="approvedBtn">Yes, Approved It!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appreved Modal End-->
+
+<!-- Delete Modal Start-->
+<div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mt-1">
+                  <h4 class="mb-1">Are you sure you want to remove this Users?</h4>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Delete Modal End-->
+
+
+
 @endsection
 
 @push('script')
+
   {{-- HIGHCHART JS CDN LINK  --}}
   <script src="https://code.highcharts.com/highcharts.js"></script>
+  {{-- <script src="https://code.highcharts.com/modules/accessibility.js"></script> --}}
 
+
+  {{-- APPROVED MODAL AJAX SCRIPT --}}
+  <script>
+    $(document).ready(function () {
+      $('.approved').on('click', function () {
+        let id = $(this).data('id'); 
+        $('#approvedModal').modal('show'); 
+
+        $('#approvedBtn').off('click').on('click', function () {
+          $.ajax({
+              url: "{{ route('user.approved', ':id') }}".replace(':id', id),
+              type: "get",
+              data: {
+                  
+              },
+              success: function (response) {
+                  // toastr.success(response.success);
+                  $('#approvedModal').modal('hide'); 
+                  location.reload(); 
+              },
+              error: function (xhr) {
+                  // toastr.error("Something went wrong!"); 
+              }
+          });
+        });
+      });
+    });
+  </script>
+
+  {{-- DELETE MODAL AJAX SCRIPT --}}
+  <script>
+    $(document).ready(function () {
+      $('.remove').on('click', function () {
+        let id = $(this).data('id'); 
+        $('#removeModal').modal('show'); 
+
+        $('#delete').off('click').on('click', function () {
+          $.ajax({
+            url: "{{ route('user.delete', ':id') }}".replace(':id', id),
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}",
+                _method: "DELETE" 
+            },
+            success: function (response) {
+                // toastr.success(response.success);
+                $('#removeModal').modal('hide'); 
+                location.reload(); 
+            },
+            error: function (xhr) {
+                // toastr.error("Something went wrong!"); 
+            }
+          });
+        });
+      });
+    });
+  </script>
 
   {{-- ARTICLE CHART JS CODE HERE  --}}
   <script type="text/javascript">

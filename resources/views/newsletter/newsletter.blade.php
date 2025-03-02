@@ -59,7 +59,7 @@
                                         <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        <a href="#" class="btn btn-outline-danger btn-sm">
+                                        <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $email->id ??''}}">
                                             <i class="fa-solid fa-trash"></i>
                                         </a>
                                     </td>
@@ -84,7 +84,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="{{url('newsletter/update/email')}}" method="POST">
+              <form action="{{route('email.update')}}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="id" id="id">
@@ -109,6 +109,28 @@
       </div>
     {{-- EDIT MODAL CODE END --}}
 
+    <!-- Delete Modal Start-->
+    <div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-1">
+                        <h4 class="mb-1">Are you sure you want to remove this news?</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal End-->
+
 @endsection
 
 @push('script')
@@ -121,13 +143,42 @@
 
                 $.ajax({
                     type: "GET",
-                    url: "/newsletter/" + email_id + "/email",
+                    url: "{{ route('email.edit', ':id') }}".replace(':id', email_id),
                     success: function (response) {
-                        // console.log(response.email.id);
                         $('#id').val(email_id);
                         $('#email').val(response.email.email);
                         $('#status').val(response.email.status);
                     }
+                });
+            });
+        });
+    </script>
+
+    {{-- DELETE MODAL AJAX SCRIPT --}}
+    <script>
+        $(document).ready(function () {
+            $('.remove').on('click', function () {
+                let id = $(this).data('id'); // ডিলিট করার আইডি বের করা
+                $('#removeModal').modal('show'); // মডাল দেখানো
+
+                // আগের ক্লিক ইভেন্ট রিসেট করে নতুন ইভেন্ট যুক্ত করা
+                $('#delete').off('click').on('click', function () {
+                    $.ajax({
+                        url: "{{ route('email.delete', ':id') }}".replace(':id', id),
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: "DELETE" 
+                        },
+                        success: function (response) {
+                            // toastr.success(response.success);
+                            $('#removeModal').modal('hide'); // মডাল বন্ধ করা
+                            location.reload(); // পেজ রিফ্রেশ করা
+                        },
+                        error: function (xhr) {
+                            // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                        }
+                    });
                 });
             });
         });

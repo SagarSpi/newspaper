@@ -74,7 +74,7 @@
                                 <td>{{$user->contacts ??'N/A'}}</td>
                                 <td class="text-center">{{$user->role ??'N/A'}}</td>
                                 <td class="text-center">
-                                    <span class="bg-{{ $user->status === 'Active' ? 'success' : ($user->status === 'Inactive' ? 'danger' : 'transparent') }} py-1 px-3 rounded-pill text-lg text-white">
+                                    <span class="bg-{{ $user->status === 'Active' ? 'success' : ($user->status === 'Inactive' ? 'info' : 'danger') }} py-1 px-3 rounded-pill text-lg text-white">
                                         {{ $user->status ?? 'N/A' }}
                                     </span>
                                 </td>
@@ -86,7 +86,7 @@
                                     <a class="btn btn-outline-warning btn-sm" href="{{route('user.edit',$user->id)}}">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a class="btn btn-outline-danger btn-sm">
+                                    <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $user->id ??''}}">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
                                 </td>
@@ -102,4 +102,58 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Modal Start-->
+    <div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mt-1">
+                        <h4 class="mb-1">Are you sure you want to remove this news?</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal End-->
+
 @endsection
+
+@push('script')
+    {{-- DELETE MODAL AJAX SCRIPT --}}
+    <script>
+        $(document).ready(function () {
+            $('.remove').on('click', function () {
+                let id = $(this).data('id'); 
+                $('#removeModal').modal('show'); 
+
+                $('#delete').off('click').on('click', function () {
+                    $.ajax({
+                        url: "{{ route('user.delete', ':id') }}".replace(':id', id),
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            _method: "DELETE" 
+                        },
+                        success: function (response) {
+                            // toastr.success(response.success);
+                            $('#removeModal').modal('hide'); 
+                            location.reload(); 
+                        },
+                        error: function (xhr) {
+                            // toastr.error("Something went wrong!"); 
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+@endpush

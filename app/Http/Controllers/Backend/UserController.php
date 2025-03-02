@@ -285,11 +285,48 @@ class UserController extends Controller
         }
     }
 
+    public function userApproved(int $id)
+    {
+        $user = User::findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+
+            $user->update([
+                'status'=>'inactive',
+            ]);
+
+            DB::commit();
+
+            // return response()->json(["success"=>"User Approved Successfully !"]);
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error','Cannot Approved This User ! Please Try Again.');
+        }
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+
+            $user->delete();
+
+            DB::commit();
+            
+            // return response()->json(["success"=>"User Remove Successfully !"]);
+            
+        } catch (\Exception $err) {
+
+            DB::rollBack();
+            return redirect()->back()->with('error','Cannot Removed This User ! Please Try Again.');
+        }
     }
 }

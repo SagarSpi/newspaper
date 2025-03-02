@@ -21,9 +21,6 @@ Route::get('/v', function () {
 });
 
 
-Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
-Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
-
 
 // Frontend Route here 
 Route::get('/',[HomeController::class,'homePage'])->name('home');
@@ -50,15 +47,19 @@ Route::get('/register/user/otp-verification',[UserController::class,'otpVerifica
 
 Route::get('/send-otp',[UserController::class,'sendOtp'])->name('send-otp');
 
-
+// Newsletter route 
+Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
+Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
 
 
 // Backend Route Here
 Route::middleware(['auth',UserActivity::class])->group(function () {
 
+    // Newsletter route 
     Route::get('/newsletter/email/list',[NewsletterController::class,'index'])->name('email.list');
-    Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit']);
-    Route::put('newsletter/update/email',[NewsletterController::class,'update']);
+    Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit'])->name('email.edit');
+    Route::put('/newsletter/update/email',[NewsletterController::class,'update'])->name('email.update');
+    Route::delete('/newsletter/delete/{id}/email',[NewsletterController::class,'destroy'])->name('email.delete');
 
     // Dashboard Route here 
     Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
@@ -75,13 +76,15 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::put('/manage/edit/{id}/article/post',[ArticleController::class,'update'])->name('article.update');
     Route::get('/manage/view/{id}/article',[ArticleController::class,'show'])->name('article.show');
     Route::delete('/manage/remove/{id}/article',[ArticleController::class,'destroy'])->name('article.delete');
-    Route::delete('/manage/article/delete',[ArticleController::class,'destroyAll'])->name('article.deleteAll');
+    Route::delete('/manage/delete/articles',[ArticleController::class,'destroyAll'])->name('article.deleteAll');
 
     // Comments Route Here
     Route::get('/manage/comments',[CommentController::class,'index'])->name('comment.list');
     Route::get('/manage/comments/search',[CommentController::class,'searchData'])->name('comment.search');
+    Route::get('/manage/show/{id}/comment',[CommentController::class,'show'])->name('comment.show');
     Route::get('/manage/edit/{id}/comment',[CommentController::class,'edit'])->name('comment.edit');
     Route::put('/manage/edit/{id}/comments/post',[CommentController::class,'update'])->name('comment.update');
+    Route::delete('/manage/delete/{id}/commment',[CommentController::class,'destroy'])->name('comment.delete');
     Route::delete('/manage/delete/comments',[CommentController::class,'destroyAll'])->name('comment.deleteAll');
 
     // User Route here
@@ -90,6 +93,9 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
     Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
     Route::get('/manage/profile/{id}/user',[UserController::class,'show'])->name('user.show');
+    Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
+    Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
+
 });
 
 

@@ -137,7 +137,13 @@ class CommentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+
+        return response()->json([
+            'status'=>200,
+            'comment'=>$comment,
+        ]);
+
     }
 
     /**
@@ -189,6 +195,23 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function destroy(int $id)
+    {   
+        $comment = Comment::findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+
+            $comment->delete();
+
+            DB::commit();
+        } catch (\Exception $err) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error','Comment Not Deleted !');
+        }
+    }
+
     public function destroyAll(Request $request)
     {
         try {

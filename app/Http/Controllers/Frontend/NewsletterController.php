@@ -111,8 +111,19 @@ class NewsletterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $email = Newsletter::findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+
+            $email->delete();
+            
+            DB::commit();
+        } catch (\Exception $err) {
+            DB::rollBack();
+            return redirect()->back()->with('error','Email remove Successfully !');
+        }
     }
 }
