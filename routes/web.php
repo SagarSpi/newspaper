@@ -24,11 +24,13 @@ Route::get('/v', function () {
 
 // Frontend Route here 
 Route::get('/',[HomeController::class,'homePage'])->name('home');
+Route::get('/news/search',[SearchController::class,'searchNews'])->name('news.search');
+Route::get('/news/latest',[LatestArticleController::class,'latestArticles'])->name('news.latest');
 Route::get('/news/{cat}/category',[CategoryController::class,'categoryPage'])->name('news.category');
 Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name('news.details');
 Route::post('/news/details/{id}/comment/post',[CommentController::class,'store'])->name('news.comment');
-Route::get('/news/latest',[LatestArticleController::class,'latestArticles'])->name('news.latest');
-Route::get('/news/search',[SearchController::class,'searchNews'])->name('news.search');
+
+
 
 // Login Route here 
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');
