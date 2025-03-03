@@ -9,14 +9,28 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="search-bar mb-3">
-                    <form action="" method="GET">
+                    <form action="{{route('email.search')}}" method="GET">
                         <div class="input-group mt-2">
-                            <input class="form-control" name="search" placeholder="Id">
-                            <input class="form-control" name="search" placeholder="Email">
-                            <input class="form-control" name="search" placeholder="Status">
-                            <input class="form-control" name="search" placeholder="Keyword">
+                            <input type="text" class="form-control" name="id" placeholder="Id">
+                            <input type="text" class="form-control" name="email" placeholder="Email">
+                            <select class="form-select" name="status">
+                                <option disabled selected>Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            <select class="form-select" name="date_filter">
+                                <option selected disabled>Filter By Date</option>
+                                <option value="today">Today</option>
+                                <option value="yesterday">Yesterday</option>
+                                <option value="this_week">This Week</option>
+                                <option value="last_week">Last Week</option>
+                                <option value="this_month">This Month</option>
+                                <option value="last_month">Last Month</option>
+                                <option value="this_year">This Year</option>
+                                <option value="last_year">Last Year</option>
+                            </select>
                             <button type="submit" class="btn btn-outline-success" id="search-btn">Search</button>
-                            <button type="button" class="btn btn-outline-danger" id="reset-btn">Reset</button>
                         </div>
                     </form>
                 </div>
@@ -28,6 +42,7 @@
             </div>
             <div class="col-4">
                 <div class="text-end">
+                    <a href="{{route('email.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
                     <a href="#" class="btn btn-success btn-sm">Send Email</a>
                 </div>
             </div>

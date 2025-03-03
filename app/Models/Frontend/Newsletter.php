@@ -15,6 +15,12 @@ class Newsletter extends Model
     
     protected $guarded = [];
 
+    protected function Status(): Attribute {
+        return Attribute::make(
+            get: fn(?string $value) => $value ? ucwords($value) : null
+        );
+    }
+    
     protected function CreatedAt() : Attribute {
         return Attribute::make(
             get: fn(string $value)=>date('d-M-Y',strtotime($value))

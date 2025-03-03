@@ -38,8 +38,6 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/auth/redirection/{provider}',[LoginController::class,'authProviderRedirect'])->name('auth.redirection');
 Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentication'])->name('auth.callback');
 
-
-
 // Register Route here 
 Route::get('/register',[UserController::class,'create'])->name('user.create');
 Route::post('/register/post',[UserController::class,'store'])->name('user.store');
@@ -54,12 +52,6 @@ Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->nam
 
 // Backend Route Here
 Route::middleware(['auth',UserActivity::class])->group(function () {
-
-    // Newsletter route 
-    Route::get('/newsletter/email/list',[NewsletterController::class,'index'])->name('email.list');
-    Route::get('/newsletter/{id}/email',[NewsletterController::class,'edit'])->name('email.edit');
-    Route::put('/newsletter/update/email',[NewsletterController::class,'update'])->name('email.update');
-    Route::delete('/newsletter/delete/{id}/email',[NewsletterController::class,'destroy'])->name('email.delete');
 
     // Dashboard Route here 
     Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
@@ -86,6 +78,13 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::put('/manage/edit/{id}/comments/post',[CommentController::class,'update'])->name('comment.update');
     Route::delete('/manage/delete/{id}/commment',[CommentController::class,'destroy'])->name('comment.delete');
     Route::delete('/manage/delete/comments',[CommentController::class,'destroyAll'])->name('comment.deleteAll');
+
+    // Newsletter route 
+    Route::get('/manage/newsletter/email/list',[NewsletterController::class,'index'])->name('email.list');
+    Route::get('/manage/newsletter/email/search',[NewsletterController::class,'searchData'])->name('email.search');
+    Route::get('/manage/newsletter/{id}/email',[NewsletterController::class,'edit'])->name('email.edit');
+    Route::put('/manage/newsletter/update/email',[NewsletterController::class,'update'])->name('email.update');
+    Route::delete('/manage/newsletter/delete/{id}/email',[NewsletterController::class,'destroy'])->name('email.delete');
 
     // User Route here
     Route::get('/manage/list/users',[UserController::class,'index'])->name('user.list');

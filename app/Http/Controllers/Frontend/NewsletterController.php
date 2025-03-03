@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
 use App\Mail\newslattermail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,66 @@ class NewsletterController extends Controller
         foreach ($emails as $recipent) {
             Mail::to($recipent)->send(new newslattermail($message,$subject));
         }
+    }
 
+    public function searchData(Request $request)
+    {
+        $query = Newsletter::query()->latest();
+
+        if (!empty($request->id)) {
+            $query->where('id',$request->id);
+        }
+
+        // Jodi title thake, tahole search query add korbo
+        if (!empty($request->email)) {
+            $query->where('email', 'like', "%{$request->email}%");
+        }
+
+        // Jodi status thake, tahole search query add korbo
+        if (!empty($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        if (!empty($request->date_filter)) {
+            $date = $request->date_filter;
+            switch ($date) {
+                case 'today':
+                    $query->whereDate('created_at',Carbon::today());
+                    break;
+                case 'yesterday':
+                    $query->whereDate('created_at',Carbon::yesterday());
+                    break;
+                case 'this_week':
+                    $query->whereBetween('created_at',[Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
+                    break;
+                case 'last_week':
+                    $query->whereBetween('created_at',[Carbon::now()->subWeek(),Carbon::now()]);
+                    break;
+                case 'this_month':
+                    $query->whereMonth('created_at',Carbon::now()->month);
+                    break;
+                case 'last_month':
+                    $query->whereMonth('created_at',Carbon::now()->subMonth()->month);
+                    break;
+                case 'this_year':
+                    $query->whereYear('created_at',Carbon::now()->year);
+                    break;
+                case 'last_year':
+                    $query->whereYear('created_at',Carbon::now()->subYear()->year());
+                    break;
+            }
+        }
+
+        // 9 ta kore paginate korbo
+        $emails = $query->paginate(9);
+
+        // Jodi kono result na thake, tahole back pathay dibo
+        if ($emails->isEmpty()) {
+            
+            return redirect()->back()->with('info','No Emails Found !');
+        }
+
+        return view('newsletter.newsletter', compact('emails'));
     }
     /**
      * Display a listing of the resource.
@@ -52,11 +112,20 @@ class NewsletterController extends Controller
             'email' => 'required|email|unique:newsletters,email',
         ]);
 
-        Newsletter::create([
-            'email'=>$request->email,
-        ]);
+        try {
+            DB::beginTransaction();
 
-        return back()->with('success','Subscription successful!');
+            Newsletter::create([
+                'email'=>$request->email,
+            ]);
+            DB::commit();
+            return redirect()->back()->with('success','Subscription successful!');
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+
+            return redirect()->back()->with('error','Failed to Subscription ! Please try again.');
+        }
     }
 
     /**
@@ -89,7 +158,7 @@ class NewsletterController extends Controller
 
         $inputs = $request->validate([
             'email' => 'required|email|unique:newsletters,email,'.$request->id,
-            'status' => 'required|string|min:3'
+            'status' => 'nullable|string|min:3'
         ]);
 
         try {
