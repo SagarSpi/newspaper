@@ -8,21 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Frontend\Newsletter;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
 
-    public function sendEmail()
-    {   
-        $emails = Newsletter::pluck('email');
-        $message = "Hello, Welcome to BestNews. Thank you for your suscription !";
-        $subject = "Welcome to Best News";
-
-        foreach ($emails as $recipent) {
-            Mail::to($recipent)->send(new newslattermail($message,$subject));
-        }
-    }
+    
 
     public function searchData(Request $request)
     {
@@ -94,12 +86,15 @@ class NewsletterController extends Controller
         return view('newsletter.newsletter',compact('emails'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function sendEmail()
+    {   
+        $emails = Newsletter::pluck('email');
+        $message = "Hello, Welcome to BestNews. Thank you for your suscription !";
+        $subject = "Welcome to Best News";
+
+        foreach ($emails as $recipent) {
+            Mail::to($recipent)->send(new newslattermail($message,$subject));
+        }
     }
 
     /**
@@ -129,19 +124,13 @@ class NewsletterController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
         $email = Newsletter::findOrFail($id);
+
+        Gate::authorize('update',$email);
 
         return response()->json([
             'status'=>200,
@@ -155,6 +144,8 @@ class NewsletterController extends Controller
     public function update(Request $request)
     {
         $email = Newsletter::findOrFail($request->id);
+
+        Gate::authorize('update',$email);
 
         $inputs = $request->validate([
             'email' => 'required|email|unique:newsletters,email,'.$request->id,
@@ -183,6 +174,8 @@ class NewsletterController extends Controller
     public function destroy(int $id)
     {
         $email = Newsletter::findOrFail($id);
+
+        Gate::authorize('delete',$email);
 
         try {
             DB::beginTransaction();

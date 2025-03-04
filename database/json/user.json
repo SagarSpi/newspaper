@@ -8,15 +8,5 @@
         "contacts": "01725540583",
         "role": "admin",
         "status": "active"
-    },
-    {
-        "name": "Akash Mondal",
-        "email": "akash@gmail.com",
-        "password": "1234",
-        "image_url": "https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png",
-        "image_id": "Newspaper/Users-image/Default_image/user_default_image",
-        "contacts": "01997350435",
-        "role": "user",
-        "status": "active"
     }
 ]

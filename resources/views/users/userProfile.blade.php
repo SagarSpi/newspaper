@@ -26,7 +26,9 @@
                 </div>
                 <div class="col-4">
                     <div class="text-end">
-                        <a href="{{route('user.edit',$user->id)}}" class="btn btn-light">Edit Profile</a>
+                        @can('update',$user)
+                            <a href="{{route('user.edit',$user->id)}}" class="btn btn-light">Edit Profile</a>
+                        @endcan
                     </div>
                 </div>
             </div>

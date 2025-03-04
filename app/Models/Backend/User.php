@@ -57,7 +57,7 @@ class User extends Authenticatable
             get: fn(string $value)=>date('d M Y', strtotime($value))
         );
     }
-
+    
     protected function casts() : array
     {
         return [

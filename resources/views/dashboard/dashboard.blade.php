@@ -119,15 +119,43 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td class="text-center text-nowrap">
-                          <a class="btn btn-outline-primary btn-sm" href="{{route('user.show',$user->id)}}">
-                            <i class="fa-solid fa-eye"></i>
-                          </a>
-                          <a class="approved btn btn-outline-success btn-sm" data-id="{{ $user->id ??''}}"">
-                            <i class="fa-solid fa-check"></i>
-                          </a>
-                          <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $user->id ??''}}">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                          
+                          @can('view',$user)
+                            <a class="btn btn-outline-primary btn-sm" href="{{route('user.show',$user->id)}}">
+                              <i class="fa-solid fa-eye"></i>
+                            </a>
+                          @else
+                            <button type="button" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true">
+                              <i class="fa-solid fa-eye"></i>
+                            </button>
+                          @endcan
+
+                          @can('approved',$user)
+                            <a class="approved btn btn-outline-success btn-sm" data-id="{{ $user->id ??''}}"">
+                              <i class="fa-solid fa-check"></i>
+                            </a>
+                          @else
+                            <button type="button" class="btn btn-outline-success btn-sm disabled" aria-disabled="true">
+                              <i class="fa-solid fa-check"></i>
+                            </button>
+                          @endcan
+
+                          @can('delete',$user)
+                            <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $user->id ??''}}">
+                              <i class="fa-solid fa-trash"></i>
+                            </a>
+                          @else
+                            <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true">
+                              <i class="fa-solid fa-trash"></i>
+                            </button>
+                          @endcan
+
+
+
+
+
+
+
                         </td>
                       </tr>
                     @endforeach

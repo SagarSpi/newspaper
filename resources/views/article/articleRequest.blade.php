@@ -30,16 +30,27 @@
                     </form>
                 </div>
             </div>
-            <div class="col-8">
-                <div class="heading">
+            <div class="col-12">
+                <div class="my-3">
                     <h5>Manage Request Articles</h5>
-                    <a href="#" id="approvedAllSelectedRecord" class="btn btn-outline-danger btn-sm">Approved All Selected</a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="text-end">
-                    <a href="{{route('article.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
-                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add New Article</a>
+            <div class="col-12 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+
+                    @can('approved',App\Models\Backend\Article::class)
+                        <a href="#" id="approvedAllSelectedRecord" class="btn btn-outline-danger btn-sm">Approved All Selected</a>
+                    @else
+                        <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true" >Approved All Selected</button>
+                    @endcan
+                    <div>
+                        <a href="{{route('article.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
+                        @can('create', App\Models\Backend\Article::class)
+                            <a href="{{ route('article.create') }}" class="btn btn-success btn-sm">Add New Article</a>
+                        @else
+                            <button type="button" class="btn btn-success btn-sm disabled" aria-disabled="true">Add New Article</button>
+                        @endcan
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +61,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col" class="text-center"><input type="checkbox" name="" id="select_all_ids"></th>
-                                <th scope="col" class="text-center">Id</th>
+                                <th scope="col">Id</th>
                                 <th scope="col" class="text-center text-nowrap">Created At</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Title</th>
@@ -63,8 +74,8 @@
                         <tbody>
                             @foreach ($articles as $news)
                                 <tr id="article_ids{{$news->id}}">
-                                    <th class="text-center"><input type="checkbox" value="{{$news->id}}" name="ids" id="" class="checkbox_ids"></th>
-                                    <th scope="row" class="text-center">{{$news->id ??''}}</th>
+                                    <th><input type="checkbox" value="{{$news->id}}" name="ids" id="" class="checkbox_ids"></th>
+                                    <th scope="row" >{{$news->id ??''}}</th>
                                     <td class="text-center">{{$news->created_at ??'N/A'}}</td>
                                     <td>{{$news->category ??'N/A'}}</td>
                                     <td>{{$news->title ??'N/A'}}</td>
@@ -72,26 +83,41 @@
                                     <td class="text-center">{{$news->status ??'N/A'}}</td>
                                     <td class="showCreator text-center text-nowrap" data-id="{{ $news->user->id ?? 'N/A' }},{{ $news->user->name ?? 'N/A' }},{{ $news->user->email ?? 'N/A' }},{{ $news->user->image_url ?? 'N/A' }},{{ $news->user->contacts ?? 'N/A' }},{{ $news->user->role ?? 'N/A' }}" >{{$news->user->name ??'N/A'}}</td>
                                     <td class="text-center text-nowrap">
-                                        <a class="approved btn btn-outline-success btn-sm" data-id="{{ $news->id ??''}}"">
-                                            <i class="fa-solid fa-check"></i>
-                                        </a>
-                                        <a href="{{route('article.show',$news->id ??'')}}" class="btn btn-outline-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
+                                        @can('approved',$news)
+                                            <a class="approved btn btn-outline-success btn-sm" data-id="{{ $news->id ??''}}"">
+                                                <i class="fa-solid fa-check"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-success btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        @endcan
+                                        @can('view',$news)
+                                            <a href="{{route('article.show',$news->id ??'')}}" class="btn btn-outline-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        @endcan
                                         @can('update', $news)
                                             <a href="{{ route('article.edit', $news->id ??'')}}" class="btn btn-outline-warning btn-sm">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-warning btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        @endcan
+                                        @can('delete',$news)
                                             <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $news->id ??''}}">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         @else
-                                            <a class="btn btn-outline-warning btn-sm disabled" role="button" aria-disabled="true">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a class="btn btn-outline-danger btn-sm disabled">
+                                            <button type="button" class="btn btn-outline-danger btn-sm disabled" ria-disabled="true">
                                                 <i class="fa-solid fa-trash"></i>
-                                            </a>
+                                            </button>
                                         @endcan
                                     </td>
                                 </tr>

@@ -8,6 +8,7 @@ use App\Models\Frontend\Comment;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
@@ -90,14 +91,6 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, int $id)
@@ -139,6 +132,8 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
+        Gate::authorize('view',$comment);
+
         return response()->json([
             'status'=>200,
             'comment'=>$comment,
@@ -153,6 +148,8 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($id);
 
+        Gate::authorize('update',$comment);
+
         return view('comments.commentEdit',compact('comment'));
     }
 
@@ -162,6 +159,8 @@ class CommentController extends Controller
     public function update(Request $request, string $id)
     {
         $comment = Comment::findOrFail($id);
+
+        Gate::authorize('update',$comment);
 
         $inputs = Validator::make($request->all(),[
             'title'=>'required|string|max:255',
@@ -199,6 +198,8 @@ class CommentController extends Controller
     {   
         $comment = Comment::findOrFail($id);
 
+        Gate::authorize('delete',$comment);
+
         try {
             DB::beginTransaction();
 
@@ -214,6 +215,9 @@ class CommentController extends Controller
 
     public function destroyAll(Request $request)
     {
+
+        Gate::authorize('deleteAll',Comment::class);
+
         try {
             DB::beginTransaction();
 

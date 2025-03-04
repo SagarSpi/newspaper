@@ -16,6 +16,7 @@ use App\Mail\UserReportMail;
 use App\Models\Backend\Article;
 use Illuminate\Support\Facades\Hash;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -95,7 +96,6 @@ class UserController extends Controller
      */
     public function index()
     {   
-
         $users = User::orderBy('last_seen','DESC')
                     ->paginate(9);
 
@@ -145,15 +145,15 @@ class UserController extends Controller
                 'image_id'=>$public_id,
                 'contacts'=>$request->number,
                 'status'=>'inactive',
-                'role'=>'client',
+                'role'=>$request->role,
             ]);
             
             DB::commit();
 
             
-            for ($i=0; $i <10; $i++) { 
-                dispatch(new SendMailJob((object)$request->all()));
-            }
+            // for ($i=0; $i <10; $i++) { 
+            //     dispatch(new SendMailJob((object)$request->all()));
+            // }
 
             // dispatch(new SendMailJob((object)$request->all()));
             return redirect()->route('login')->with('success','Users Created Succesfully !');
@@ -183,6 +183,8 @@ class UserController extends Controller
     public function show(int $id)
     {
         $user = User::findOrFail($id);
+
+        Gate::authorize('view',$user);
 
         $userWitharticleCount = User::withCount(['articles' => function($query) {
                 $query->where('status', 'active'); // শুধুমাত্র 'active' status এর articles গুলো গণনা করা
@@ -227,6 +229,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        Gate::authorize('update',$user);
+
         return view('users.userEdit',compact('user'));
     }
 
@@ -236,6 +240,8 @@ class UserController extends Controller
     public function update(UserRequest $request, string $id)
     {
         $user = User::findOrFail($id);
+
+        Gate::authorize('update',$user);
 
         try {
             DB::beginTransaction();
@@ -289,6 +295,8 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        Gate::authorize('approved',$user);
+
         try {
             DB::beginTransaction();
 
@@ -313,6 +321,8 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
+
+        Gate::authorize('delete',$user);
 
         try {
             DB::beginTransaction();

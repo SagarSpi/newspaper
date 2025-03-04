@@ -43,7 +43,7 @@
             <div class="col-4">
                 <div class="text-end">
                     <a href="{{route('email.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
-                    <a href="#" class="btn btn-success btn-sm">Send Email</a>
+                    <a href="#" class="btn btn-success btn-sm">Send Selected Email</a>
                 </div>
             </div>
         </div>
@@ -68,15 +68,33 @@
                                     <td>{{$email->email ??'N/A'}}</td>
                                     <td class="text-center">{{$email->status ??'N/A'}}</td>
                                     <td class="text-center text-nowrap">
-                                        <a href="#" class="btn btn-outline-success btn-sm">
-                                            <i class="fa-regular fa-paper-plane"></i>
-                                        </a>
-                                        <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $email->id ??''}}">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
+                                        @can('send',App\Models\Backend\Newsletter::class)
+                                            <a href="#" class="btn btn-outline-success btn-sm">
+                                                <i class="fa-regular fa-paper-plane"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-success btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-regular fa-paper-plane"></i>
+                                            </button>
+                                        @endcan
+                                        @can('update',$email)
+                                            <button type="button" value="{{$email->id}}" class="btn btn-outline-warning editBtn btn-sm">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        @else
+                                            <button type="button" class="btn btn-outline-warning btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        @endcan
+                                        @can('delete',$email)
+                                            <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $email->id ??''}}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

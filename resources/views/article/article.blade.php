@@ -41,16 +41,26 @@
                     </form>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-12">
                 <div class="heading">
                     <h5>Manage Articles</h5>
-                    <a href="#" id="deleteAllSelectedRecord" class="btn btn-outline-danger btn-sm">Delete All Selected</a>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="text-end">
-                    <a href="{{route('article.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
-                    <a href="{{route('article.create')}}" class="btn btn-success btn-sm">Add New Article</a>
+            <div class="col-12 mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    @can('delete',App\Models\Backend\Article::class)
+                        <a href="#" id="deleteAllSelectedRecord" class="btn btn-outline-danger btn-sm">Delete All Selected</a>     
+                    @else
+                        <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true" >Delete All Selected</button>
+                    @endcan
+                    <div>
+                        <a href="{{route('article.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
+                        @can('create', App\Models\Backend\Article::class)
+                            <a href="{{ route('article.create') }}" class="btn btn-success btn-sm">Add New Article</a>
+                        @else
+                            <button type="button" class="btn btn-success btn-sm disabled" aria-disabled="true">Add New Article</button>
+                        @endcan
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,23 +95,32 @@
                                     <td class="text-center">{{$news->status ??'N/A'}}</td>
                                     <td class="showCreator text-center text-nowrap" data-id="{{ $news->user->id ?? 'N/A' }},{{ $news->user->name ?? 'N/A' }},{{ $news->user->email ?? 'N/A' }},{{ $news->user->image_url ?? 'N/A' }},{{ $news->user->contacts ?? 'N/A' }},{{ $news->user->role ?? 'N/A' }}" >{{$news->user->name ??'N/A'}}</td>
                                     <td class="text-center text-nowrap">
-                                        <a href="{{route('article.show',$news->id ??'N/A')}}" class="btn btn-outline-primary btn-sm">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
+                                        @can('view',$news)
+                                            <a href="{{route('article.show',$news->id ??'N/A')}}" class="btn btn-outline-primary btn-sm">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-primary btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        @endcan
                                         @can('update', $news)
                                             <a href="{{ route('article.edit', $news->id ??'N/A')}}" class="btn btn-outline-warning btn-sm">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-warning btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        @endcan
+                                        @can('delete',$news)
                                             <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $news->id ??'N/A'}}">
                                                 <i class="fa-solid fa-trash"></i>
                                             </a>
                                         @else
-                                            <a class="btn btn-outline-warning btn-sm disabled" role="button" aria-disabled="true">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <a class="btn btn-outline-danger btn-sm disabled">
+                                            <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true">
                                                 <i class="fa-solid fa-trash"></i>
-                                            </a>
+                                            </button>
                                         @endcan
                                     </td>
                                 </tr>
@@ -266,12 +285,12 @@
                             _method: "DELETE" 
                         },
                         success: function (response) {
-                            // toastr.success(response.success);
                             $('#removeModal').modal('hide'); // মডাল বন্ধ করা
                             location.reload(); // পেজ রিফ্রেশ করা
                         },
                         error: function (xhr) {
-                            // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                            // Log the error to the Laravel log file
+                            console.log('Error occurred:', xhr.responseText);
                         }
                     });
                 });
@@ -295,6 +314,7 @@
                 });
                 if (all_ids.length === 0) {
                     // toastr.error("Please select at least one record to delete.");
+                    alert('Please select at least one record to delete.')
                     return;
                 };
 
@@ -307,13 +327,13 @@
                         _method: "DELETE" 
                     },
                     success:function (response) {
-                        // toastr.success(response.success);
                         $.each(all_ids,function (key,val) {
                             $('#article_ids'+val).remove();
                         })
                     },
                     error: function (xhr) {
-                        // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                       // Log the error to the Laravel log file
+                       console.log('Error occurred:', xhr.responseText);
                     }
                 });
             });

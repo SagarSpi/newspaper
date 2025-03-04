@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\Backend\Article;
+use App\Policies\ArticlePolicy;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    // protected $policies = [
+    //     Article::class => ArticlePolicy::class,
+    // ];
 
     /**
      * Bootstrap any application services.

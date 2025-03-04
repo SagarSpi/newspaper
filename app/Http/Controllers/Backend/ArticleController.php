@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\Models\Backend\Article;
+use Illuminate\Support\Facades\DB;
+use Flasher\Laravel\Facade\Flasher;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\ArticleRequest;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -106,7 +107,9 @@ class ArticleController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        Gate::authorize('create',Article::class);
+
         return view('article.articleCreate');
     }
 
@@ -115,6 +118,8 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {   
+
+        Gate::authorize('create',Article::class);
 
         try {
             DB::beginTransaction();
@@ -166,7 +171,7 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        // Gate::authorize('view',$article);
+        Gate::authorize('view',$article);
 
         return view('article.articleDetail',compact('article'));
     }
@@ -174,8 +179,9 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
+        
         $article = Article::findOrFail($id);
 
         Gate::authorize('update',$article);
@@ -188,11 +194,10 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, int $id)
     {
-        $article = Article::findOrFail($id);
 
-        if ($request->user()->cannot('update',$article)) {
-            abort(403,"You are not authorized");
-        }
+        $article = Article::findOrFail($id);
+        
+        Gate::authorize('update',$article);
 
         try {
             DB::beginTransaction();
@@ -258,6 +263,8 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
+        Gate::authorize('approved',$article);
+
         try {
             DB::beginTransaction();
 
@@ -276,6 +283,9 @@ class ArticleController extends Controller
     }
     public function approvedAll(Request $request)
     {
+
+        Gate::authorize('approved',Article::class);
+
         try {
             DB::beginTransaction();
             $ids = $request->ids;
@@ -285,18 +295,23 @@ class ArticleController extends Controller
             ]);
 
             DB::commit();
+            // return response()->json(["success"=>"Article Approved Successfully !"]);
+
         } catch (\Exception $err) {
             DB::rollBack();
 
+            return redirect()->back()->with('success','Not Approved Article ! Please TrY Again.');
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
         $article = Article::findOrFail($id);
+
+        Gate::authorize('delete',$article);
 
         try {
             DB::beginTransaction();
@@ -304,17 +319,24 @@ class ArticleController extends Controller
             $article->delete();
             DB::commit();
 
-            // return response()->json(["success"=>"Article Deleted Successfully !"]);
+            return redirect()->back()->with('success','Article Deleted Successfully !');
 
         } catch (\Exception $th) {
             DB::rollBack();
 
-            return redirect()->back()->with('error','Article Not Deleted ! Please Try Again.');
+            return redirect()->back()->with('error','Article  Delete Unsuccessful ! Please Try Again.');
         }
     }
 
+
+     // if ($request->user()->cannot('delete',$request)) {
+    //     abort(403,"You are not authorized");
+    // }
+
     public function destroyAll(Request $request)
     {
+        Gate::authorize('delete',Article::class);
+
         try {
 
             DB::beginTransaction();
@@ -323,7 +345,7 @@ class ArticleController extends Controller
             Article::whereIn('id',$ids)->delete();
 
             DB::commit();
-            return response()->json(["success"=>"Article Deleted Successfully !"]);
+            return redirect()->back()->with('success','Article Deleted Successfully !');
 
         } catch (\Exception $th) {
             DB::rollBack();

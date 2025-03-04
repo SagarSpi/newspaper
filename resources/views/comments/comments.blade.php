@@ -34,12 +34,16 @@
             <div class="col-8">
                 <div class="heading">
                     <h5>Manage Comments</h5>
-                    <a href="#" id="deleteAllSelectedRecord" class="btn btn-outline-danger btn-sm">Delete All Selected</a>
                 </div>
             </div>
             <div class="col-4">
                 <div class="text-end">
                     <a href="{{route('comment.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
+                    @can('deleteAll',App\Models\Frontend\Comment::class)
+                        <a href="#" id="deleteAllSelectedRecord" class="btn btn-outline-danger btn-sm">Delete All Selected</a>
+                    @else
+                        <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true" >Delete All Selected</button>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -68,11 +72,29 @@
                                     <td>{{$comment->subject ??'N/A'}}</td>
                                     <td class="text-center"><a href="{{route('article.show',$comment->commentable_id)}}">{{$comment->commentable_id ??'N/A'}}</a></td>
                                     <td class="text-center text-nowrap">
-                                        <button type="button" value="{{$comment->id}}" class="btn btn-outline-primary showBtn btn-sm"><i class="fa-solid fa-eye"></i></button>
-                                        <a href="{{route('comment.edit',$comment->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $comment->id ??'N/A'}}">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
+                                        @can('view',$comment)
+                                            <button type="button" value="{{$comment->id}}" class="btn btn-outline-primary showBtn btn-sm"><i class="fa-solid fa-eye"></i></button>
+                                        @else 
+                                            <button type="button" class="btn btn-outline-primary btn-sm disabled"aria-disabled="true">
+                                            <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        @endcan
+                                        @can('update',$comment)
+                                            <a href="{{route('comment.edit',$comment->id)}}" class="btn btn-outline-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>  
+                                        @else
+                                            <button type="button" class="btn btn-outline-warning btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                        @endcan
+                                        @can('delete',$comment)
+                                            <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $comment->id ??'N/A'}}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </a>
+                                        @else
+                                            <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

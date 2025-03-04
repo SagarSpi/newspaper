@@ -45,6 +45,27 @@
                       <input type="text" name="number" class="form-control" id="number" placeholder="Enter Phone Number" value="{{old('number')}}">
                       @error('number')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
+
+
+                    <div class="mb-2">
+                      <label class="form-label">User Role</label>
+                      <select name="role" class="form-select" {{$errors->has('role')?'autofocus':''}} required>
+                          <option value="" >Select Role</option>
+                          <option value="admin" {{old('role')=='Admin'?'selected':''}}>Admin</option>
+                          <option value="manager" {{ old('role') == 'Manager' ? 'selected' : '' }}>Manager</option>
+                          <option value="reporter" {{ old('role') == 'Reporter' ? 'selected' : '' }}>Reporter</option>
+                          <option value="visitor" {{ old('role') == 'Visitor' ? 'selected' : '' }}>Visitor</option>
+                          <option value="guest" {{ old('role') == 'Guest' ? 'selected' : '' }}>Guest</option>
+                          <option value="client" {{ old('role') == 'Client' ? 'selected' : '' }}>Client</option>
+                      </select>
+                      @error('role') <span class="text-danger">{{$message}}</span> @enderror
+                  </div>
+
+
+
+
+
+
                     <div class="mb-2">
                       <label for="password" class="form-label">Password</label>
                       <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
