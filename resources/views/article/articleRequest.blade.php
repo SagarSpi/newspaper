@@ -37,7 +37,6 @@
             </div>
             <div class="col-12 mb-3">
                 <div class="d-flex justify-content-between align-items-center">
-
                     @can('approved',App\Models\Backend\Article::class)
                         <a href="#" id="approvedAllSelectedRecord" class="btn btn-outline-danger btn-sm">Approved All Selected</a>
                     @else

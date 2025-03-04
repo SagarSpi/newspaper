@@ -18,9 +18,15 @@ class UserActivity
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            User::where('id', Auth::id())->update([
+            $user = Auth::user();
+
+            if ($user->status === 'Rejected') {
+                Auth::logout();
+                return redirect()->route('login')->with('error','Your account has been rejected.');
+            }
+            User::where('id', $user->id)->update([
                 'last_seen' => now(),
-                'status'=>'active',
+                'status' => 'active',
                 'ip_address' => $request->ip(),
             ]);
         }

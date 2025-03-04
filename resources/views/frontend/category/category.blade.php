@@ -81,7 +81,7 @@
                                 <a href="{{ route('news.category', ['cat' => 'Business']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Business</a>
                             </li>
                             <li>
-                                <a href="{{ route('news.category', ['cat' => 'Science_technolog']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Science & Technology</a>
+                                <a href="{{ route('news.category', ['cat' => 'Science_technology']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Science & Technology</a>
                             </li>
                             <li>
                                 <a href="{{ route('news.category', ['cat' => 'Education']) }}" class="menu-item"><i class="fa-solid fa-caret-right fa-lg"></i> Education</a>

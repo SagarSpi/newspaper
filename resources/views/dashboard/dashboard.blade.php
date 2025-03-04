@@ -219,8 +219,6 @@
 </div>
 <!-- Delete Modal End-->
 
-
-
 @endsection
 
 @push('script')

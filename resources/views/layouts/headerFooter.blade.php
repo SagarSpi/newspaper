@@ -121,7 +121,7 @@
                           <a href="{{ route('news.category', ['cat' => 'Corporate']) }}" class="dropdown-item">Corporate</a>
                         </li>
                         <li>
-                          <a href="{{ route('news.category', ['cat' => 'Science_Technolog']) }}" class="dropdown-item">Science & Technology</a>
+                          <a href="{{ route('news.category', ['cat' => 'Science_technology']) }}" class="dropdown-item">Science & Technology</a>
                         </li>
                       </ul>
                     </div>

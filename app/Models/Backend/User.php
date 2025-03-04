@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
     protected function Status() : Attribute {
         return Attribute::make(
-            get:fn(string $value)=>ucwords($value)
+            get: fn(?string $value) => ucwords($value ?? '') 
         );
     }
     protected function Role() : Attribute {

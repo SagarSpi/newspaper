@@ -55,6 +55,7 @@ class LoginController extends Controller
                         'password'=> Hash::make('Dummy@Passwoard'),
                         'image_url'=> $socialUser->avatar,
                         'role'=> 'client',
+                        'status'=> 'active',
                         'auth_provider'=>$provider,
                         'auth_provider_id'=>$socialUser->id,
                     ]);
