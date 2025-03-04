@@ -145,6 +145,16 @@
                         </a>
                         <ul class="sub-menu">
                           <li>
+                            <a href="{{route('user.create')}}" target="_blank">
+                              <span class="text">Add New Users</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="{{route('user.rejected')}}">
+                              <span class="text">Rejected Users</span>
+                            </a>
+                          </li>
+                          <li>
                             <a href="{{route('user.list')}}">
                               <span class="text">Users list</span>
                             </a>

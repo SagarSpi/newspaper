@@ -44,7 +44,7 @@
                         <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true" >Approved All Selected</button>
                     @endcan
                     <div>
-                        <a href="{{route('article.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
+                        <a href="{{route('article.request')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
                         @can('create', App\Models\Backend\Article::class)
                             <a href="{{ route('article.create') }}" class="btn btn-success btn-sm">Add New Article</a>
                         @else

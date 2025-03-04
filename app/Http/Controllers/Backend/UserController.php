@@ -97,6 +97,7 @@ class UserController extends Controller
     public function index()
     {   
         $users = User::orderBy('last_seen','DESC')
+                    ->whereIn('status', ['Active', 'Inactive'])
                     ->paginate(9);
 
         return view('users.users',compact('users'));
@@ -221,6 +222,38 @@ class UserController extends Controller
 
         return view('users.userProfile', compact('user', 'userWitharticleCount','percentageArticleShow', 'totalUserVisits','percentageVisits','pendingNewsCount','percentageArticleRequest','rejectedNewsCount','percentageRejectedArticle','totalUserComments','percentageComments', 'articles'));
     }
+    
+    public function rejectedUsers()
+    {   
+        $rejectedUsers = User::where('status','rejected')
+                            ->latest()
+                            ->paginate();
+
+        return view('users.userRejected',compact('rejectedUsers'));    
+    }
+
+    public function banUser(int $id)
+    {
+        $user = User::findOrFail($id);
+
+        Gate::authorize('delete',$user);
+
+        try {
+            DB::beginTransaction();
+
+            $user->update([
+                'status'=>'rejected'
+            ]);
+
+            DB::commit();
+            return redirect()->back()->with('success','User removed Successfully !');
+
+        } catch (\Exception $err) {
+            return redirect()->back()->with('error','User remove unsuccessfull ! Please try again.');
+        }
+
+    }
+
 
     /**
      * Show the form for editing the specified resource.

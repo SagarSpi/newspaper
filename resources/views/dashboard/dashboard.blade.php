@@ -149,13 +149,6 @@
                               <i class="fa-solid fa-trash"></i>
                             </button>
                           @endcan
-
-
-
-
-
-
-
                         </td>
                       </tr>
                     @endforeach

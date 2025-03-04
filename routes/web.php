@@ -91,10 +91,16 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     // User Route here
     Route::get('/manage/list/users',[UserController::class,'index'])->name('user.list');
     Route::get('/manage/users/search',[UserController::class,'searchData'])->name('user.search');
+    Route::get('/manage/profile/{id}/user',[UserController::class,'show'])->name('user.show');
+
+
+    Route::get('/manage/rejected/users',[UserController::class,'rejectedUsers'])->name('user.rejected');
+  
+
     Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
     Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
-    Route::get('/manage/profile/{id}/user',[UserController::class,'show'])->name('user.show');
     Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
+    Route::post('/manage/reject/{id}/user',[UserController::class,'banUser'])->name('user.baned');
     Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
 
 });

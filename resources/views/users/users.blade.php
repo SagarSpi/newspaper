@@ -100,11 +100,11 @@
                                     @endcan
                                     @can('delete',$user)
                                         <a class="remove btn btn-outline-danger btn-sm" data-id="{{ $user->id ??''}}">
-                                            <i class="fa-solid fa-trash"></i>
+                                            <i class="fa-solid fa-ban"></i>
                                         </a>
                                     @else
                                         <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true">
-                                            <i class="fa-solid fa-trash"></i>
+                                            <i class="fa-solid fa-ban"></i>
                                         </button>
                                     @endcan
                                 </td>
@@ -131,12 +131,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="mt-1">
-                        <h4 class="mb-1">Are you sure you want to remove this news?</h4>
+                        <h4 class="mb-1">Are you sure you want to remove this users ?</h4>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
+                    <button type="button" class="btn btn-primary" id="delete">Yes, Remove !</button>
                 </div>
             </div>
         </div>
@@ -155,11 +155,10 @@
 
                 $('#delete').off('click').on('click', function () {
                     $.ajax({
-                        url: "{{ route('user.delete', ':id') }}".replace(':id', id),
+                        url: "{{ route('user.baned', ':id') }}".replace(':id', id),
                         type: "POST",
                         data: {
                             _token: "{{ csrf_token() }}",
-                            _method: "DELETE" 
                         },
                         success: function (response) {
                             // toastr.success(response.success);
