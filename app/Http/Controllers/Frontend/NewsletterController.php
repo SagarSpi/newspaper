@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
-
-    
-
     public function searchData(Request $request)
     {
         $query = Newsletter::query()->latest();
@@ -102,7 +99,6 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {   
-
         $inputs = $request->validate([
             'email' => 'required|email|unique:newsletters,email',
         ]);
@@ -174,7 +170,6 @@ class NewsletterController extends Controller
     public function destroy(int $id)
     {
         $email = Newsletter::findOrFail($id);
-
         Gate::authorize('delete',$email);
 
         try {

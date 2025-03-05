@@ -18,7 +18,6 @@
                                 <option disabled selected>Status</option>
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
-                                <option value="rejected">Rejected</option>
                             </select>
                             <select class="form-select" name="date_filter">
                                 <option selected disabled>Filter By Date</option>

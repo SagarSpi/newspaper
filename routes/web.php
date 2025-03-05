@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\DashboardContoller;
 use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\RegisterController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Frontend\CategoryController;
@@ -31,6 +32,7 @@ Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name(
 Route::post('/news/details/{id}/comment/post',[CommentController::class,'store'])->name('news.comment');
 
 
+Route::post('/news/rating/user/post',[DetailsController::class,'ratingUser'])->name('news.rating-user');
 
 // Login Route here 
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');
@@ -41,11 +43,11 @@ Route::get('/auth/redirection/{provider}',[LoginController::class,'authProviderR
 Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentication'])->name('auth.callback');
 
 // Register Route here 
-Route::get('/register',[UserController::class,'create'])->name('user.create');
-Route::post('/register/post',[UserController::class,'store'])->name('user.store');
-Route::get('/register/user/otp-verification',[UserController::class,'otpVerification'])->name('user.verification');
+Route::get('/register',[RegisterController::class,'create'])->name('user.create');
+Route::post('/register/post',[RegisterController::class,'store'])->name('user.store');
+Route::get('/register/user/otp-verification',[RegisterController::class,'otpVerification'])->name('user.verification');
 
-Route::get('/send-otp',[UserController::class,'sendOtp'])->name('send-otp');
+Route::get('/send-otp',[RegisterController::class,'sendOtp'])->name('send-otp');
 
 // Newsletter route
 Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
@@ -53,7 +55,6 @@ Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->nam
 
 // Backend Route Here
 Route::middleware(['auth',UserActivity::class])->group(function () {
-
     // Dashboard Route here 
     Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
     // Article Route Here
@@ -93,9 +94,7 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
     Route::post('/manage/reject/{id}/user',[UserController::class,'banUser'])->name('user.baned');
     Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
-
 });
-
 
 Route::get('/manage/biponDa/download',[DownloadController::class,'downloadPage'])->name('download.page');
 Route::get('/manage/biponDa/download/file',[DownloadController::class,'downloadFile'])->name('download.file');

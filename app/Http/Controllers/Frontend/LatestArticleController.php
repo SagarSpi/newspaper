@@ -9,7 +9,6 @@ class LatestArticleController extends Controller
 {
     public function latestArticles()
     {
-
         $lead_news = Article::where('status','active')
                                 ->latest()
                                 ->first();
@@ -37,7 +36,6 @@ class LatestArticleController extends Controller
                                 ->skip(16)
                                 ->take(12)
                                 ->get();
-
 
         return view('frontend.letestNews.lastestNews',compact('lead_news','lead_news_sidebar','trading_news_sidebar','latest_news','latest_news_sidebar'));
     }

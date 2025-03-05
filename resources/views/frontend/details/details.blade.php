@@ -44,6 +44,9 @@
                     <div class="deatils-title">
                         <h3>{{$news_details->title??'No title available.'}}</h3>
                     </div>
+                    <div class="my-3">
+                        <p><strong>{{$news_details->shortDesc}}</strong></p>
+                    </div>
                     <div class="details-desc">
                         <p>{!!$news_details->description??'No description available'!!}</p>
                     </div>
@@ -89,32 +92,35 @@
                             <img src="{{$news_details->user->image_url??''}}" class="img-thumbnail" alt="Creator Image">
                         </div>
                         <h3>{{$news_details->user->name??'Reporter Name'}}</h3>
-
-
-                        <div class="star-widget">
-                            <input type="radio" name="rate" id="rate-5">
-                            <label for="rate-5" class="fas fa-star"></label>
-                            <input type="radio" name="rate" id="rate-4">
-                            <label for="rate-4" class="fas fa-star"></label>
-                            <input type="radio" name="rate" id="rate-3">
-                            <label for="rate-3" class="fas fa-star"></label>
-                            <input type="radio" name="rate" id="rate-2">
-                            <label for="rate-2" class="fas fa-star"></label>
-                            <input type="radio" name="rate" id="rate-1">
-                            <label for="rate-1" class="fas fa-star"></label>
-                            <p>
-                              <header></header>
-                            </p>
+                        <div class="rating-body">
+                            <form action="{{route('news.rating-user')}}" method="POST">
+                                @csrf
+                                <div class="star-widget">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="1" id="rate-1" >
+                                        <label class="form-check-label" for="rate-1"><i class="fas fa-star"></i></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="rate" id="rate-2">
+                                        <label class="form-check-label" for="rate-2"><i class="fas fa-star"></i></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="rate" id="rate-3">
+                                        <label class="form-check-label" for="rate-3"><i class="fas fa-star"></i></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="rate" id="rate-4">
+                                        <label class="form-check-label" for="rate-4"><i class="fas fa-star"></i></label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="rate" id="rate-5">
+                                        <label class="form-check-label" for="rate-5"><i class="fas fa-star"></i></label>
+                                    </div>
+                                </div>
+                                <button type="submit" id="submit-rating" class="btn btn-primary" style="display:none;">Submit Rating</button>
+                            </form>
+                            <header></header>
                         </div>
-
-
-                            {{-- <ul>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                                <li><i class="fa-regular fa-star"></i></li>
-                            </ul> --}}
                     </div>
                 </div>
                 <div class="details-sidebar">
@@ -155,6 +161,21 @@
                         @endforeach
                     </div>
                 </div>
+                <div class="details-sidebar mt-4">
+                    <div class="sidebar-heading">
+                        <h1>Latest Tags</h1>
+                        <div class="tags-body">
+                            @php
+                                $tags = explode(',',$news_details->tags)
+                            @endphp
+                            <div class="text-center my-2">
+                                @foreach ($tags as $tag)
+                                    <span class="tags-item">{{trim($tag)}}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="related-news mt-5">
                 <div class="mb-4">
@@ -186,3 +207,7 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script src="{{asset('assets/frontend/js/rating.js')}}"></script>
+@endpush

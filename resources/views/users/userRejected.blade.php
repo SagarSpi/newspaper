@@ -14,6 +14,7 @@
                             <input type="text" class="form-control" name="name" placeholder="Name">
                             <input type="text" class="form-control" name="email" placeholder="Email">
                             <input type="text" class="form-control" name="role" placeholder="Role">
+                            <input type="text" class="form-control" name="contact" placeholder="Contact">
                             <select class="form-select" name="date_filter">
                                 <option selected disabled>Filter By Date</option>
                                 <option value="today">Today</option>

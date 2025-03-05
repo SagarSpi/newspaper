@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('subject')->nullable();
             $table->text('description',1000);
+            $table->string('ip_address')->nullable();
             $table->unsignedBigInteger('commentable_id');
             $table->string('commentable_type');
             $table->timestamps();

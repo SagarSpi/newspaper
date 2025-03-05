@@ -252,22 +252,6 @@
         });
     </script>
 
-
-    {{-- <script>
-        $(document).ready(function () {
-            $('.showCreator').on('click', function () {
-                var userId = $(this).data('id');
-                console.log("User ID: " + userId); // Debugging জন্য
-                
-                // Bootstrap Offcanvas ইন্সট্যান্স ওপেন করা
-                var offcanvasElement = document.getElementById('offcanvasRight');
-                var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
-                offcanvas.show();
-            });
-        });
-    </script> --}}
-
-
     {{-- DELETE MODAL AJAX SCRIPT --}}
     <script>
         $(document).ready(function () {
@@ -317,7 +301,6 @@
                     alert('Please select at least one record to delete.')
                     return;
                 };
-
                 $.ajax({
                     url: "{{ route('article.deleteAll') }}",
                     type: "POST",

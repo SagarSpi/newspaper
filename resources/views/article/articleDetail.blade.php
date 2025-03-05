@@ -14,7 +14,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="back-btn">
-                        <a href="{{ route('article.edit', $article->id) }}" class="btn btn-success btn-sm">Edit Article</a>
+                        @can('update',$article)
+                            <a href="{{ route('article.edit', $article->id) }}" class="btn btn-success btn-sm">Edit Article</a>
+                        @endcan
                         <a href="{{ route('article.list') }}" class="btn btn-primary btn-sm">Back To Article</a>
                     </div>
                 </div>

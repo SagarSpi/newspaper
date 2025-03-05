@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Backend\Article;
 use Illuminate\Support\Facades\DB;
-use Flasher\Laravel\Facade\Flasher;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -118,7 +117,6 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {   
-
         Gate::authorize('create',Article::class);
 
         try {
@@ -194,7 +192,6 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, int $id)
     {
-
         $article = Article::findOrFail($id);
         
         Gate::authorize('update',$article);
@@ -327,11 +324,6 @@ class ArticleController extends Controller
             return redirect()->back()->with('error','Article  Delete Unsuccessful ! Please Try Again.');
         }
     }
-
-
-     // if ($request->user()->cannot('delete',$request)) {
-    //     abort(403,"You are not authorized");
-    // }
 
     public function destroyAll(Request $request)
     {

@@ -35,7 +35,6 @@ class ArticlePolicy
         if ($user->status === 'Active' && in_array($user->role,['Admin','Manager','Reporter'])) {
             return true;
         }
-
         return false;
     }
 
@@ -56,7 +55,6 @@ class ArticlePolicy
             return true;
         }
         return false;
-        
     }
 
     /**
@@ -79,7 +77,6 @@ class ArticlePolicy
         if ($user->status === 'Active' && in_array($user->role,['Admin','Manager'])) {
             return true;
         }
-
         return false;
     }
 }

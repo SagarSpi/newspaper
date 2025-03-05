@@ -7,7 +7,7 @@ use App\Models\Backend\Article;
 
 class HomeController extends Controller
 {
-    function homePage()
+    public function homePage()
     {
         $lead_news = Article::where('status','active')
                                     ->orderByDesc('created_at')

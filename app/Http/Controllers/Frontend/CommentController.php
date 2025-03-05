@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {   
-
     public function searchData(Request $request)
     {
         $query = Comment::query()->latest();
@@ -114,6 +113,7 @@ class CommentController extends Controller
                 'title'=>$request->title,
                 'subject'=>$request->subject,
                 'description'=>$request->description,
+                'ip_address'=>$request->ip(),
             ]);
 
             DB::commit();
@@ -215,7 +215,6 @@ class CommentController extends Controller
 
     public function destroyAll(Request $request)
     {
-
         Gate::authorize('deleteAll',Comment::class);
 
         try {

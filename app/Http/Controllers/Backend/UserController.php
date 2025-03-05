@@ -3,34 +3,21 @@
 namespace App\Http\Controllers\Backend;
 
 use Carbon\Carbon;
-use App\Jobs\SendMailJob;
 use App\Models\Backend\User;
 use Illuminate\Http\Request;
 use App\Models\Frontend\Comment;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Jobs\SendOtpJob;
-use App\Mail\RegistrationSuccesFullMail;
-use App\Mail\UserReportMail;
 use App\Models\Backend\Article;
-use Illuminate\Support\Facades\Hash;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {   
-
     public function searchData(Request $request) 
     {
-
         $query = User::query()->latest();
-
-        // Jodi contact thake, tahole search query add korbo
-        // if (!empty($request->contact)) {
-        //     $query->whereRaw('CAST(contacts AS CHAR) LIKE ?', ["%{$request->contact}%"]);
-        // }
 
         // Jodi name thake, tahole search query add korbo
         if (!empty($request->name)) {
@@ -40,6 +27,11 @@ class UserController extends Controller
         // Jodi email thake, tahole search query add korbo
         if (!empty($request->email)) {
             $query->where('email', 'like', "%{$request->email}%");
+        }
+
+        // Jodi contact thake, tahole search query add korbo
+        if (!empty($request->contact)) {
+            $query->whereRaw('CAST(contacts AS CHAR) LIKE ?', ["%{$request->contact}%"]);
         }
 
         // Jodi status thake, tahole search query add korbo
@@ -97,85 +89,10 @@ class UserController extends Controller
     public function index()
     {   
         $users = User::orderBy('last_seen','DESC')
-                    ->whereIn('status', ['Active', 'Inactive'])
+                    ->whereIn('status', ['active', 'inactive'])
                     ->paginate(9);
 
         return view('users.users',compact('users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('register.register');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(UserRequest $request)
-    {   
-        try {
-            DB::beginTransaction();
-            // Default Image
-            $uploadedFileUrl = 'https://res.cloudinary.com/demeqriqu/image/upload/v1739026688/Newspaper/Users-image/Default_image/user_default_image.png';
-            $public_id = 'Newspaper/Users-image/Default_image/user_default_image';
-            
-            if ($request->hasFile('image')) {
-
-                $timeStamp = Carbon::now()->format('Y-M');
-                $folderName = 'Newspaper/Users-image/'.$timeStamp;
-                $imageUniqueName = time();
-    
-                // Upload with image to cloudinary
-                $uploadimage = cloudinary()->upload($request->file('image')->getRealPath(), [
-                    'folder' => $folderName,
-                    'public_id'=> $imageUniqueName
-                ]);
-
-                $uploadedFileUrl = $uploadimage->getSecurePath();
-                $public_id = $uploadimage->getPublicId();
-            }
-    
-            User::create([
-                'name'=>$request->name,
-                'email'=>$request->email,
-                'password'=>Hash::make($request->password),
-                'image_url'=>$uploadedFileUrl,
-                'image_id'=>$public_id,
-                'contacts'=>$request->number,
-                'status'=>'inactive',
-                'role'=>$request->role,
-            ]);
-            
-            DB::commit();
-
-            
-            // for ($i=0; $i <10; $i++) { 
-            //     dispatch(new SendMailJob((object)$request->all()));
-            // }
-
-            // dispatch(new SendMailJob((object)$request->all()));
-            return redirect()->route('login')->with('success','Users Created Succesfully !');
-            // return redirect()->route('user.verification')->with('success','Users Created Succesfully !');
-
-        } catch (\Exception $err) {
-
-            DB::rollBack();
-            return redirect()->back()->with('error','Failed To Create Users !');
-        }
-    }
-
-    public function sendOtp()
-    {
-        dispatch(new SendOtpJob())->onQueue('high');
-        return redirect()->back()->with('success','OTP Send !');
-    }
-
-    public function otpVerification()
-    {
-        return view('register.otpVerification');
     }
 
     /**
@@ -196,7 +113,7 @@ class UserController extends Controller
         $totalUserVisits = $user->articles()->sum('visits');
 
         // ইউজারের inactive status-এর মোট article সংখ্যা বের করা
-        $pendingNewsCount = $user->articles()->where('status', 'inactive')->count();
+        $pendingNewsCount = $user->articles()->where('status', 'Pending')->count();
 
         $rejectedNewsCount = $user->articles()->where('status', 'rejected')->count();
 
@@ -251,7 +168,6 @@ class UserController extends Controller
         } catch (\Exception $err) {
             return redirect()->back()->with('error','User remove unsuccessfull ! Please try again.');
         }
-
     }
 
 

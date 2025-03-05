@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Article;
+use Illuminate\Support\Facades\Request;
 
 class DetailsController extends Controller
 {
-    function detailsPage(int $id)
+    public function detailsPage(int $id)
     {
         $news_details = Article::findOrFail($id);
 
@@ -39,5 +40,10 @@ class DetailsController extends Controller
             'latest_news'=>$latest_news,
             'trading_news'=>$trading_news
         ]);
+    }
+
+    public function ratingUser(Request $request)
+    {
+        return $request;
     }
 }

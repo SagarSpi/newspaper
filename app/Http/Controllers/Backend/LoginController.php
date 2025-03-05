@@ -87,9 +87,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        
         User::where('id',Auth::user()->id)->update(['status'=>'inactive']);
-
         Auth::logout();
         
         return redirect()->route('login');

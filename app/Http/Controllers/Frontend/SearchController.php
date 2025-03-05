@@ -10,7 +10,6 @@ class SearchController extends Controller
 {
     public function searchNews(Request $request) 
     {
-
         $search = $request->search;
 
         $news = Article::where('status', 'active')->latest() // শুধুমাত্র অ্যাকটিভ নিউজ নিবো
