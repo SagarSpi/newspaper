@@ -30,9 +30,7 @@ Route::get('/news/latest',[LatestArticleController::class,'latestArticles'])->na
 Route::get('/news/{cat}/category',[CategoryController::class,'categoryPage'])->name('news.category');
 Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name('news.details');
 Route::post('/news/details/{id}/comment/post',[CommentController::class,'store'])->name('news.comment');
-
-
-Route::post('/news/rating/user/post',[DetailsController::class,'ratingUser'])->name('news.rating-user');
+Route::post('/news/rating/{userId}/user/post',[DetailsController::class,'ratingUser'])->name('news.rating-user');
 
 // Login Route here 
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');

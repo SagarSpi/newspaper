@@ -93,33 +93,37 @@
                         </div>
                         <h3>{{$news_details->user->name??'Reporter Name'}}</h3>
                         <div class="rating-body">
-                            <form action="{{route('news.rating-user')}}" method="POST">
+                            <form action="{{route('news.rating-user',$news_details->user->id)}}" method="POST">
                                 @csrf
                                 <div class="star-widget">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="1" id="rate-1" >
+                                        <input class="form-check-input" type="radio" name="rate" value="1" id="rate-1" >
                                         <label class="form-check-label" for="rate-1"><i class="fas fa-star"></i></label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rate" id="rate-2">
+                                        <input class="form-check-input" type="radio" name="rate" value="2" id="rate-2">
                                         <label class="form-check-label" for="rate-2"><i class="fas fa-star"></i></label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rate" id="rate-3">
+                                        <input class="form-check-input" type="radio" name="rate" value="3" id="rate-3">
                                         <label class="form-check-label" for="rate-3"><i class="fas fa-star"></i></label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rate" id="rate-4">
+                                        <input class="form-check-input" type="radio" name="rate" value="4" id="rate-4">
                                         <label class="form-check-label" for="rate-4"><i class="fas fa-star"></i></label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rate" id="rate-5">
+                                        <input class="form-check-input" type="radio" name="rate" value="5" id="rate-5">
                                         <label class="form-check-label" for="rate-5"><i class="fas fa-star"></i></label>
                                     </div>
                                 </div>
-                                <button type="submit" id="submit-rating" class="btn btn-primary" style="display:none;">Submit Rating</button>
+                                <div>
+                                    <header></header>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" id="submit-rating" class="btn btn-outline-danger" style="display:none;">Submit Rating</button>
+                                </div>
                             </form>
-                            <header></header>
                         </div>
                     </div>
                 </div>

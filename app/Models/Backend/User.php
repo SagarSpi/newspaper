@@ -21,6 +21,8 @@ class User extends Authenticatable
         'image_url',
         'image_id',
         'role',
+        'rating',
+        'rating_count',
         'status',
         'auth_provider',
         'auth_provider_id',

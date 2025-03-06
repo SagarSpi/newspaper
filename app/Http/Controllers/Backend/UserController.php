@@ -128,6 +128,10 @@ class UserController extends Controller
         $rejectedArticle = Article::where('status','rejected')->count();
         $percentageRejectedArticle = $rejectedArticle ? number_format(($rejectedNewsCount / $rejectedArticle )* 100,1):0;
         
+        $rating = $user->rating ? number_format($user->rating,1):0;
+        $totalRating = User::sum('rating');
+        $percentageRating = $totalRating ? number_format(($rating / $totalRating)*100,1):0;
+
         $totalComments = Comment::count();
         $percentageComments = $totalComments ? number_format(($totalUserComments / $totalComments)*100,1): 0;
 
@@ -137,7 +141,7 @@ class UserController extends Controller
         // ইউজারের সর্বশেষ ৮টি আর্টিকেল পেজিনেশনসহ নিয়ে আসা
         $articles = $user->articles()->latest()->paginate(8);
 
-        return view('users.userProfile', compact('user', 'userWitharticleCount','percentageArticleShow', 'totalUserVisits','percentageVisits','pendingNewsCount','percentageArticleRequest','rejectedNewsCount','percentageRejectedArticle','totalUserComments','percentageComments', 'articles'));
+        return view('users.userProfile', compact('user', 'userWitharticleCount','percentageArticleShow', 'totalUserVisits','percentageVisits','pendingNewsCount','percentageArticleRequest','rejectedNewsCount','percentageRejectedArticle','rating','percentageRating','totalUserComments','percentageComments', 'articles'));
     }
     
     public function rejectedUsers()

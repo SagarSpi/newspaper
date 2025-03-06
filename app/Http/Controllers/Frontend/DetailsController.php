@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Article;
-use Illuminate\Support\Facades\Request;
+use App\Models\Backend\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DetailsController extends Controller
 {
@@ -42,8 +44,34 @@ class DetailsController extends Controller
         ]);
     }
 
-    public function ratingUser(Request $request)
+    public function ratingUser(Request $request,int $id)
     {
-        return $request;
+        $user = User::findOrFail($id);
+
+        try {
+            DB::beginTransaction();
+
+            $input = $request->validate([
+                'rate'=>'required|integer|min:1|max:5'
+            ]);
+    
+            // Rating এর গড় হিসাব রাখার জন্য rating_count ব্যবহার করা হচ্ছে
+            $newRatingCount = $user->rating_count + 1;
+            $newRating = (($user->rating * $user->rating_count) + $input['rate']) / $newRatingCount;
+
+            // নতুন রেটিং আপডেট করা হচ্ছে
+            $user->update([
+                'rating' => $newRating,
+                'rating_count' => $newRatingCount
+            ]);
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Rating submitted successfully!');
+
+        } catch (\Exception $err) {
+
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Rating submission failed! Please try again.');
+        }
     }
 }

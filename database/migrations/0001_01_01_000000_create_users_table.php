@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->string('image_id')->nullable();
             $table->integer('contacts')->nullable();
+            $table->float('rating')->nullable();
+            $table->integer('rating_count')->nullable();
             $table->string('role',20);
             $table->string('status')->nullable();
             $table->timestamp('last_seen')->nullable();

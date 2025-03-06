@@ -112,12 +112,12 @@
                         <div class="col-4">
                             <div class="card-box">
                                 <div>
-                                    <h2> <i class="fa-solid fa-arrow-up font-14"></i></h2>
+                                    <h2>{{$rating}} <i class="fa-solid fa-arrow-down font-14"></i></h2>
                                     <p>Rating</p>
                                 </div>
                                 <div>
                                     <i class="fa-regular fa-star font-35"></i>
-                                    <p class="font-14 mt-3">+45.4%</p>
+                                    <p class="font-14 mt-3">+{{$percentageRating}}%</p>
                                 </div>
                             </div>
                         </div>
