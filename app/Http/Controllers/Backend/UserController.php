@@ -153,6 +153,70 @@ class UserController extends Controller
         return view('users.userRejected',compact('rejectedUsers'));    
     }
 
+    public function searchRejectedData(Request $request) 
+    {
+        $query = User::query()->latest();
+
+        // Jodi name thake, tahole search query add korbo
+        if (!empty($request->name)) {
+            $query->where('name','like',"%{$request->name}%");
+        }
+
+        // Jodi email thake, tahole search query add korbo
+        if (!empty($request->email)) {
+            $query->where('email', 'like', "%{$request->email}%");
+        }
+
+        // Jodi role thake, tahole search query add korbo
+        if (!empty($request->role)) {
+            $query->where('role', 'like', "%{$request->role}%");
+        }
+
+        // Jodi contact thake, tahole search query add korbo
+        if (!empty($request->contact)) {
+            $query->whereRaw('CAST(contacts AS CHAR) LIKE ?', ["%{$request->contact}%"]);
+        }
+
+        if (!empty($request->date_filter)) {
+            $date = $request->date_filter;
+            switch ($date) {
+                case 'today':
+                    $query->whereDate('created_at',Carbon::today());
+                    break;
+                case 'yesterday':
+                    $query->whereDate('created_at',Carbon::yesterday());
+                    break;
+                case 'this_week':
+                    $query->whereBetween('created_at',[Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
+                    break;
+                case 'last_week':
+                    $query->whereBetween('created_at',[Carbon::now()->subWeek(),Carbon::now()]);
+                    break;
+                case 'this_month':
+                    $query->whereMonth('created_at',Carbon::now()->month);
+                    break;
+                case 'last_month':
+                    $query->whereMonth('created_at',Carbon::now()->subMonth()->month);
+                    break;
+                case 'this_year':
+                    $query->whereYear('created_at',Carbon::now()->year);
+                    break;
+                case 'last_year':
+                    $query->whereYear('created_at',Carbon::now()->subYear()->year());
+                    break;
+            }
+        }
+
+        $users = $query->where('status','rejected')
+                        ->paginate(9);
+
+        if ($users->isEmpty()) {
+            return redirect()->back()->with('info', 'No Users found.');
+        }
+
+        return view('users.userRejected',compact('users'));
+    }
+
     public function banUser(int $id)
     {
         $user = User::findOrFail($id);

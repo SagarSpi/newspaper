@@ -77,15 +77,14 @@ class ArticleController extends Controller
         }
 
         // 9 ta kore paginate korbo
-        $articles = $query->paginate(9);
+        $articles = $query->whereIn('status',['active','inactive'])
+                    ->paginate(9);
 
         // Jodi kono result na thake, tahole back pathay dibo
         if ($articles->isEmpty()) {
             
-            // toastr()->closeButton(true)->info('No Article Found !');
             return redirect()->back()->with('info','No Article Found !');
         }
-
         return view('article.article', compact('articles'));
     }
 
@@ -96,7 +95,8 @@ class ArticleController extends Controller
     {
         $articles = Article::with('user')
                         ->withCount('comments')
-                        ->orderByDesc('created_at')
+                        ->whereIn('status', ['active', 'inactive'])
+                        ->latest()
                         ->paginate(9);
 
         return view('article.article',compact('articles'));
@@ -251,9 +251,76 @@ class ArticleController extends Controller
     {   
         $articles = Article::where('status','pending')
                             ->latest()
-                            ->paginate(9);
+                            ->paginate(12);
 
         return view('article.articleRequest',compact('articles'));
+    }
+
+    public function searchRequestData(Request $request)
+    {
+        $query = Article::query()->latest();
+
+        // Keyword diye search korbo (ID, shortDesc, user->name)
+        if (!empty($request->keyword)) {
+            $query->where(function ($q) use ($request) {
+                $q->where('id', $request->keyword)
+                    ->orWhere('shortDesc', 'like', "%{$request->keyword}%")
+                    ->orWhere('tags', 'like', "%{$request->keyword}%")
+                    ->orWhereHas('user', function ($q) use ($request) {
+                        $q->where('name', 'like', "%{$request->keyword}%");
+                    });
+            });
+        }
+
+        // Jodi title thake, tahole search query add korbo
+        if (!empty($request->title)) {
+            $query->where('title', 'like', "%{$request->title}%");
+        }
+
+        // Jodi category thake, tahole search query add korbo
+        if (!empty($request->category)) {
+            $query->where('category', 'like', "%{$request->category}%");
+        }
+
+        if (!empty($request->date_filter)) {
+            $date = $request->date_filter;
+            switch ($date) {
+                case 'today':
+                    $query->whereDate('created_at',Carbon::today());
+                    break;
+                case 'yesterday':
+                    $query->whereDate('created_at',Carbon::yesterday());
+                    break;
+                case 'this_week':
+                    $query->whereBetween('created_at',[Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
+                    break;
+                case 'last_week':
+                    $query->whereBetween('created_at',[Carbon::now()->subWeek(),Carbon::now()]);
+                    break;
+                case 'this_month':
+                    $query->whereMonth('created_at',Carbon::now()->month);
+                    break;
+                case 'last_month':
+                    $query->whereMonth('created_at',Carbon::now()->subMonth()->month);
+                    break;
+                case 'this_year':
+                    $query->whereYear('created_at',Carbon::now()->year);
+                    break;
+                case 'last_year':
+                    $query->whereYear('created_at',Carbon::now()->subYear()->year());
+                    break;
+            }
+        }
+        // 9 ta kore paginate korbo
+        $articles = $query->where('status','pending')
+                    ->paginate(9);
+
+        // Jodi kono result na thake, tahole back pathay dibo
+        if ($articles->isEmpty()) {
+            
+            return redirect()->back()->with('info','No Article Found !');
+        }
+        return view('article.articleRequest', compact('articles'));
     }
 
     public function articleReqApproved(string $id)

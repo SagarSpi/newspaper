@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="search-bar mt-3">
-                    <form action="{{route('article.search')}}" method="GET">
+                    <form action="{{route('article.request-search')}}" method="GET">
                         <div class="input-group mt-2">
                             <input class="form-control" name="keyword" placeholder="Keyword">
                             <input type="text" class="form-control" name="title" placeholder="Title">
@@ -123,6 +123,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div>
+                        {{$articles->links()}}
+                    </div>
                 </div>
             </div>
         </div>

@@ -43,7 +43,7 @@
             <div class="col-4">
                 <div class="text-end">
                     <a href="{{route('user.list')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>
-                    <a href="{{route('user.create')}}" class="btn btn-success btn-sm">Add New User</a>
+                    <a href="{{route('user.create')}}" class="btn btn-success btn-sm" target="_blank">Add New User</a>
                 </div>
             </div>
         </div>

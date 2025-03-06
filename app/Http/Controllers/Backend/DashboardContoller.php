@@ -48,6 +48,7 @@ class DashboardContoller extends Controller
         // গত ৩০ দিনের ডাটা
         $lastPeriod = Article::whereBetween('created_at', $last30Days)
             ->selectRaw('COUNT(*) as count, category')
+            ->where('status','active')
             ->groupBy('category')
             ->get()
             ->pluck('count', 'category');
@@ -55,6 +56,7 @@ class DashboardContoller extends Controller
         // তার আগের ৩০ দিনের ডাটা
         $previousPeriod = Article::whereBetween('created_at', $previous30Days)
             ->selectRaw('COUNT(*) as count, category')
+            ->where('status','active')
             ->groupBy('category')
             ->get()
             ->pluck('count', 'category');

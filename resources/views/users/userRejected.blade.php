@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <div class="search-bar mt-3">
-                    <form action="{{route('user.search')}}" method="GET">
+                    <form action="{{route('user.rejected-search')}}" method="GET">
                         <div class="input-group mt-2">
                             <input type="text" class="form-control" name="name" placeholder="Name">
                             <input type="text" class="form-control" name="email" placeholder="Email">

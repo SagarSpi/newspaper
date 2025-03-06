@@ -61,6 +61,7 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/create/article',[ArticleController::class,'create'])->name('article.create');
     Route::post('/manage/create/article/post', [ArticleController::class,'store'])->name('article.store');
     Route::get('/manage/request/article',[ArticleController::class,'articleRequest'])->name('article.request');
+    Route::get('/manage/request/article/search',[ArticleController::class,'searchRequestData'])->name('article.request-search');
     Route::get('/manage/{id}/approved/article',[ArticleController::class,'articleReqApproved'])->name('article.approved');
     Route::post('/manage/approved/article/all',[ArticleController::class,'approvedAll'])->name('article.approvedAll');
     Route::get('/manage/edit/{id}/article',[ArticleController::class,'edit'])->name('article.edit');
@@ -87,6 +88,7 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/users/search',[UserController::class,'searchData'])->name('user.search');
     Route::get('/manage/profile/{id}/user',[UserController::class,'show'])->name('user.show');
     Route::get('/manage/rejected/users',[UserController::class,'rejectedUsers'])->name('user.rejected');
+    Route::get('/manage/rejected/users/search',[UserController::class,'searchRejectedData'])->name('user.rejected-search');
     Route::get('/manage/edit/{id}/user',[UserController::class,'edit'])->name('user.edit');
     Route::put('/manage/edit/{id}/user/post',[UserController::class,'update'])->name('user.update');
     Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
