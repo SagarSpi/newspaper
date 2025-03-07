@@ -16,7 +16,7 @@
                     <div class="details-topbar">
                         <div class="publish-time">
                             <p>Date : {{$news_details->created_at??'N/A'}}</p>
-                            <p>1 hour ago</p>
+                            <p>{{ \Carbon\Carbon::parse($news_details->created_at)->diffForHumans() }}</p>
                         </div>
                         <div class="details-share">
                             <ul>

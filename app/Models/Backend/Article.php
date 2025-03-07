@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Article extends Model
 {
     use HasFactory;
-    
     use SoftDeletes;
 
     protected $fillable = [
@@ -70,5 +69,11 @@ class Article extends Model
         return Attribute::make(
             get: fn(string $value)=>date('d M Y',strtotime($value))
         );
+    }
+    protected function casts() : array
+    {
+        return [
+            'created_at'=>'datetime',
+        ];
     }
 }
