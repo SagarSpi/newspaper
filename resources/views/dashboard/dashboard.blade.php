@@ -175,49 +175,13 @@
     </div>
   </div>
 
-  <!-- Appreved Modal Start-->
-  <div class="modal fade" id="approvedModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Approved Conformation</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mt-1">
-                    <h4 class="mb-1">Are you sure you want to approved this user ?</h4>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="approvedBtn">Yes, Approved It!</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Appreved Modal End-->
+  {{-- Appreved Modal Start --}}
+  <x-modal id="approvedModal" title="Approved Conformation" message="Are you sure you want to approved this user ?" btn="Yes, Approved It!" btnId="approvedBtn" />
+  {{-- Appreved Modal End --}}
 
-<!-- Delete Modal Start-->
-<div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <div class="mt-1">
-                  <h4 class="mb-1">Are you sure you want to remove this Users?</h4>
-              </div>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
-          </div>
-      </div>
-  </div>
-</div>
-<!-- Delete Modal End-->
+  {{-- delete modal start  --}}
+  <x-modal id="removeModal" title="Delete Conformation" message="Are you sure you want to remove this users ?" btn="Yes, Remove !" btnId="delete" />
+  {{-- delete modal end  --}}
 
 @endsection
 
@@ -225,8 +189,6 @@
 
   {{-- HIGHCHART JS CDN LINK  --}}
   <script src="https://code.highcharts.com/highcharts.js"></script>
-  {{-- <script src="https://code.highcharts.com/modules/accessibility.js"></script> --}}
-
 
   {{-- APPROVED MODAL AJAX SCRIPT --}}
   <script>
