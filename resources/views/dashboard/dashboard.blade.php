@@ -81,7 +81,8 @@
                     <div>
                       <h2 class="mb-0 text-white">{{$pendingUsersCount}} <i class="fa-solid fa-arrow-down font-14 text-white"></i></h2>
                     </div>
-                    <div class="ms-auto font-35 text-white"><i class="fa-regular fa-user"></i>
+                    <div class="ms-auto font-35 text-white">
+                      <i class="fa-regular fa-user"></i>
                     </div>
                   </div>
                   <div class="d-flex align-items-center">
@@ -201,16 +202,13 @@
           $.ajax({
               url: "{{ route('user.approved', ':id') }}".replace(':id', id),
               type: "get",
-              data: {
-                  
-              },
               success: function (response) {
                   // toastr.success(response.success);
-                  $('#approvedModal').modal('hide'); 
-                  location.reload(); 
+                $('#approvedModal').modal('hide'); 
+                location.reload(); 
               },
               error: function (xhr) {
-                  // toastr.error("Something went wrong!"); 
+                // toastr.error("Something went wrong!"); 
               }
           });
         });
@@ -271,13 +269,13 @@
         categories: categories,
         crosshair: true,
         title: {
-            text: 'Categories'
+          text: 'Categories'
         }
       },
       yAxis: {
         min: 0,
         title: {
-            text: 'Number of Articles'
+          text: 'Number of Articles'
         }
       },
       tooltip: {
@@ -313,37 +311,37 @@
 
     Highcharts.chart('userChart', {
       chart: {
-          type: 'column'
+        type: 'column'
       },
       title: {
-          text: 'User Registration in this Year'
+        text: 'User Registration in this Year'
       },
       xAxis: {
         categories: dataKeys,
         crosshair: true,
         title: {
-            text: 'Month'
+          text: 'Month'
         }
       },
       yAxis: {
           min: 0,
           title: {
-              text: 'Number of Users Register'
+            text: 'Number of Users Register'
           }
       },
       tooltip: {
           valueSuffix: ' (1000 MT)'
       },
       plotOptions: {
-          column: {
-              pointPadding: 0.2,
-              borderWidth: 0
-          }
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
       },
       series: [
         {
-            name: 'Users Register',
-            data: dataValues
+          name: 'Users Register',
+          data: dataValues
         }
       ]
     });
@@ -351,69 +349,67 @@
 
   <script>
     (async () => {
-
-    const data = await fetch(
+      const data = await fetch(
         'https://www.highcharts.com/samples/data/usdeur.json'
-    ).then(response => response.json());
+      ).then(response => response.json());
 
-    Highcharts.chart('countryChart', {
+      Highcharts.chart('countryChart', {
         chart: {
-            zooming: {
-                type: 'x'
-            }
+          zooming: {
+            type: 'x'
+          }
         },
         title: {
             text: 'Article Engeged By Location'
         },
         subtitle: {
-            text: document.ontouchstart === undefined ?
-                'Click and drag in the plot area to zoom in' :
-                'Pinch the chart to zoom in'
+          text: document.ontouchstart === undefined ?
+            'Click and drag in the plot area to zoom in' :
+            'Pinch the chart to zoom in'
         },
         xAxis: {
-            type: 'datetime'
+          type: 'datetime'
         },
         yAxis: {
-            title: {
-                text: 'Exchange rate'
-            }
+          title: {
+            text: 'Exchange rate'
+          }
         },
         legend: {
             enabled: false
         },
         plotOptions: {
-            area: {
-                marker: {
-                    radius: 2
-                },
-                lineWidth: 1,
-                color: {
-                    linearGradient: {
-                        x1: 0,
-                        y1: 0,
-                        x2: 0,
-                        y2: 1
-                    },
-                    stops: [
-                        [0, 'rgb(199, 113, 243)'],
-                        [0.7, 'rgb(76, 175, 254)']
-                    ]
-                },
-                states: {
-                    hover: {
-                        lineWidth: 1
-                    }
-                },
-                threshold: null
-            }
+          area: {
+            marker: {
+              radius: 2
+            },
+            lineWidth: 1,
+            color: {
+              linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+              },
+              stops: [
+                [0, 'rgb(199, 113, 243)'],
+                [0.7, 'rgb(76, 175, 254)']
+              ]
+            },
+            states: {
+              hover: {
+                lineWidth: 1
+              }
+            },
+            threshold: null
+          }
         },
-
         series: [{
-            type: 'area',
-            name: 'USD to EUR',
-            data: data
+          type: 'area',
+          name: 'USD to EUR',
+          data: data
         }]
-    });
+      });
     })();
   </script>
 

@@ -178,7 +178,6 @@
       </div>
     </div>
     {{-- CONTENT SECTION CODE END --}}
-
     {{-- FOOTER SECTION CODE START  --}}
     <div class="footer-section">
       <div class="container-fluid">
@@ -215,22 +214,22 @@
                 <h5 class="mb-4">Quick Contacts</h5>
                 <table class="table table-borderless table-sm">
                   <tbody>
-                      <tr>
-                          <th><i class="fa-solid fa-location-dot fa-lg"></i></th>
-                          <td>23 Street, Dhaka, Bangladesh</td>
-                      </tr>
-                      <tr>
-                          <th><i class="fa-solid fa-mobile-screen fa-lg"></i></th>
-                          <td>+880 1725 540 583</td>
-                      </tr>
-                      <tr>
-                          <th><i class="fa-solid fa-envelope fa-lg"></i></th>
-                          <td>info@bestnews.com</td>
-                      </tr>
-                      <tr>
-                          <th><i class="fa-solid fa-globe fa-lg"></i></th>
-                          <td>www.bestnews.com</td>
-                      </tr>
+                    <tr>
+                      <th><i class="fa-solid fa-location-dot fa-lg"></i></th>
+                      <td>23 Street, Dhaka, Bangladesh</td>
+                    </tr>
+                    <tr>
+                      <th><i class="fa-solid fa-mobile-screen fa-lg"></i></th>
+                      <td>+880 1725 540 583</td>
+                    </tr>
+                    <tr>
+                      <th><i class="fa-solid fa-envelope fa-lg"></i></th>
+                      <td>info@bestnews.com</td>
+                    </tr>
+                    <tr>
+                      <th><i class="fa-solid fa-globe fa-lg"></i></th>
+                      <td>www.bestnews.com</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

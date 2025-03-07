@@ -188,13 +188,9 @@
     <script>
         $(document).ready(function () {
             $('.showCreator').on('click', function () {
-                // data-id থেকে মান নিয়ে আসা
                 var dataId = $(this).data('id');
-                
-                // কমা দিয়ে আলাদা করা
                 var dataParts = dataId.split(',');
 
-                // প্রতিটি ভ্যারিয়েবল আলাদা করা
                 var userId = dataParts[0];
                 var userName = dataParts[1];
                 var userEmail = dataParts[2];
@@ -202,31 +198,26 @@
                 var userContact = dataParts[4];
                 var userRole = dataParts[5];
 
-                // টেবিলের ভেতরে ডেটা আপডেট করা
                 $('#userId').text(userId);
                 $('#userName').text(userName);
                 $('#userEmail').text(userEmail);
-                $('#userImage').attr('src', userImage); // ইমেজ src আপডেট
+                $('#userImage').attr('src', userImage);
                 $('#userContact').text(userContact);
                 $('#userRole').text(userRole);
 
-                 // `View More` বাটনে ডাইনামিক URL সেট করা
                 var viewMoreUrl = "{{ route('user.show', ['id' => 'userId']) }}";
-                viewMoreUrl = viewMoreUrl.replace('userId', userId); // `userId` প্যারামিটার দিয়ে রাউটটি আপডেট করা
+                viewMoreUrl = viewMoreUrl.replace('userId', userId); 
 
-                // href অ্যাট্রিবিউটে URL সেট করা
                 $('#viewMoreBtn').attr('href', viewMoreUrl);
 
-                // Bootstrap Offcanvas ইন্সট্যান্স ওপেন করা
                 var offcanvasElement = document.getElementById('offcanvasRight');
                 var offcanvas = new bootstrap.Offcanvas(offcanvasElement);
                 offcanvas.show();
 
-                // "View More" বাটনে ক্লিক করলে URL এ রিডিরেক্ট করতে
                 $('#viewMoreBtn').on('click', function() {
                     var url = $(this).attr('href');
                     if (url) {
-                        window.location.href = url;  // রিডিরেক্ট করা
+                        window.location.href = url;
                     }
                 });
             });
@@ -237,10 +228,9 @@
     <script>
         $(document).ready(function () {
             $('.remove').on('click', function () {
-                let id = $(this).data('id'); // ডিলিট করার আইডি বের করা
-                $('#removeModal').modal('show'); // মডাল দেখানো
+                let id = $(this).data('id'); 
+                $('#removeModal').modal('show');
 
-                // আগের ক্লিক ইভেন্ট রিসেট করে নতুন ইভেন্ট যুক্ত করা
                 $('#delete').off('click').on('click', function () {
                     $.ajax({
                         url: "{{ route('article.delete', ':id') }}".replace(':id', id),
@@ -250,8 +240,8 @@
                             _method: "DELETE" 
                         },
                         success: function (response) {
-                            $('#removeModal').modal('hide'); // মডাল বন্ধ করা
-                            location.reload(); // পেজ রিফ্রেশ করা
+                            $('#removeModal').modal('hide');
+                            location.reload();
                         },
                         error: function (xhr) {
                             // Log the error to the Laravel log file

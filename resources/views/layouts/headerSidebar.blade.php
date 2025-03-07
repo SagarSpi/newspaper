@@ -83,111 +83,111 @@
     {{-- HEADER SECTION END --}}
     {{--  CONTENT SECTION START --}}
     <section class="content-section">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-2 px-0">
-              <div class="content-sidebar">
-                <div class="sideber-title">
-                    <h5>NAVIGATION PANEL</h5>
-                </div>
-                <nav class="sidebar-nav">
-                  <div class="menu">
-                    <p class="title">Main</p>
-                    <ul>
-                      <li>
-                        <a href="{{route('dashboard')}}">
-                          <i class="fa-solid fa-home icon"></i>
-                          <span class="text">Dashboard</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="fa-solid fa-newspaper icon"></i>
-                          <span class="text">Article</span>
-                          <i class="fa-solid fa-chevron-down arrow"></i>
-                        </a>
-                        <ul class="sub-menu">
-                          <li>
-                            <a href="{{route('article.list')}}">
-                              <span class="text">Article List</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="{{route('article.request')}}">
-                              <span class="text">Article Request</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="{{route('article.create')}}">
-                              <span class="text">Create Article</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="{{route('comment.list')}}">
-                          <i class="fa-regular fa-comments icon"></i>
-                          <span class="text">Comments </span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="{{route('email.list')}}">
-                          <i class="fa-regular fa-envelope-open icon"></i>
-                          <span class="text">Newsletter Mail</span>
-                        </a>
-                      </li>
-                      <p class="title">Users</p>
-                      <li>
-                        <a href="#">
-                          <i class="fa-regular fa-user icon"></i>
-                          <span class="text">User Management</span>
-                          <i class="fa-solid fa-chevron-down arrow"></i>
-                        </a>
-                        <ul class="sub-menu">
-                          <li>
-                            <a href="{{route('user.list')}}">
-                              <span class="text">Users list</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="{{route('user.rejected')}}">
-                              <span class="text">Rejected Users</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="{{route('user.create')}}" target="_blank">
-                              <span class="text">Add New Users</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <p class="title">Settings</p>
-                      <li>
-                        <a href="#">
-                          <i class="fa-solid fa-gear icon"></i> 
-                          <span class="text">Settings</span>
-                          <i class="fa-solid fa-chevron-down arrow"></i>
-                        </a>
-                        <ul class="sub-menu">
-                          <li>
-                            <a href="#">
-                              <span class="text">Social Links</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </nav>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-2 px-0">
+            <div class="content-sidebar">
+              <div class="sideber-title">
+                <h5>NAVIGATION PANEL</h5>
               </div>
-            </div>
-            <div class="col-10">
-                <div class="content-body">
-                    @yield('content')
+              <nav class="sidebar-nav">
+                <div class="menu">
+                  <p class="title">Main</p>
+                  <ul>
+                    <li>
+                      <a href="{{route('dashboard')}}">
+                        <i class="fa-solid fa-home icon"></i>
+                        <span class="text">Dashboard</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="fa-solid fa-newspaper icon"></i>
+                        <span class="text">Article</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                      </a>
+                      <ul class="sub-menu">
+                        <li>
+                          <a href="{{route('article.list')}}">
+                            <span class="text">Article List</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{route('article.request')}}">
+                            <span class="text">Article Request</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{route('article.create')}}">
+                            <span class="text">Create Article</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="{{route('comment.list')}}">
+                        <i class="fa-regular fa-comments icon"></i>
+                        <span class="text">Comments </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{{route('email.list')}}">
+                        <i class="fa-regular fa-envelope-open icon"></i>
+                        <span class="text">Newsletter Mail</span>
+                      </a>
+                    </li>
+                    <p class="title">Users</p>
+                    <li>
+                      <a href="#">
+                        <i class="fa-regular fa-user icon"></i>
+                        <span class="text">User Management</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                      </a>
+                      <ul class="sub-menu">
+                        <li>
+                          <a href="{{route('user.list')}}">
+                            <span class="text">Users list</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{route('user.rejected')}}">
+                            <span class="text">Rejected Users</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{route('user.create')}}" target="_blank">
+                            <span class="text">Add New Users</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <p class="title">Settings</p>
+                    <li>
+                      <a href="#">
+                        <i class="fa-solid fa-gear icon"></i> 
+                        <span class="text">Settings</span>
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                      </a>
+                      <ul class="sub-menu">
+                        <li>
+                          <a href="#">
+                            <span class="text">Social Links</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
+              </nav>
+            </div>
+          </div>
+          <div class="col-10">
+            <div class="content-body">
+              @yield('content')
             </div>
           </div>
         </div>
+      </div>
     </section>
     {{-- CONTENT SECTION END  --}}
 
@@ -214,7 +214,6 @@
         toastr.warning("{{session('warning')}}",'Warning !',{timeOut:6000});
       @endif
     </script> --}}
-
     @stack('script')
   </body>
 </html>

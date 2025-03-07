@@ -41,7 +41,6 @@
                         <h5>No News found !</h5>
                     </div>
                 @endforelse
-
                 <div>
                     {{$searchNews->links()}}
                 </div>

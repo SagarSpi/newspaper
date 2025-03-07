@@ -145,7 +145,6 @@
                     type: "GET",
                     url: "{{ route('comment.show', ':id') }}".replace(':id', id),
                     success: function (response) {
-                        // Modal Body-এর মধ্যে ডাটা যোগ করা হচ্ছে
                         $('.modal-body').html(`
                             <h5><strong>Title :</strong> ${response.comment.title}</h5>
                             <hr>
@@ -163,10 +162,9 @@
     <script>
         $(document).ready(function () {
             $('.remove').on('click', function () {
-                let id = $(this).data('id'); // ডিলিট করার আইডি বের করা
-                $('#removeModal').modal('show'); // মডাল দেখানো
+                let id = $(this).data('id');
+                $('#removeModal').modal('show');
 
-                // আগের ক্লিক ইভেন্ট রিসেট করে নতুন ইভেন্ট যুক্ত করা
                 $('#delete').off('click').on('click', function () {
                     $.ajax({
                         url: "{{ route('comment.delete', ':id') }}".replace(':id', id),
@@ -177,18 +175,17 @@
                         },
                         success: function (response) {
                             // toastr.success(response.success);
-                            $('#removeModal').modal('hide'); // মডাল বন্ধ করা
-                            location.reload(); // পেজ রিফ্রেশ করা
+                            $('#removeModal').modal('hide'); 
+                            location.reload(); 
                         },
                         error: function (xhr) {
-                            // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
+                            // toastr.error("Something went wrong!"); 
                         }
                     });
                 });
             });
         });
     </script>
-
     {{-- DELETE ALL AJAX SCRIPT --}}
     <script>
         $(function (e) {

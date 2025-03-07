@@ -170,7 +170,6 @@
             });
         });
     </script>
-
     {{-- APPROVED ALL AJAX SCRIPT --}}
     <script>
         $(function (e) {
@@ -215,8 +214,8 @@
         $(document).ready(function () {
             $('.remove').on('click', function () {
                 let id = $(this).data('id'); 
-                $('#removeModal').modal('show'); 
-
+                $('#removeModal').modal('show');
+                
                 $('#delete').off('click').on('click', function () {
                     $.ajax({
                         url: "{{ route('article.delete', ':id') }}".replace(':id', id),
@@ -238,5 +237,4 @@
             });
         });
     </script>
-
 @endpush

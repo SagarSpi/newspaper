@@ -139,7 +139,7 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
     {{-- EDIT MODAL CODE END --}}
 
     {{-- delete modal start  --}}
@@ -153,7 +153,6 @@
         $(document).ready(function () {
             $(document).on('click', '.editBtn', function () {
                 var email_id = $(this).val();
-                // alert(email_id);
                 $('#editModal').modal('show');
 
                 $.ajax({
@@ -173,10 +172,9 @@
     <script>
         $(document).ready(function () {
             $('.remove').on('click', function () {
-                let id = $(this).data('id'); // ডিলিট করার আইডি বের করা
-                $('#removeModal').modal('show'); // মডাল দেখানো
+                let id = $(this).data('id');
+                $('#removeModal').modal('show'); 
 
-                // আগের ক্লিক ইভেন্ট রিসেট করে নতুন ইভেন্ট যুক্ত করা
                 $('#delete').off('click').on('click', function () {
                     $.ajax({
                         url: "{{ route('email.delete', ':id') }}".replace(':id', id),
@@ -187,8 +185,8 @@
                         },
                         success: function (response) {
                             // toastr.success(response.success);
-                            $('#removeModal').modal('hide'); // মডাল বন্ধ করা
-                            location.reload(); // পেজ রিফ্রেশ করা
+                            $('#removeModal').modal('hide');
+                            location.reload();
                         },
                         error: function (xhr) {
                             // toastr.error("Something went wrong!"); // এরর হ্যান্ডলিং
