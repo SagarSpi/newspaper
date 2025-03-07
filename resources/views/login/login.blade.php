@@ -24,7 +24,7 @@
                             <p>Welcome Back !</p>
                         </div>
                         <div class="login-form-body">
-                            <form action="{{route('login.post')}}" method="POST">
+                            <form action="{{route('login.post')}}" method="POST" autocomplete="off">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>

@@ -78,7 +78,7 @@ class ArticleController extends Controller
 
         // 9 ta kore paginate korbo
         $articles = $query->whereIn('status',['active','inactive'])
-                    ->paginate(9);
+                    ->paginate(12);
 
         // Jodi kono result na thake, tahole back pathay dibo
         if ($articles->isEmpty()) {
@@ -97,7 +97,7 @@ class ArticleController extends Controller
                         ->withCount('comments')
                         ->whereIn('status', ['active', 'inactive'])
                         ->latest()
-                        ->paginate(9);
+                        ->paginate(12);
 
         return view('article.article',compact('articles'));
     }
@@ -313,7 +313,7 @@ class ArticleController extends Controller
         }
         // 9 ta kore paginate korbo
         $articles = $query->where('status','pending')
-                    ->paginate(9);
+                    ->paginate(12);
 
         // Jodi kono result na thake, tahole back pathay dibo
         if ($articles->isEmpty()) {

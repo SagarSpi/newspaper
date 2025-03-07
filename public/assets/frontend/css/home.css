@@ -338,6 +338,7 @@
     -webkit-box-orient: vertical;
     display: -webkit-box;
     overflow: hidden;
+    min-height: 51px;
 }
 .category-section .category-content .category-body .category-subtitle {
     -webkit-line-clamp: 3;

@@ -23,7 +23,7 @@
                   <h3>Admin Registration</h3>
                 </div>
                 <div class="register-form-body">
-                  <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
+                  <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <div class="mb-2">
                       <label for="name" class="form-label">Full Name</label>
@@ -45,8 +45,6 @@
                       <input type="text" name="number" class="form-control" id="number" placeholder="Enter Phone Number" value="{{old('number')}}">
                       @error('number')<span class="text-danger">{{$message}}</span>@enderror
                     </div>
-
-
                     <div class="mb-2">
                       <label class="form-label">User Role</label>
                       <select name="role" class="form-select" {{$errors->has('role')?'autofocus':''}} required>
@@ -59,13 +57,7 @@
                           <option value="client" {{ old('role') == 'Client' ? 'selected' : '' }}>Client</option>
                       </select>
                       @error('role') <span class="text-danger">{{$message}}</span> @enderror
-                  </div>
-
-
-
-
-
-
+                    </div>
                     <div class="mb-2">
                       <label for="password" class="form-label">Password</label>
                       <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password" required>
