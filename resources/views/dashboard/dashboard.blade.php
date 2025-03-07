@@ -79,7 +79,7 @@
                 <div class="card-body">
                   <div class="d-flex align-items-center">
                     <div>
-                      <h2 class="mb-0 text-white">{{$pendingUsersCount}} <i class="fa-solid fa-arrow-down font-14 text-white"></i></h2>
+                      <h2 class="mb-0 text-white">{{$newUsers}} <i class="fa-solid fa-arrow-down font-14 text-white"></i></h2>
                     </div>
                     <div class="ms-auto font-35 text-white">
                       <i class="fa-regular fa-user"></i>
@@ -89,7 +89,7 @@
                     <div>
                       <p class="mb-0 text-white">New Users</p>
                     </div>
-                    <div class="ms-auto font-14 text-white">+{{$percentagePendingUsers}}%</div>
+                    <div class="ms-auto font-14 text-white">+{{$percentageNewUsers}}%</div>
                   </div>
                 </div>
               </div>

@@ -27,7 +27,7 @@ class ArticleController extends Controller
                     ->orWhere('tags', 'like', "%{$request->keyword}%")
                     ->orWhereHas('user', function ($q) use ($request) {
                         $q->where('name', 'like', "%{$request->keyword}%");
-                    });
+                });
             });
         }
 
@@ -311,7 +311,7 @@ class ArticleController extends Controller
                     break;
             }
         }
-        // 9 ta kore paginate korbo
+        // 12 ta kore paginate korbo
         $articles = $query->where('status','pending')
                     ->paginate(12);
 

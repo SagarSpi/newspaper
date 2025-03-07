@@ -22,14 +22,11 @@ class DashboardContoller extends Controller
         $rejectedArticle = Article::where('status','rejected')->count();
         $percentageRejectedArticle = $rejectedArticle ? number_format(($rejectedArticle / $totalArticle) * 100,1): 0;
         
-
-
-
-// AII KHANE KAJ KORTE HOBBE 
-
         $totalUsers = User::count();
-        $pendingUsersCount = User::where('status','pending')->count();
-        $percentagePendingUsers = $pendingUsersCount ? number_format(($pendingUsersCount / $totalUsers) * 100,1):0;
+        $now = now();
+        $last30Days = [$now->copy()->subDays(30), $now];
+        $newUsers = User::whereBetween('created_at', $last30Days)->count();
+        $percentageNewUsers = $newUsers ? number_format(($newUsers / $totalUsers) * 100,1):0;
 
         $pendingUsers = User::where('status','rejected')->latest()->paginate(5);
 
@@ -38,7 +35,6 @@ class DashboardContoller extends Controller
             ->groupByRaw('MONTH(created_at), DATE_FORMAT(created_at, "%b")')
             ->pluck('count', 'month_name')
             ->toArray();
-
 
         // ARTICLE CHART CODE START 
         $now = now();
@@ -68,7 +64,7 @@ class DashboardContoller extends Controller
         ];
         // ARTICLE CHART CODE END 
 
-        return view('dashboard.dashboard', compact('articleShow','percentageArticleShow','articlePending','percentageArticlePending','rejectedArticle','percentageRejectedArticle','pendingUsersCount','percentagePendingUsers','pendingUsers','articleChart', 'usersChart'));
+        return view('dashboard.dashboard', compact('articleShow','percentageArticleShow','articlePending','percentageArticlePending','rejectedArticle','percentageRejectedArticle','newUsers','percentageNewUsers','pendingUsers','articleChart', 'usersChart'));
 
     }
 }
