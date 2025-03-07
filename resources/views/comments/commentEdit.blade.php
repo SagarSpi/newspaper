@@ -12,7 +12,6 @@
             </div>
             <div class="col-10 offset-1">
                 <div class="comment-body">
-                    
                     <form action="{{route('comment.update',$comment->id)}}" method="POST">
                         @csrf
                         @method('PUT')
@@ -32,7 +31,8 @@
                             @error('description') <span class="text-danger">{{$message}}</span> @enderror
                         </div>
                         <div class="text-end mt-4">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2 px-5">Discard <i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-success px-5">Submit Changes</button>
                         </div>
                     </form>
                 </div>

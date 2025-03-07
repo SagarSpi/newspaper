@@ -108,8 +108,6 @@
         </div>
     </div>
 
-
-
   <!-- COMMENT SHOW Modal START  -->
   <div class="modal fade" id="showComment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -129,28 +127,9 @@
   </div>
   <!-- COMMENT SHOW Modal END  -->
 
-    <!-- Delete Modal Start-->
-    <div class="modal fade" id="removeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Conformation</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mt-1">
-                        <h4 class="mb-1">Are you sure you want to remove this comment?</h4>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="delete">Yes, Delete It!</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Delete Modal End-->
-
+  {{-- delete modal start  --}}
+  <x-modal id="removeModal" title="Delete Conformation" message="Are you sure you want to remove this comment?" btn="Yes, Delete It!" btnId="delete" />
+  {{-- delete modal end  --}}
 
 @endsection
 

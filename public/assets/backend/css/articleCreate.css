@@ -18,10 +18,6 @@
 .create-article-section .create-article-body .ck-editor__editable {
     min-height: 300px;
 }
-.create-article-section .create-article-body .btn {
-    float: right;
-    padding: 6px 70px;
-}
 .create-article-section .create-article-body .bootstrap-tagsinput input {
     padding: 0 !important;
     margin: 2px 0px !important;

@@ -14,10 +14,6 @@
 .edit-article-section .edit-article-body .ck-editor__editable {
     min-height: 300px;
 }
-.edit-article-section .edit-article-body .btn {
-    float: right;
-    padding: 6px 70px;
-}
 .edit-article-section .edit-article-body .bootstrap-tagsinput input {
     padding: 0 !important;
     margin: 2px 0px !important;

@@ -75,8 +75,8 @@
                             <img src="{{$user->image_url ?? ''}}" id="output" alt="" class="img-thumbnail"  width="200px" height="120px">
                         </div>
                         <div class="text-end">
-                            <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2 px-4">Discard <i class="fa-solid fa-trash"></i></button>
-                            <button type="submit" class="btn btn-success px-5">Submit</button>
+                            <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2 px-5">Discard <i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-success px-5">Submit Changes</button>
                         </div>
                     </form>
                 </div>

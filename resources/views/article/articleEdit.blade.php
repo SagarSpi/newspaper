@@ -81,8 +81,10 @@
                             @error('creator')<span class="text-danger">{{$message}}</span>@enderror
                             <p id="tags_error" style="color: red; display: none;">You can add a maximum of 4 tags.</p>
                         </div>
-                        <button type="submit" class="btn btn-success">Submit Changes</button>
-                        <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></button>
+                        <div class="text-end">
+                            <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2 px-5">Discard <i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-success px-5">Submit Changes</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -46,15 +46,9 @@
                                 <option value="bangladesh"{{old('category')=='bangladesh'?'selected':''}}>Bangladesh</option>
                                 <option value="entertainment"{{old('category')=='entertainment'?'selected':''}}>Entertainment</option>
                                 <option value="international"{{old('category')=='international'?'selected':''}}>International</option>
-
-
                                 <option value="opinion"{{old('category')=='opinion'?'selected':''}}>Opinion</option>
                                 <option value="corporate"{{old('category')=='corporate'?'selected':''}}>Corporate</option>
                                 <option value="science_technology"{{old('category')=='science_technology'?'selected':''}}>Science & Technology</option>
-
-
-
-
                             </select>
                             @error('category')<span class="text-danger">{{$message}}</span>@enderror
                         </div>
@@ -76,16 +70,16 @@
                         <div class="input-group my-4">
                             <span class="input-group-text">Tags :</span>
                             <input type="text" value="{{old('tags')}}" name="tags" id="tags_input" data-role="tagsinput" class="form-control" placeholder="Enter Tags" {{$errors->has('tags')?'autofocus':''}}>
-                            {{-- <span class="input-group-text">Created by :</span>
-                            <input type="text" value="{{old('creator')}}" name="creator" class="form-control" placeholder="Enter Creator Name" {{$errors->has('creator')?'autofocus':''}}> --}}
                         </div>
                         <div>
                             @error('tags')<span class="text-danger">{{$message}}</span>@enderror
                             @error('creator')<span class="text-danger">{{$message}}</span>@enderror
                             <p id="tags_error" style="color: red; display: none;">You can add a maximum of 4 tags.</p>
                         </div>
-                        <button type="submit" class="btn btn-success">Submit Article</button>
-                        <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2">Discard <i class="fa-solid fa-trash"></i></button>
+                        <div class="text-end">
+                            <button type="button" onclick="window.location.reload();" class="btn btn-danger mx-2 px-5">Discard <i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-success px-5">Submit Article</button>
+                        </div>
                     </form>
                 </div>
             </div>
