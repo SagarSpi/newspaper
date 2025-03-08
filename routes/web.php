@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\ArticleController;
 use App\Http\Controllers\Backend\DashboardContoller;
+use App\Http\Controllers\Backend\ForgetPasswordManager;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\RegisterController;
 use App\Http\Controllers\Backend\UserController;
@@ -17,9 +18,9 @@ use App\Http\Middleware\UserActivity;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/v', function () {
-    return view('login.otpVerification');
-});
+// Route::get('/v', function () {
+//     return view('login.newPassword');
+// });
 
 
 
@@ -39,6 +40,12 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 // Login with Social account 
 Route::get('/auth/redirection/{provider}',[LoginController::class,'authProviderRedirect'])->name('auth.redirection');
 Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentication'])->name('auth.callback');
+
+
+Route::get('/forget/password',[ForgetPasswordManager::class,'forgetPassword'])->name('password.forget');
+Route::post('/forget/password/post',[ForgetPasswordManager::class,'forgetPasswordPost'])->name('password.forget-post');
+Route::get('/reset-password/{token}',[ForgetPasswordManager::class,'resetPassword'])->name('password.reset');
+Route::post('/reset-password/post',[ForgetPasswordManager::class,'resetPasswordPost'])->name('password.reset-post');
 
 // Register Route here 
 Route::get('/register',[RegisterController::class,'create'])->name('user.create');

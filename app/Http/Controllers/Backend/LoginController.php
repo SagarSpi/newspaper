@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -79,6 +80,11 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        if ($request->has('rememberMe')) {
+            Cookie::queue('adminuser',$request->email,1440);
+            Cookie::queue('adminpassword',$request->password,1440);
+        }
+        
         if (Auth::attempt($inputs)) {
             return redirect()->route('dashboard')->with('success', 'Login successful');
         }

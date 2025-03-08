@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign In || BestNews</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/global/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/global/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/css/login.css')}}">
   </head>
   <body>
@@ -28,18 +29,22 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" name="email" class="form-control" value="{{old('email')}}" id="email" aria-describedby="emailHelp" placeholder="Type Email" {{$errors->has('email')?'autofocus': ''}} required >
+                                    <input type="email" name="email" class="form-control" 
+                                    @if (Cookie::has('adminuser')) value="{{Cookie::get('adminuser')}}" @endif 
+                                    id="email" aria-describedby="emailHelp" placeholder="Type Email" {{$errors->has('email')?'autofocus': ''}} required >
                                     @error('email')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Type Password" required>
+                                    <input type="password" name="password" @if (Cookie::has('adminpassword')) value="{{Cookie::get('adminpassword')}}" @endif  class="form-control" id="password" placeholder="Type Password" required>
                                     @error('password')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="remember">
+                                    <input type="checkbox" name="rememberMe" 
+                                    @if (Cookie::has('adminuser')) checked @endif
+                                    class="form-check-input" id="remember">
                                     <label class="form-check-label" for="remember">Remember</label>
-                                    <a href="#" class="reset-pass">Reset Password</a>
+                                    <a href="{{route('password.forget')}}" class="reset-pass">Forget Password</a>
                                 </div>
                                 <button type="submit"  class="btn btn-primary form-control">Log In</button>
                                 <p class="sign-text">Don't have an account ? <a href="/register">Sign Up</a></p>
@@ -62,9 +67,9 @@
 
     {{-- Jquery CDN js link  --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    {{-- Bootstrap CDN js link  --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- Fontawesome CDN js link  --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+    {{-- Bootstrap js link  --}}
+    <script src="{{asset('assets/global/js/bootstrap.bundle.js')}}"></script>
+    {{-- Fontawesome js link  --}}
+    <script src="{{asset('assets/global/js/all.min.js')}}"></script>
   </body>
 </html>
