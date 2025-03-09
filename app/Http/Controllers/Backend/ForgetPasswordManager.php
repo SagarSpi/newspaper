@@ -37,8 +37,11 @@ class ForgetPasswordManager extends Controller
         return redirect()->back()->with('success','We have send an email to reset password.');
     }
 
-    public function resetPassword(string $token)
+    public function resetPassword(Request $request)
     {
+        // $token = $_GET['token'];
+        $token = $request->query('token');
+
         return view('login.newPassword', compact('token'));
     }
 

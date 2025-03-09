@@ -10,7 +10,6 @@
     
     <h3>Reset Your Password</h3>
     <p>Click the link below to reset the password for your account</p>
-    <a href="{{ route('password.reset', $token) }}">Reset Password</a>
-
+    <a href="{{ route('password.reset', ['token' => $token]) }}">Reset Password</a>
 </body>
 </html>

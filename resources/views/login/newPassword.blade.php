@@ -21,7 +21,8 @@
                         </div>
                         <form action="{{route('password.reset-post')}}" method="POST">
                             @csrf
-                            <input type="text" name="token" hidden value="{{$token}}">
+                            <input type="hidden" name="token" value="{{ $token }}">
+
                             <div class="mb-2">
                                 <label for="email" class="form-label">Email address</label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="{{old('email')}}" {{$errors->has('email')?'autofocus': ''}} required>
