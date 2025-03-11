@@ -64,7 +64,7 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/list/article',[ArticleController::class,'index'])->name('article.list');
     Route::get('/manage/article/search',[ArticleController::class,'searchData'])->name('article.search');
     Route::get('/manage/create/article',[ArticleController::class,'create'])->name('article.create');
-    Route::post('/manage/create/article/post', [ArticleController::class,'store'])->name('article.store');
+    Route::post('/manage/create/article/post',[ArticleController::class,'store'])->name('article.store');
     Route::get('/manage/request/article',[ArticleController::class,'articleRequest'])->name('article.request');
     Route::get('/manage/request/article/search',[ArticleController::class,'searchRequestData'])->name('article.request-search');
     Route::get('/manage/{id}/approved/article',[ArticleController::class,'articleReqApproved'])->name('article.approved');

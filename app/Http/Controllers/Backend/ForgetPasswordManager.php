@@ -59,12 +59,21 @@ class ForgetPasswordManager extends Controller
             return redirect()->route('password.reset')->with('error','Invalid');
         }
 
-        User::where('email',$request->email)->update([
-            'password'=> Hash::make($request->password),
-        ]);
+        try {
+            DB::beginTransaction();
 
-        Password_reset_token::where('email',$request->email)->delete();
+            User::where('email',$request->email)->update([
+                'password'=> Hash::make($request->password),
+            ]);
+    
+            Password_reset_token::where('email',$request->email)->delete();
 
-        return redirect()->route('login')->with('success','Password Reset Success !');
+            DB::commit();
+            return redirect()->route('login')->with('success','Password Reset Success !');
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+            return redirect()->back()->withInput()->with('error','Password Reset Unsuccessfully !');
+        }
     }
 }
