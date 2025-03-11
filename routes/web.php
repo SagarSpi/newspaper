@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-
 // Frontend Route here 
 Route::get('/',[HomeController::class,'homePage'])->name('home');
 Route::get('/news/search',[SearchController::class,'searchNews'])->name('news.search');
@@ -50,8 +49,8 @@ Route::post('/reset-password/post',[ForgetPasswordManager::class,'resetPasswordP
 // Register Route here 
 Route::get('/register',[RegisterController::class,'create'])->name('user.create');
 Route::post('/register/post',[RegisterController::class,'store'])->name('user.store');
-Route::get('/verify/otp',[RegisterController::class,'verifyOtp'])->name('verify.otp');
-Route::post('/verify/otp/store',[RegisterController::class,'vrrifyOtpStore'])->name('verify.otp-store');
+Route::get('/verify-otp',[RegisterController::class,'verifyOtp'])->name('verify.otp');
+Route::post('/verify-otp/store',[RegisterController::class,'vrrifyOtpStore'])->name('verify.otp-store');
 
 // Newsletter route
 Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
@@ -101,9 +100,7 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::post('/manage/reject/{id}/user',[UserController::class,'banUser'])->name('user.baned');
     Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
 
-
     Route::get('/manage/setting',[SettingController::class,'index'])->name('setting.home');
-
 
 });
 

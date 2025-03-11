@@ -27,7 +27,7 @@ class RegisterController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $otp = rand(100000,999999);
+        $otp = rand(10000,99999);
 
         EmailOtp::updateOrCreate(['email'=> $request->email],[
             'email'=> $request->email,
@@ -65,16 +65,20 @@ class RegisterController extends Controller
         return redirect()->route('verify.otp')->with('success','OTP Send ! Please check your email.');
     }
 
-    public function verifyOtp()
+    public function verifyOtp(Request $request)
     {
-        return view('register.otpVerification');
+        $email = $request->session()->get('email');
+        return view('register.otpVerification',compact('email'));
     }
 
     public function vrrifyOtpStore(Request $request) 
     {
         $request->validate([
-            'otp'=> 'required|string|size:6'
+            'otp' => 'required|array|size:5',
+            'otp.*' => 'required|integer|between:0,9',
         ]);
+
+        $otpCode = implode('', $request->otp);
 
         $name = $request->session()->get('name');
         $email = $request->session()->get('email');
@@ -85,7 +89,7 @@ class RegisterController extends Controller
         $role = $request->session()->get('role');
 
         $emailOtp =  EmailOtp::where('email', $email)
-                            ->where('otp',$request->otp)
+                            ->where('otp',$otpCode)
                             ->where('expired_at','>=',Carbon::now())
                             ->first();
 
@@ -104,7 +108,6 @@ class RegisterController extends Controller
                 $timeStamp = Carbon::now()->format('Y-M');
                 $folderName = 'Newspaper/Users-image/'.$timeStamp;
                 $imageUniqueName = time();
-    
                 // Upload with image to cloudinary
                 $uploadimage = cloudinary()->upload($tempImageUrl, [
                     'folder' => $folderName,
@@ -129,13 +132,11 @@ class RegisterController extends Controller
             ]);
 
             $emailOtp->delete();
-
             $request->session()->forget([
                 'name', 'email', 'password', 'temp_image_url', 'temp_image_id', 'number', 'role'
             ]);
             
             DB::commit();
-
             return redirect()->route('login')->with('success','Users Created Succesfully !');
 
         } catch (\Exception $err) {
@@ -143,29 +144,5 @@ class RegisterController extends Controller
             DB::rollBack();
             return redirect()->back()->with('error','Failed To Create Users !');
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
