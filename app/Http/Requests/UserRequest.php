@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
 
         return [
             'name' => 'required|string|max:100',
-            'email' => ['required','email',
+            'email' => ['required','email','lowercase',
                 Rule::unique('users','email')->ignore($userId),
             ],
             'image' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:1024',
