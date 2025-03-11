@@ -28,7 +28,6 @@ return new class extends Migration
             $table->string('role',20);
             $table->string('status')->nullable();
             $table->rememberToken();
-            $table->boolean('enable_two_factor_auth')->default(false);
             $table->timestamp('last_seen')->nullable();
             $table->timestamps();
             $table->softDeletes();

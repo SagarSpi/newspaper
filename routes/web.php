@@ -43,7 +43,7 @@ Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentica
 // Forget password 
 Route::get('/forget/password',[ForgetPasswordManager::class,'forgetPassword'])->name('password.forget');
 Route::post('/forget/password/post',[ForgetPasswordManager::class,'forgetPasswordPost'])->name('password.forget-post');
-Route::get('/reset-password', [ForgetPasswordManager::class, 'resetPassword'])->name('password.reset');
+Route::get('/reset-password',[ForgetPasswordManager::class, 'resetPassword'])->name('password.reset');
 Route::post('/reset-password/post',[ForgetPasswordManager::class,'resetPasswordPost'])->name('password.reset-post');
 
 // Register Route here 
@@ -99,8 +99,6 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
     Route::post('/manage/reject/{id}/user',[UserController::class,'banUser'])->name('user.baned');
     Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
-
-    Route::get('/manage/setting',[SettingController::class,'index'])->name('setting.home');
 
 });
 
