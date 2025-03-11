@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Backend\ArticleController;
-use App\Http\Controllers\Backend\DashboardContoller;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ForgetPasswordManager;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\RegisterController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Frontend\CategoryController;
@@ -40,8 +41,7 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 // Login with Social account 
 Route::get('/auth/redirection/{provider}',[LoginController::class,'authProviderRedirect'])->name('auth.redirection');
 Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentication'])->name('auth.callback');
-
-
+// Forget password 
 Route::get('/forget/password',[ForgetPasswordManager::class,'forgetPassword'])->name('password.forget');
 Route::post('/forget/password/post',[ForgetPasswordManager::class,'forgetPasswordPost'])->name('password.forget-post');
 Route::get('/reset-password', [ForgetPasswordManager::class, 'resetPassword'])->name('password.reset');
@@ -50,9 +50,8 @@ Route::post('/reset-password/post',[ForgetPasswordManager::class,'resetPasswordP
 // Register Route here 
 Route::get('/register',[RegisterController::class,'create'])->name('user.create');
 Route::post('/register/post',[RegisterController::class,'store'])->name('user.store');
-Route::get('/register/user/otp-verification',[RegisterController::class,'otpVerification'])->name('user.verification');
-
-Route::get('/send-otp',[RegisterController::class,'sendOtp'])->name('send-otp');
+Route::get('/verify/otp',[RegisterController::class,'verifyOtp'])->name('verify.otp');
+Route::post('/verify/otp/store',[RegisterController::class,'vrrifyOtpStore'])->name('verify.otp-store');
 
 // Newsletter route
 Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
@@ -61,7 +60,7 @@ Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->nam
 // Backend Route Here
 Route::middleware(['auth',UserActivity::class])->group(function () {
     // Dashboard Route here 
-    Route::get('/manage/dashboard',[DashboardContoller::class,'index'])->name('dashboard');
+    Route::get('/manage/dashboard',[DashboardController::class,'index'])->name('dashboard');
     // Article Route Here
     Route::get('/manage/list/article',[ArticleController::class,'index'])->name('article.list');
     Route::get('/manage/article/search',[ArticleController::class,'searchData'])->name('article.search');
@@ -101,6 +100,11 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
     Route::post('/manage/reject/{id}/user',[UserController::class,'banUser'])->name('user.baned');
     Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
+
+
+    Route::get('/manage/setting',[SettingController::class,'index'])->name('setting.home');
+
+
 });
 
 Route::get('/manage/biponDa/download',[DownloadController::class,'downloadPage'])->name('download.page');

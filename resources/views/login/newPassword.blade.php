@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>New PassWord</title>
+    <title>New Password</title>
     <link rel="stylesheet" href="{{asset('assets/global/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/global/css/fontawesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/css/newPassword.css')}}">
@@ -19,10 +19,9 @@
                             <h4>Reset Your Password</h4>
                             <p>Enter your Email and New Password</p>
                         </div>
-                        <form action="{{route('password.reset-post')}}" method="POST">
+                        <form action="{{route('password.reset-post')}}" method="POST" autocomplete="off">
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
-
                             <div class="mb-2">
                                 <label for="email" class="form-label">Email address</label>
                                 <input type="email" name="email" class="form-control" id="email" placeholder="Enter Email" value="{{old('email')}}" {{$errors->has('email')?'autofocus': ''}} required>

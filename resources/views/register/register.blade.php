@@ -72,8 +72,10 @@
                     <label class="form-check-label" for="exampleCheck1">I agree to the <a href="#"> <b> Terms & Conditions</b></a></label>
                   </div>
                   <button type="submit" class="btn btn-primary form-control mb-2">Submit</button>
-                  <a href="{{route('send-otp')}}" class="btn btn-outline-primary">Send OTP</a>
-                  <p class="sign-text">Have any Question ? <a href="#">Get help</a></p>
+                  <div class="d-flex justify-content-between">
+                    <p>Have any Question ? <a href="#">Get help</a></p>
+                    <a href="{{route('login')}}"><b><u>Already Registered</u></b></a>
+                  </div>
                 </form>
               </div>
             </div>

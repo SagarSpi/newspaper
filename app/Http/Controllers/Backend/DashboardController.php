@@ -7,7 +7,7 @@ use App\Models\Backend\Article;
 use App\Models\Backend\User;
 use Illuminate\Http\Request;
 
-class DashboardContoller extends Controller
+class DashboardController extends Controller
 {
     function index(Request $request)
     {
@@ -65,6 +65,5 @@ class DashboardContoller extends Controller
         // ARTICLE CHART CODE END 
 
         return view('dashboard.dashboard', compact('articleShow','percentageArticleShow','articlePending','percentageArticlePending','rejectedArticle','percentageRejectedArticle','newUsers','percentageNewUsers','pendingUsers','articleChart', 'usersChart'));
-
     }
 }

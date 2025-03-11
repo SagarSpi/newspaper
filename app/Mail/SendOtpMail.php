@@ -13,12 +13,13 @@ class SendOtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $otp;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($otp)
     {
-        //
+        $this->otp = $otp;
     }
 
     /**

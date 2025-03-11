@@ -174,6 +174,11 @@
                             <span class="text">Social Links</span>
                           </a>
                         </li>
+                        <li>
+                          <a href="{{route('setting.home')}}">
+                            <span class="text">Two Factor Auth</span>
+                          </a>
+                        </li>
                       </ul>
                     </li>
                   </ul>

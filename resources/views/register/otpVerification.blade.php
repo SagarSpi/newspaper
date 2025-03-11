@@ -20,23 +20,27 @@
                             <small>Enter OTP Code has been send to <br>sa******83@gmail.com</small>
                         </div>
                         <div class="card-body mx-5">
-                            <form action="" method="POST">
+                            <form action="{{route('verify.otp-store')}}" method="POST">
+                                @csrf
+                                {{-- <input type="text" name="otp" class="form-control"> --}}
                                 <div class="input-container d-flex flex-row justify-content-center mt-2">
                                     <input type="text" class="m-1 text-center form-control rounded" maxlength="1">
                                     <input type="text" class="m-1 text-center form-control rounded" maxlength="1">
                                     <input type="text" class="m-1 text-center form-control rounded" maxlength="1">
                                     <input type="text" class="m-1 text-center form-control rounded" maxlength="1">
                                     <input type="text" class="m-1 text-center form-control rounded" maxlength="1">
-                                  </div>
+                                    @error('name')<span class="text-danger">{{$message}}</span>@enderror
+                                </div>
+                            
+                                <small class="mt-4">
+                                    Didn't received OTP code ?
+                                </small>
+                                <div class="mt-1 mb-4">
+                                    <a href="#" class="">Resend Code</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Verify & Proceed</button>
                             </form>
                         </div>
-                        <small class="mt-4">
-                            Didn't received OTP code ?
-                        </small>
-                        <div class="mt-1 mb-4">
-                            <a href="#" class="">Resend Code</a>
-                        </div>
-                        <a href="#" class="btn btn-primary">Verify & Proceed</a>
                     </div>
                 </div>
            </div>

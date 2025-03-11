@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Mail;
 class SendOtpJob implements ShouldQueue
 {
     use Queueable;
-
+    public $email;
+    public $otp;
     /**
      * Create a new job instance.
      */
-    public function __construct()
+    public function __construct($email, $otp)
     {
-        //
+        $this->email = $email;
+        $this->otp = $otp;
     }
 
     /**
@@ -24,6 +26,6 @@ class SendOtpJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to('userotp@gmail.com')->send(new SendOtpMail());
+        Mail::to($this->email)->send(new SendOtpMail($this->otp));
     }
 }

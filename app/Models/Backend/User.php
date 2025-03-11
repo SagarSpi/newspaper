@@ -26,6 +26,7 @@ class User extends Authenticatable
         'status',
         'auth_provider',
         'auth_provider_id',
+        'enable_two_factor_auth',
     ];
 
     protected $hidden = [

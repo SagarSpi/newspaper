@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name',100);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('ip_address', 45)->nullable();
             $table->string('password');
+            $table->string('ip_address', 45)->nullable();
             $table->string('auth_provider')->nullable();
             $table->string('auth_provider_id')->nullable();
             $table->string('image_url')->nullable();
@@ -27,8 +27,9 @@ return new class extends Migration
             $table->integer('rating_count')->nullable();
             $table->string('role',20);
             $table->string('status')->nullable();
-            $table->timestamp('last_seen')->nullable();
             $table->rememberToken();
+            $table->boolean('enable_two_factor_auth')->default(false);
+            $table->timestamp('last_seen')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

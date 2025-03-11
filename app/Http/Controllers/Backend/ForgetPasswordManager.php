@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Jobs\ResetPasswordJob;
-use App\Models\Backend\Password_reset_token;
 use App\Models\Backend\User;
+use Illuminate\Http\Request;
+use App\Jobs\ResetPasswordJob;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Backend\Password_reset_token;
+use Illuminate\Support\Facades\Hash;
 
 class ForgetPasswordManager extends Controller
 {
@@ -19,29 +22,24 @@ class ForgetPasswordManager extends Controller
     public function forgetPasswordPost(Request $request)
     {
         $request->validate([
-            'email'=>'required|email|exists:users',
+            'email'=>'required|email|exists:users,email',
         ]);
-
         $token = Str::random(64);
 
         Password_reset_token::create([
             'email'=> $request->email,
             'token'=> $token
         ]);
-
         $data = $request->all();
         $data['token'] = $token;
 
         dispatch(new ResetPasswordJob((object)$data));
-
         return redirect()->back()->with('success','We have send an email to reset password.');
     }
 
     public function resetPassword(Request $request)
     {
-        // $token = $_GET['token'];
         $token = $request->query('token');
-
         return view('login.newPassword', compact('token'));
     }
 
@@ -62,7 +60,7 @@ class ForgetPasswordManager extends Controller
         }
 
         User::where('email',$request->email)->update([
-            'password'=> $request->password,
+            'password'=> Hash::make($request->password),
         ]);
 
         Password_reset_token::where('email',$request->email)->delete();

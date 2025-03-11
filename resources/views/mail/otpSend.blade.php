@@ -7,9 +7,10 @@
     <title>Best News</title>
 </head>
 <body>
-    <h4>Your verification code for Best News : <strong>{{rand(1000,9999)}}</strong></h4>
+    <h3>Hello</h3>
+    <h4>Your verification code for Best News : <strong>{{$otp}}</strong></h4>
     <p>This code will expire in 5 minites</p>
     <p>Note: Please do NOT share your OTP with others</p>
-    <h5>Thank you !</h5>
+    <p>Thank you !</p>
 </body>
 </html>
