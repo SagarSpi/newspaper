@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Backend\Article;
+use Jorenvh\Share\Share;
 use App\Models\Backend\User;
 use Illuminate\Http\Request;
+use App\Models\Backend\Article;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class DetailsController extends Controller
 {
@@ -36,11 +37,20 @@ class DetailsController extends Controller
                                     ->take(7)
                                     ->get();
 
+        $shareLinks = \Share::page(
+            route('news.details',$id)
+        )
+        ->facebook()
+        ->linkedin()
+        ->twitter()
+        ->whatsapp();
+
         return view('frontend.details.details',[
             'news_details'=>$news_details,
             'related_news'=>$related_news,
             'latest_news'=>$latest_news,
-            'trading_news'=>$trading_news
+            'trading_news'=>$trading_news,
+            'shareLinks'=>$shareLinks
         ]);
     }
 

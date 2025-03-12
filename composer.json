@@ -11,6 +11,7 @@
     "require": {
         "php": "^8.2",
         "cloudinary-labs/cloudinary-laravel": "^2.2",
+        "jorenvanhocht/laravel-share": "^4.2",
         "laravel/framework": "^11.31",
         "laravel/socialite": "^5.18",
         "laravel/tinker": "^2.9",

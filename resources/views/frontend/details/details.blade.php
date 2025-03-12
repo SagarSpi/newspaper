@@ -19,20 +19,7 @@
                             <p>{{ \Carbon\Carbon::parse($news_details->created_at)->diffForHumans() }}</p>
                         </div>
                         <div class="details-share">
-                            <ul>
-                                <li>
-                                  <a href=""><i class="fa-brands fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                  <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-                                </li>
-                                <li>
-                                  <a href=""><i class="fa-solid fa-link"></i></a>
-                                </li>
-                                <li>
-                                  <a href=""><i class="fa-solid fa-share"></i></a>
-                                </li>
-                            </ul>
+                            {!! $shareLinks !!}
                         </div>
                     </div>
                     <div class="details-img">

@@ -5,7 +5,6 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ForgetPasswordManager;
 use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\RegisterController;
-use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Frontend\CategoryController;
@@ -32,6 +31,8 @@ Route::get('/news/{cat}/category',[CategoryController::class,'categoryPage'])->n
 Route::get('/news/{id}/details',[DetailsController::class,'detailsPage'])->name('news.details');
 Route::post('/news/details/{id}/comment/post',[CommentController::class,'store'])->name('news.comment');
 Route::post('/news/rating/{userId}/user/post',[DetailsController::class,'ratingUser'])->name('news.rating-user');
+// Newsletter route Frontend
+Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
 
 // Login Route here 
 Route::get('/login',[LoginController::class,'loginPage'])->name('login');
@@ -52,9 +53,6 @@ Route::post('/register/post',[RegisterController::class,'store'])->name('user.st
 Route::get('/verify-otp',[RegisterController::class,'verifyOtp'])->name('verify.otp');
 Route::post('/verify-otp/store',[RegisterController::class,'vrrifyOtpStore'])->name('verify.otp-store');
 
-// Newsletter route
-Route::get('/newsletter/email/send',[NewsletterController::class,'sendEmail']);
-Route::post('/newsletter/email/post',[NewsletterController::class,'store'])->name('email.store');
 
 // Backend Route Here
 Route::middleware(['auth',UserActivity::class])->group(function () {

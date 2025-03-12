@@ -123,4 +123,37 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |----------------------------------------------------------------------
+    | Service Providers
+    |----------------------------------------------------------------------
+    |
+    | These are the service providers used by your application.
+    |
+    */
+    'providers' => [
+        /*
+         * Laravel Framework Service Providers...
+         */
+        // Add ViewServiceProvider if facing any Blade issues
+        Illuminate\View\ViewServiceProvider::class,
+
+        /*
+         * Package Service Providers...
+         */
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+    ],
+
+    /*
+    |----------------------------------------------------------------------
+    | Class Aliases
+    |----------------------------------------------------------------------
+    |
+    | These are the aliases for various classes used in your application.
+    |
+    */
+    'aliases' => [
+        'Share' => Jorenvh\Share\ShareFacade::class,
+    ],
 ];
