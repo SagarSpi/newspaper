@@ -2,23 +2,24 @@
 
 namespace App\Jobs;
 
-use App\Mail\UserReportMail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistrationSuccesFullMail;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendMailJob implements ShouldQueue
+class RegisterSuccessJob implements ShouldQueue
 {
     use Queueable;
-    public $request;
+    public $name;
+    public $email;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($request)
+    public function __construct($name,$email)
     {
-        $this->request = $request;
+        $this->name = $name;
+        $this->email = $email;
     }
 
     /**
@@ -26,7 +27,6 @@ class SendMailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->request->email)->send(new RegistrationSuccesFullMail($this->request));
-        Mail::to('bestnews@gmail.com')->send(new UserReportMail);
+        Mail::to($this->email)->send( new RegistrationSuccesFullMail($this->name));
     }
 }

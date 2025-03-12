@@ -3,25 +3,22 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class newslattermail extends Mailable
+class NewsletterMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $mailMessage;
-    public $subject;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($message, $subject)
+    public function __construct()
     {
-        $this->mailMessage = $message;
-        $this->subject = $subject;
+        //
     }
 
     /**
@@ -30,7 +27,7 @@ class newslattermail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->subject,
+            subject: 'Newsletter Mail',
         );
     }
 
@@ -40,7 +37,7 @@ class newslattermail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.newsletterMail',
+            view: 'mail.newslatterMail',
         );
     }
 

@@ -8,7 +8,7 @@
 </head>
 <body>
     <h5>Dear {{$name}},</h5>
-    <p>Congratulations ! Your registration was Successfull. </p>
+    <p>Congratulations ! Your registration is Successfull. </p>
     <p>You are joined to Best News</p>
     <p>Explore Your Dashboard</p>
     <p>Thank you for Registration. Enjoy it </p>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Jobs\RegisterSuccessJob;
 use App\Models\Backend\EmailOtp;
 use Illuminate\Support\Facades\Hash;
 
@@ -132,6 +133,9 @@ class RegisterController extends Controller
             ]);
 
             $emailOtp->delete();
+
+            dispatch(new RegisterSuccessJob($name,$email));
+
             $request->session()->forget([
                 'name', 'email', 'password', 'temp_image_url', 'temp_image_id', 'number', 'role'
             ]);

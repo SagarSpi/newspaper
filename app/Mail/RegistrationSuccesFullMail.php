@@ -17,9 +17,9 @@ class RegistrationSuccesFullMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct($request)
+    public function __construct($name)
     {
-        $this->name = $request->name;
+        $this->name = $name;
     }
 
     /**

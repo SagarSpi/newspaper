@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Frontend\Newsletter;
 use App\Http\Controllers\Controller;
+use App\Jobs\NewslatterJob;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
@@ -60,7 +61,6 @@ class NewsletterController extends Controller
                     break;
             }
         }
-
         // 9 ta kore paginate korbo
         $emails = $query->paginate(9);
 
@@ -69,7 +69,6 @@ class NewsletterController extends Controller
             
             return redirect()->back()->with('info','No Emails Found !');
         }
-
         return view('newsletter.newsletter', compact('emails'));
     }
     /**
@@ -81,17 +80,6 @@ class NewsletterController extends Controller
                             ->paginate();
 
         return view('newsletter.newsletter',compact('emails'));
-    }
-
-    public function sendEmail()
-    {   
-        $emails = Newsletter::pluck('email');
-        $message = "Hello, Welcome to BestNews. Thank you for your suscription !";
-        $subject = "Welcome to Best News";
-
-        foreach ($emails as $recipent) {
-            Mail::to($recipent)->send(new newslattermail($message,$subject));
-        }
     }
 
     /**
@@ -110,6 +98,9 @@ class NewsletterController extends Controller
                 'email'=>$request->email,
             ]);
             DB::commit();
+
+            dispatch(new NewslatterJob($request->email));
+
             return redirect()->back()->with('success','Subscription successful!');
 
         } catch (\Exception $err) {

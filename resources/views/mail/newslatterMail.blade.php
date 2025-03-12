@@ -7,7 +7,10 @@
     <title>Best News</title>
 </head>
 <body>
-    <h3>{{$subject}}</h3>
-    <p>{{$mailMessage}}</p>
+    <h4>Dear Sir,</h4>
+    <p>Congratulations for your Suscription</p>
+    <p>Welcome to BestNews.</p>
+    <p>Thank you for your Suscription !</p>
+    <p>We will send next plant per month</p>
 </body>
 </html>
