@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Jorenvh\Share\Share;
+use Share;
 use App\Models\Backend\User;
 use Illuminate\Http\Request;
 use App\Models\Backend\Article;
