@@ -38,9 +38,9 @@
             <div class="col-12 mb-3">
                 <div class="d-flex justify-content-between align-items-center">
                     @can('approved',App\Models\Backend\Article::class)
-                        <a href="#" id="approvedAllSelectedRecord" class="btn btn-outline-danger btn-sm">Approved All Selected</a>
+                        <a href="#" id="approvedAllSelectedRecord" class="btn btn-outline-success btn-sm">Approved All Selected</a>
                     @else
-                        <button type="button" class="btn btn-outline-danger btn-sm disabled" aria-disabled="true" >Approved All Selected</button>
+                        <button type="button" class="btn btn-outline-success btn-sm disabled" aria-disabled="true" >Approved All Selected</button>
                     @endcan
                     <div>
                         <a href="{{route('article.request')}}" class="btn btn-outline-info btn-sm"><i class="fa-solid fa-arrows-rotate"></i></a>

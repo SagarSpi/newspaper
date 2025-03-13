@@ -40,6 +40,11 @@ class ForgetPasswordManager extends Controller
     public function resetPassword(Request $request)
     {
         $token = $request->query('token');
+
+        if (!$token) {
+            abort(404); 
+        }
+        
         return view('login.newPassword', compact('token'));
     }
 

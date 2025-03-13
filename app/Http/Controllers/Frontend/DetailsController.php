@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Share;
 use App\Models\Backend\User;
 use Illuminate\Http\Request;
 use App\Models\Backend\Article;
@@ -27,7 +26,7 @@ class DetailsController extends Controller
 
         $latest_news = Article::where('status','active')
                                 ->whereNot('id',$id)
-                                ->orderByDesc('created_at')
+                                ->latest()
                                 ->take(9)
                                 ->get();
 

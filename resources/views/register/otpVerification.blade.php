@@ -55,7 +55,7 @@
                                     Didn't received OTP code ?
                                 </small>
                                 <div class="mt-1 mb-4">
-                                    <a href="#" class="">Resend Code</a>
+                                    <a href="{{route('verify.otp-resend')}}" class="">Resend Code</a>
                                 </div>
                                 <button type="submit" class="btn btn-primary otp-button w-100">Verify OTP</button>
                             </form>

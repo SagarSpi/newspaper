@@ -137,6 +137,29 @@ return [
          */
         // Add ViewServiceProvider if facing any Blade issues
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Translation\TranslationServiceProvider::class,
+        Illuminate\Session\SessionServiceProvider::class,
+        Illuminate\Pagination\PaginationServiceProvider::class,
+        Illuminate\Hashing\HashServiceProvider::class,
+        Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+        Illuminate\Encryption\EncryptionServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Validation\ValidationServiceProvider::class,
+        Illuminate\Bus\BusServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
+        Illuminate\Mail\MailServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
+        Illuminate\Pipeline\PipelineServiceProvider::class,
+        Illuminate\Redis\RedisServiceProvider::class,
+        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -155,5 +178,8 @@ return [
     */
     'aliases' => [
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'Cookie' => Illuminate\Support\Facades\Cookie::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
+        'Validator' => Illuminate\Support\Facades\Validator::class,
     ],
 ];

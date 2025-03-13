@@ -72,6 +72,27 @@ class RegisterController extends Controller
         return view('register.otpVerification',compact('email'));
     }
 
+    public function resendOtp(Request $request)
+    {
+        $email = $request->session()->get('email');
+
+        if (!$email) {
+            return redirect()->back()->with('error', 'Email not found.');
+        }
+
+        $otp = rand(10000,99999);
+
+        EmailOtp::updateOrCreate(['email'=> $email],[
+            'email'=> $email,
+            'otp'=> $otp,
+            'expired_at'=> Carbon::now()->addMinute(5)
+        ]);
+
+        dispatch(new SendOtpJob($request->email,$otp))->onQueue('high');
+
+        return redirect()->route('verify.otp')->with('success','OTP Send ! Please check your email.');
+    }
+
     public function vrrifyOtpStore(Request $request) 
     {
         $request->validate([

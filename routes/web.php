@@ -51,6 +51,7 @@ Route::post('/reset-password/post',[ForgetPasswordManager::class,'resetPasswordP
 Route::get('/register',[RegisterController::class,'create'])->name('user.create');
 Route::post('/register/post',[RegisterController::class,'store'])->name('user.store');
 Route::get('/verify-otp',[RegisterController::class,'verifyOtp'])->name('verify.otp');
+Route::get('/verify-otp/resend',[RegisterController::class,'resendOtp'])->name('verify.otp-resend');
 Route::post('/verify-otp/store',[RegisterController::class,'vrrifyOtpStore'])->name('verify.otp-store');
 
 
@@ -97,7 +98,6 @@ Route::middleware(['auth',UserActivity::class])->group(function () {
     Route::get('/manage/approved/{id}/user',[UserController::class,'userApproved'])->name('user.approved');
     Route::post('/manage/reject/{id}/user',[UserController::class,'banUser'])->name('user.baned');
     Route::delete('/manage/{id}/user/remove',[UserController::class,'destroy'])->name('user.delete');
-
 });
 
 Route::get('/manage/biponDa/download',[DownloadController::class,'downloadPage'])->name('download.page');
