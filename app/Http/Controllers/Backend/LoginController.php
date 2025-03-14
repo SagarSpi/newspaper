@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -14,7 +15,16 @@ class LoginController extends Controller
 {
     public function loginPage() 
     {
-        return view('login.login');
+        try {
+            $savedEmail = Cookie::has('adminuser') ? Crypt::decryptString(Cookie::get('adminuser')) : '';
+            $savedPassword = Cookie::has('adminpassword') ? Crypt::decryptString(Cookie::get('adminpassword')) : '';
+            
+        } catch (\Exception $e) {
+            $savedEmail = '';
+            $savedPassword = '';
+        }
+
+        return view('login.login',compact('savedEmail','savedPassword'));
     }
 
     /**
@@ -80,9 +90,23 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'User not found.');
+        }
+
+        if ($user && $user->status === 'Rejected') {
+            return redirect()->route('login')->withInput()->with('error','Your account has been rejected.');
+        }
+
         if ($request->has('rememberMe')) {
-            Cookie::queue('adminuser',$request->email,1440);
-            Cookie::queue('adminpassword',$request->password,1440);
+            Cookie::queue('adminuser', Crypt::encryptString($request->email), 43200);
+            Cookie::queue('adminpassword', Crypt::encryptString($request->password), 43200);
+        }
+        else {
+            Cookie::queue(Cookie::forget('adminuser'));
+            Cookie::queue(Cookie::forget('adminpassword'));
         }
         
         if (Auth::attempt($inputs)) {

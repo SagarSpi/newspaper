@@ -29,20 +29,16 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" name="email" class="form-control" 
-                                    @if (Cookie::has('adminuser')) value="{{Cookie::get('adminuser')}}" @endif 
-                                    id="email" aria-describedby="emailHelp" placeholder="Type Email" {{$errors->has('email')?'autofocus': ''}} required >
+                                    <input type="email" name="email" class="form-control" value="{{ old('email', $savedEmail) }}" id="email" aria-describedby="emailHelp" placeholder="Type Email" {{$errors->has('email')?'autofocus': ''}} required>
                                     @error('email')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
-                                    <input type="password" name="password" @if (Cookie::has('adminpassword')) value="{{Cookie::get('adminpassword')}}" @endif  class="form-control" id="password" placeholder="Type Password" required>
+                                    <input type="password" name="password" value="{{ $savedPassword }}" class="form-control" id="password" placeholder="Type Password" required>
                                     @error('password')<span class="text-danger">{{$message}}</span>@enderror
                                 </div>
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" name="rememberMe" 
-                                    @if (Cookie::has('adminuser')) checked @endif
-                                    class="form-check-input" id="remember">
+                                    <input type="checkbox" name="rememberMe" {{ Cookie::has('adminuser') ? 'checked' : '' }} class="form-check-input" id="remember">
                                     <label class="form-check-label" for="remember">Remember</label>
                                     <a href="{{route('password.forget')}}" class="reset-pass">Forget Password</a>
                                 </div>
