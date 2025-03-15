@@ -36,7 +36,7 @@
                         <div class="card-body mx-5">
                             <form action="{{route('verify.otp-store')}}" method="POST"  id="otpForm">
                                 @csrf
-                                <div class="input-container d-flex flex-row justify-content-center mt-2">
+                                <div class="input-container d-flex flex-row justify-content-center my-3">
                                     <input type="text" name="otp[0]" class="otp-input m-1 text-center form-control rounded" maxlength="1">
                                     <input type="text" name="otp[1]" class="otp-input m-1 text-center form-control rounded" maxlength="1">
                                     <input type="text" name="otp[2]" class="otp-input m-1 text-center form-control rounded" maxlength="1">
@@ -51,7 +51,7 @@
                                         @enderror
                                     @endforeach
                                 </div>
-                                <small class="mt-4">
+                                <small>
                                     Didn't received OTP code ?
                                 </small>
                                 <div class="mt-1 mb-4">
