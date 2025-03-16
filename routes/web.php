@@ -44,9 +44,7 @@ Route::get('/auth/{provider}/callback',[LoginController::class,'socialAuthentica
 // Forget password 
 Route::get('/forget/password',[ForgetPasswordManager::class,'forgetPassword'])->name('password.forget');
 Route::post('/forget/password/post',[ForgetPasswordManager::class,'forgetPasswordPost'])->name('password.forget-post');
-
-Route::get('/forger/password/resend/email',[ForgetPasswordManager::class,'resendEmail'])->name('password.resendEmail');
-
+Route::get('/forger/password/resend-email',[ForgetPasswordManager::class,'resendEmail'])->name('password.resendEmail');
 Route::get('/reset-password',[ForgetPasswordManager::class, 'resetPassword'])->name('password.reset');
 Route::post('/reset-password/post',[ForgetPasswordManager::class,'resetPasswordPost'])->name('password.reset-post');
 

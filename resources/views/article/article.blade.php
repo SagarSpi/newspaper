@@ -169,7 +169,7 @@
                     {{-- USER OFFCANVAS SIDEBAR CODE END  --}}
                     <div class="paginate">
                         <div class="col-12">
-                            {{$articles->links()}}
+                            {{$articles->onEachSide(1)->links()}}
                         </div>
                     </div>
                 </div>
